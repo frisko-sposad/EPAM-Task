@@ -38,5 +38,11 @@
   "bugs": {
     "url": "https://github.com/frisko-sposad/EPAM-Task/issues"
   },
-  "homepage": "https://github.com/frisko-sposad/EPAM-Task#readme"
+  "homepage": "https://github.com/frisko-sposad/EPAM-Task#readme",
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/react"
+    ]
+  }
 }

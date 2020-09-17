@@ -1,17 +1,17 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = (env) => {
-  const mode = env.production ? 'production' : 'development';
+  const mode = env.production ? "production" : "development";
 
   return {
-    entry: './src/index.jsx',
+    entry: "./src/index.jsx",
     mode: mode,
     output: {
-      filename: './main.js',
+      filename: "./main.js",
     },
     devServer: {
-      contentBase: path.join(__dirname, 'dist'),
+      contentBase: path.join(__dirname, "dist"),
       compress: true,
       port: 9000,
       watchContentBase: true,
@@ -19,28 +19,28 @@ module.exports = (env) => {
     },
 
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: [".js", ".jsx"],
     },
     module: {
       rules: [
         {
           test: /\.(jsx|js)$/,
           use: {
-            loader: 'babel-loader',
+            loader: "babel-loader",
           },
         },
         {
           test: /\.css$/,
           use: [
             { loader: MiniCssExtractPlugin.loader },
-            { loader: 'css-loader' },
+            { loader: "css-loader" },
           ],
         },
       ],
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: '[name].css',
+        filename: "[name].css",
       }),
     ],
   };
