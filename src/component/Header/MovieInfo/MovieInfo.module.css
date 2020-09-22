@@ -1,0 +1,39 @@
+.search__container {
+  min-width: 1000px;
+  padding: 1rem 3rem;
+}
+
+.h1_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+  margin-bottom: 20px;
+}
+
+.btnh1 {  
+  height: 36px;
+  }
+
+.MovieInfo__conteiner {
+  display: flex;
+}
+
+.MovieInfo__img {
+  width: 320px;
+}
+
+.MovieInfo__discription {
+  padding: 50px 30px 30px 70px;
+}
+
+.h2 {
+  color: #dc3545;;
+}
+
+.videoParameters{
+  margin: 20px 0 20px 0;
+}
+
+.videoParameters strong{
+  padding-right: 20px;
+}

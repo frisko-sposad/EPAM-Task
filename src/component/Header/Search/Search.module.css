@@ -1,0 +1,20 @@
+.search__container {
+  min-width: 1000px;
+  padding: 1rem 3rem;
+}
+
+.btn__container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.sort__container {
+  display: flex;
+  align-items: baseline;    
+  width: 100%;
+}
+
+.sort__container span {
+  padding: 0 1rem 0 0;
+}

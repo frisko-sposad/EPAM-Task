@@ -9,7 +9,7 @@
     "react-redux": "7.2.1",
     "react-router-dom": "5.2.0",
     "redux": "4.0.5",
-    "bootstrap-4-react": "0.0.59",
+    "bootstrap-4-react": "0.0.59"
   },
   "devDependencies": {
     "@babel/core": "7.11.6",
