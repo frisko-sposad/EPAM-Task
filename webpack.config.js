@@ -1,11 +1,24 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = {
-  entry: './src/index.js',
+module.exports = (env) => {
+
+  if (env.mode === 'development') {    
+    config.mode = 'development';
+  }
+
+  if (env.mode === 'production') {
+    config.mode = 'production';
+  }
+
+  return config;
+};
+
+const config =  {
+  entry: './src/index.jsx',
   mode: 'development',
   output: {
     filename: './main.js',
-    chunkFilename: '[name].bundle.js',
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
@@ -16,30 +29,32 @@ module.exports = {
   },
 
   resolve: {
-    extention: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
   },
   module: {
     rules: [
       {
-        test: /\.jsx$/,
-        exclude: /(node_modules|bower_components)/,
+        test: /\.(jsx|js)$/,        
         use: {
           loader: 'babel-loader',
         },
       },
       {
         test: /\.css$/,
-        use: {
-          loader: 'css-loader',
-          options: {
-            modules: true,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
           },
-        },
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader'],
+          {
+            loader: 'css-loader',
+          },
+        ],
       },
     ],
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
+  ],
 };

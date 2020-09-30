@@ -17,6 +17,7 @@
     "babel-loader": "8.1.0",
     "css-loader": "4.3.0",
     "jest": "26.4.2",
+    "mini-css-extract-plugin": "0.11.2",
     "style-loader": "1.2.1",
     "webpack": "4.44.1",
     "webpack-cli": "3.3.12",
@@ -24,8 +25,9 @@
   },
   "scripts": {
     "test": "jest",
-    "dev": "webpack-dev-server",
-    "start": "webpack"
+    "start": "webpack-dev-server",
+    "dev": "webpack --env.mode development",
+    "build": "webpack --env.mode production"
   },
   "repository": {
     "type": "git",
