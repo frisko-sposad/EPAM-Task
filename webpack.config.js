@@ -2,59 +2,46 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env) => {
+  const mode = env.production ? 'production' : 'development';
 
-  if (env.mode === 'development') {    
-    config.mode = 'development';
-  }
+  return {
+    entry: './src/index.jsx',
+    mode: mode,
+    output: {
+      filename: './main.js',
+    },
+    devServer: {
+      contentBase: path.join(__dirname, 'dist'),
+      compress: true,
+      port: 9000,
+      watchContentBase: true,
+      progress: true,
+    },
 
-  if (env.mode === 'production') {
-    config.mode = 'production';
-  }
-
-  return config;
-};
-
-const config =  {
-  entry: './src/index.jsx',
-  mode: 'development',
-  output: {
-    filename: './main.js',
-  },
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 9000,
-    watchContentBase: true,
-    progress: true,
-  },
-
-  resolve: {
-    extensions: ['.js', '.jsx'],
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(jsx|js)$/,        
-        use: {
-          loader: 'babel-loader',
+    resolve: {
+      extensions: ['.js', '.jsx'],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(jsx|js)$/,
+          use: {
+            loader: 'babel-loader',
+          },
         },
-      },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          {
-            loader: 'css-loader',
-          },
-        ],
-      },
+        {
+          test: /\.css$/,
+          use: [
+            { loader: MiniCssExtractPlugin.loader },
+            { loader: 'css-loader' },
+          ],
+        },
+      ],
+    },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: '[name].css',
+      }),
     ],
-  },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-    }),
-  ],
+  };
 };

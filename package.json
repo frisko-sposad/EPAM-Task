@@ -26,8 +26,8 @@
   "scripts": {
     "test": "jest",
     "start": "webpack-dev-server",
-    "dev": "webpack --env.mode development",
-    "build": "webpack --env.mode production"
+    "build:dev": "webpack --env",
+    "build:prod": "webpack --env.production"
   },
   "repository": {
     "type": "git",
