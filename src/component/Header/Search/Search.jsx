@@ -11,17 +11,17 @@ const Search = () => {
       <div className={style.btn__container}>
         <div className={style.sort__container}>
           <span>SEARCH BY</span>
-          <div className="btn-group" role="group" aria-label="Basic example">
-            <button type="button" className="btn btn-secondary">
+          <div className="btn-group" role="group">
+            <button type="button" className="btn btn-search-by">
               TITLE
             </button>
-            <button type="button" className="btn btn-secondary">
+            <button type="button" className="btn btn-search-by">
               GENRE
             </button>
           </div>
         </div>
 
-        <button type="button" className="btn btn-danger">
+        <button type="button" className="btn btn-search">
           SEARCH
         </button>
       </div>

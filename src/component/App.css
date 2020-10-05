@@ -1,5 +1,41 @@
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 .app {
   color: white;
 }
 
+.btn {
+  border: 1px solid transparent;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  color: #fff;
+  cursor: pointer;
+}
 
+.btn:hover {
+  opacity: 0.5;
+}
+
+.btn-search {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.btn-search-by {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  margin-right: 10px;
+}
+
+.form-control {
+  width: 100%;
+  box-sizing:border-box;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}

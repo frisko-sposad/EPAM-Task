@@ -1,18 +1,19 @@
-.search__container {
-  min-width: 1000px;
+.search__container { 
+  margin: 0 auto;
+  max-width: 1060px;
   padding: 1rem 3rem;
 }
 
 .btn__container {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
+  flex-wrap: wrap;
 }
 
 .sort__container {
   display: flex;
-  align-items: baseline;    
-  width: 100%;
+  align-items: baseline;   
 }
 
 .sort__container span {
