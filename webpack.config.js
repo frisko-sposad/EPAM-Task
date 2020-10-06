@@ -1,8 +1,7 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import MiniCssExtractPlugin, { loader as _loader } from 'mini-css-extract-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-module.exports = (env) => {
+export default (env) => {
   const mode = env.production ? 'production' : 'development';
 
   return {
@@ -12,7 +11,6 @@ module.exports = (env) => {
       filename: './main.js',
     },
     devServer: {
-      contentBase: path.join(__dirname, 'dist'),
       compress: true,
       port: 9000,
       watchContentBase: true,
@@ -33,17 +31,15 @@ module.exports = (env) => {
         {
           test: /\.css$/,
           use: [
-            { loader: MiniCssExtractPlugin.loader },
+            { loader: _loader },
             { loader: 'css-loader' },
           ],
         },
       ],
     },
     plugins: [
-      new HtmlWebpackPlugin({
-        hash: false,
-        template: './src/index.html',
-        filename: 'index.html',
+      new HtmlWebpackPlugin({        
+        template: './src/index.html'        
       }),
       new MiniCssExtractPlugin({
         filename: '[name].css',

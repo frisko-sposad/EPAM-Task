@@ -1,22 +1,21 @@
 import React from 'react';
 import style from './MovieInfo.module.css';
+import Button from '../../Generic/Button/Button';
 
 const MovieInfo = () => {
   return (
     <div className={style.search__container}>
       <div className={style.h1_container}>
         <h1>NetflixRoulette</h1>
-        <button type="button" className={`${style.btnh1} btn btn-danger`}>
-          SEARCH
-        </button>
+        <Button btnStyle="btnSearch" textBtn="SEARCH" />        
       </div>
 
-      <div className={style.MovieInfo__conteiner}>
+      <div className={style.conteiner}>
         <img
           className={style.MovieInfo__img}
           src="https://d2ajy4iry6zk4j.cloudfront.net/pubvat/81277950/thumbnail/medium/pkdhjf35g"
         ></img>
-        <div className={style.MovieInfo__discription}>
+        <div className={style.discription}>
           <h2 className={style.h2}>Elona Holmes</h2>
           <p>Oscar-writing Movies</p>
           <div className={style.videoParameters}>

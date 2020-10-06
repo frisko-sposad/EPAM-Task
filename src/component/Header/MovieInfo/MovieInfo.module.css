@@ -10,11 +10,11 @@
   margin-bottom: 20px;
 }
 
-.btnh1 {  
+.btn-search {  
   height: 36px;
   }
 
-.MovieInfo__conteiner {
+.conteiner {
   display: flex;
 }
 
@@ -22,7 +22,7 @@
   width: 320px;
 }
 
-.MovieInfo__discription {
+.discription {
   padding: 50px 30px 30px 70px;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .videoParameters{
-  margin: 20px 0 20px 0;
+  margin: 20px 0;
 }
 
 .videoParameters strong{
