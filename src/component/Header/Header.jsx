@@ -3,23 +3,24 @@ import SearchSection from './SearchSection/SearchSection';
 import MovieInfo from './MovieInfo/MovieInfo';
 import style from './Header.module.css';
 
-const Header = () => {
-  let search = true;
-  if(search) {
+const Header = (props) => {
+  if (props.showSearch) {
     return (
       <header className={style.Header}>
-        <div><SearchSection /></div>        
+        <div>
+          <SearchSection />
+        </div>
       </header>
     );
   } else {
     return (
-      <header className={style.Header}>        
-        <div><MovieInfo /></div>
+      <header className={style.Header}>
+        <div>
+          <MovieInfo openSearch={props.openSearch} />
+        </div>
       </header>
     );
   }
-  
-  
 };
 
 export default Header;
