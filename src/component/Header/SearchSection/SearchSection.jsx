@@ -5,18 +5,17 @@ import Button from '../../Generic/Button/Button';
 const SearchSection = () => {
   return (
     <div className={style.search__container}>
-      <h1>NetflixRoulette</h1>
       <p>FIND YOUR MOVIE</p>
       <input type="text" className={style.formControl}></input>
       <div className={style.btn__container}>
         <div className={style.searchBy}>
           <span>SEARCH BY</span>
           <div className="btn-group" role="group">
-            <Button btnStyle="btnSearchBy" textBtn="TITLE" />
-            <Button btnStyle="btnSearchBy" textBtn="GENRE" />
+            <Button className="btnSearchBy">TITLE</Button>
+            <Button className="btnSearchBy">GENRE</Button>
           </div>
         </div>
-        <Button btnStyle="btnSearch" textBtn="SEARCH" />
+        <Button className="btnSearch">SEARCH</Button>
       </div>
     </div>
   );

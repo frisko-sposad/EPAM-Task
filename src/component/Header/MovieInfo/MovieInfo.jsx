@@ -5,9 +5,8 @@ import Button from '../../Generic/Button/Button';
 const MovieInfo = (props) => {  
   return (
     <div className={style.search__container}>
-      <div className={style.h1_container}>
-        <h1>NetflixRoulette</h1>
-        <Button btnStyle="btnSearch" textBtn="SEARCH" btnClick={props.openSearch} />        
+      <div className={style.btnSearch_container}>        
+        <Button className="btnSearch" onClick={props.openSearch}>SEARCH</Button>        
       </div>
 
       <div className={style.conteiner}>

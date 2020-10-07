@@ -34,7 +34,8 @@
     "test": "jest",
     "start": "webpack-dev-server --env",
     "build:dev": "webpack --env",
-    "build:prod": "webpack --env.production"
+    "build:prod": "webpack --env.production",
+    "lint": "eslint ./src/component/**/*.jsx"
   },
   "repository": {
     "type": "git",

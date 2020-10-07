@@ -1,13 +1,13 @@
 .search__container {
-  min-width: 1000px;
+  margin: 0 auto;
+  max-width: 1060px;
   padding: 1rem 3rem;
 }
 
-.h1_container {
+.btnSearch_container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;  
-  margin-bottom: 20px;
+  justify-content: flex-end;
+  align-items: center;    
 }
 
 .btn-search {  

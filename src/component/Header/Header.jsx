@@ -6,18 +6,43 @@ import style from './Header.module.css';
 const Header = (props) => {
   if (props.showSearch) {
     return (
-      <header className={style.Header}>
-        <div>
+      <header>
+        <section className={style.header__container}>
+          <h1 className={style.h1}>NetflixRoulette</h1>
           <SearchSection />
-        </div>
+        </section>
+        <section className={style.resultSort__container}>
+          <div className={style.resultCount}>
+            <span>
+              <strong>7 movies found</strong>
+            </span>
+          </div>
+          <div className={style.resultSort}>
+            <span>
+              <strong>Sort by </strong>
+            </span>
+            <span>release date</span>
+            <span><strong>raiting</strong></span>
+          </div>
+        </section>
       </header>
     );
   } else {
     return (
-      <header className={style.Header}>
-        <div>
+      <header>
+        <section className={style.header__container}>
+          <h1 className={style.h1}>NetflixRoulette</h1>
           <MovieInfo openSearch={props.openSearch} />
-        </div>
+        </section>
+        <section className={style.resultSort__container}>
+          <div className={style.resultCount}>
+            <span>
+              <strong>Films by </strong>
+            </span>
+            <span>Drama genre</span>
+          </div>
+          <div className={style.resultSort}></div>
+        </section>
       </header>
     );
   }
