@@ -1,5 +1,6 @@
-import MiniCssExtractPlugin, { loader as _loader } from 'mini-css-extract-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 export default (env) => {
   const mode = env.production ? 'production' : 'development';
