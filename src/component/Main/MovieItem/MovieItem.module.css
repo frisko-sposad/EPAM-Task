@@ -1,11 +1,10 @@
 .MovieItem {  
   color: gray;
-  margin: 1rem;
-  width: 20rem;
+  margin: 1rem;  
 }
 
 .MovieItem__img {
-  width: 320px;
+  width: 300px;
 }
 
 .MovieItem__info {

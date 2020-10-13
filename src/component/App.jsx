@@ -3,6 +3,7 @@ import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import Main from './Main/Main';
 import style from './App.css';
+import movieBase from './MovieBase';
 
 const App = () => {
   const [showSearch, setShowSearch] = useState(false);
@@ -13,6 +14,8 @@ const App = () => {
     setShowSearch(false);
   }
 
+  const [movieArr, setMovieArr] = useState(movieBase);
+
   return (
     <div className={style.app}>
       <Header
@@ -20,7 +23,7 @@ const App = () => {
         openSearch={openSearch}
         closeSearch={closeSearch}
       />
-      <Main />
+      <Main movieArr={movieArr} />
       <Footer />
     </div>
   );
