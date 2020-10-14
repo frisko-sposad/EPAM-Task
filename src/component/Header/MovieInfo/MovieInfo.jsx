@@ -2,11 +2,11 @@ import React from 'react';
 import style from './MovieInfo.module.css';
 import Button from '../../Generic/Button/Button';
 
-const MovieInfo = (props) => {  
+const MovieInfo = ({openSearch}) => {  
   return (
     <div className={style.search__container}>
       <div className={style.btnSearch_container}>        
-        <Button className="btnSearch" onClick={props.openSearch}>SEARCH</Button>        
+        <Button className="btnSearch" onClick={openSearch}>SEARCH</Button>        
       </div>
 
       <div className={style.conteiner}>

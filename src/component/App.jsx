@@ -6,24 +6,22 @@ import style from './App.css';
 import movieBase from './MovieBase';
 
 const App = () => {
-  const [showSearch, setShowSearch] = useState(false);
+  const [isSearchShown, setIsSearchShown] = useState(false);
   function openSearch() {
-    setShowSearch(true);
+    setIsSearchShown(true);
   }
   function closeSearch() {
-    setShowSearch(false);
-  }
-
-  const [movieArr, setMovieArr] = useState(movieBase);
+    setIsSearchShown(false);
+  }  
 
   return (
     <div className={style.app}>
       <Header
-        showSearch={showSearch}
+        showSearch={isSearchShown}
         openSearch={openSearch}
         closeSearch={closeSearch}
       />
-      <Main movieArr={movieArr} />
+      <Main movieBase={movieBase} />
       <Footer />
     </div>
   );
