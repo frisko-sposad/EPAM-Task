@@ -9,12 +9,12 @@ const MovieInfo = ({openSearch}) => {
         <Button className="btnSearch" onClick={openSearch}>SEARCH</Button>        
       </div>
 
-      <div className={style.conteiner}>
+      <div className={style.container}>
         <img
           className={style.MovieInfo__img}
           src="https://d2ajy4iry6zk4j.cloudfront.net/pubvat/81277950/thumbnail/medium/pkdhjf35g"
         ></img>
-        <div className={style.discription}>
+        <div className={style.MovieInfo__discription}>
           <h2 className={style.h2}>Elona Holmes</h2>
           <p>Oscar-writing Movies</p>
           <div className={style.videoParameters}>

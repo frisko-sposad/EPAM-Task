@@ -15,18 +15,29 @@
   font-size: 1rem;
   font-weight: 400;
   text-decoration: none;
+  background-color: #dddddd;
 }
 
-.resultSort span, .resultCount span {
-  padding: 0 1rem;
-}
-
-.sortItem {
+.sortBtn {
   text-decoration: none;
   color: #000000;
+  background: transparent;
+  padding: 0 1rem;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
-.active {
+.sortBtn:hover {
+  opacity: 0.5;
+}
+
+.sortBtn:active {
+  opacity: 0.8;
+}
+
+.sortBtn:focus {
   color: tomato;
   font-weight: 600;
 }

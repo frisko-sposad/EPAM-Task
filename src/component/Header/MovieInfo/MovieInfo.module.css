@@ -14,7 +14,7 @@
   height: 36px;
   }
 
-.conteiner {
+.container {
   display: flex;
 }
 
@@ -22,7 +22,7 @@
   width: 240px;
 }
 
-.discription {
+.MovieInfo__discription {
   padding: 50px 30px 30px 70px;
 }
 

@@ -1,5 +1,5 @@
 .btn {
-  border: 1px solid transparent;
+  border: none;
   padding: 0.5rem;
   font-size: 1rem;
   border-radius: 0.25rem;
@@ -9,6 +9,11 @@
 
 .btn:hover {
   opacity: 0.5;
+}
+
+.btn:active {
+  outline: none;
+  counter-reset: blue;
 }
 
 .btnSearch {

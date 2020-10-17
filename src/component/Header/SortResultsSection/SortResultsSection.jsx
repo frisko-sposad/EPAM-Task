@@ -1,36 +1,40 @@
 import React from 'react';
 import style from './SortResultsSection.module.css';
 
-const SortResultsSection = ({  
-  firstBlock,
-  secondBlock,
+const SortResultsSection = ({
+  filmsBy,
+  genre,
+  moviesFound,
   sortBy,
   releaseDate,
-  raiting,
+  rating,
 }) => {
   return (
     <section className={style.resultSort__container}>
-      <div className={style.resultCount}>
-        <span>
-          <strong>{firstBlock} </strong>
-        </span>
-        <span>{secondBlock}</span>
-      </div>
-      <div className={style.resultSort}>
-        <span>
-          <strong>{sortBy} </strong>
-        </span>
-        <span>
-          <a href="#" className={style.sortItem}>
-            {releaseDate}
-          </a>
-        </span>
-        <span>
-          <a href="#" className={`${style.sortItem} ${style.active}`}>
-            {raiting}
-          </a>
-        </span>
-      </div>
+      {filmsBy ? (
+        <div className={style.resultCount}>
+          <span>
+            <strong>{filmsBy} </strong>
+          </span>
+          <span>{genre}</span>
+        </div>
+      ) : null}
+      {moviesFound ? (
+        <div className={style.resultCount}>
+          <span>
+            <strong>{moviesFound} </strong>
+          </span>
+        </div>
+      ) : null}
+      {sortBy ? (
+        <div className={style.resultSort}>
+          <span>
+            <strong>{sortBy} </strong>
+          </span>
+          <button className={style.sortBtn}>{releaseDate}</button>
+          <button className={style.sortBtn}>{rating}</button>
+        </div>
+      ) : null}
     </section>
   );
 };
