@@ -1,10 +1,10 @@
 import React from 'react';
-import style from './Main.module.css';
+import './Main.css';
 import MovieItem from './MovieItem/MovieItem';
 
 const Main = ({ movieBase }) => {
   return (
-    <main className={style.Main}>
+    <main className='Main'>
       {movieBase.map(({id, name, year, genre, image}) => {
         return (
           <MovieItem

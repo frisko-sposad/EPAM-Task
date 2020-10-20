@@ -1,23 +1,24 @@
 import React from 'react';
-import style from './MovieInfo.module.css';
+import './MovieInfo.css';
 import Button from '../../Generic/Button/Button';
 
-const MovieInfo = ({openSearch}) => {  
+const MovieInfo = ({ openSearch }) => {
   return (
-    <div className={style.search__container}>
-      <div className={style.btnSearch_container}>        
-        <Button className="btnSearch" onClick={openSearch}>SEARCH</Button>        
+    <div className="search__container">
+      <div className="btn-search__container">
+        <Button className="btn_search" onClick={openSearch}>
+          SEARCH
+        </Button>
       </div>
-
-      <div className={style.container}>
+      <div className="movie-info">
         <img
-          className={style.MovieInfo__img}
+          className="movie-info__img"
           src="https://d2ajy4iry6zk4j.cloudfront.net/pubvat/81277950/thumbnail/medium/pkdhjf35g"
-        ></img>
-        <div className={style.description}>
-          <h2 className={style.h2}>Elona Holmes</h2>
+        />
+        <div className="movie-info__description">
+          <h2 className="movie-info__title">Elona Holmes</h2>
           <p>Oscar-writing Movies</p>
-          <div className={style.videoParameters}>
+          <div className="movie-info__video-parameters">
             <strong>1994</strong>
             <strong>154 min</strong>
           </div>

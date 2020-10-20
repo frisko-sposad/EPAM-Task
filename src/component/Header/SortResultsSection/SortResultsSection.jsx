@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './SortResultsSection.module.css';
+import './SortResultsSection.css';
 
 const SortResultsSection = ({
   filmsBy,
@@ -10,31 +10,27 @@ const SortResultsSection = ({
   rating,
 }) => {
   return (
-    <section className={style.resultSort__container}>
-      {filmsBy ? (
-        <div className={style.resultCount}>
+    <section className="result-sort__container">
+      {filmsBy || moviesFound ? (
+        <div>
           <span>
-            <strong>{filmsBy} </strong>
+            <strong>
+              {filmsBy && filmsBy}
+              {moviesFound && moviesFound}
+            </strong>
           </span>
-          <span>{genre}</span>
+          {genre && <span>{genre}</span>}
         </div>
       ) : null}
-      {moviesFound ? (
-        <div className={style.resultCount}>
+      {sortBy && (
+        <div>
           <span>
-            <strong>{moviesFound} </strong>
+            <strong>{sortBy}</strong>
           </span>
+          <button className="btn_sort">{releaseDate}</button>
+          <button className="btn_sort">{rating}</button>
         </div>
-      ) : null}
-      {sortBy ? (
-        <div className={style.resultSort}>
-          <span>
-            <strong>{sortBy} </strong>
-          </span>
-          <button className={style.sortBtn}>{releaseDate}</button>
-          <button className={style.sortBtn}>{rating}</button>
-        </div>
-      ) : null}
+      )}
     </section>
   );
 };

@@ -4,7 +4,7 @@
   padding: 1rem 3rem;
 }
 
-.formControl {
+.search__search-query {
   width: 100%;
   box-sizing: border-box;
   padding: 0.5rem;
@@ -14,18 +14,18 @@
   border-radius: 0.25rem;
 }
 
-.btn__container {
+.search-by__container {
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 0;
   flex-wrap: wrap;
 }
 
-.searchBy {
+.search-by-btn__container {
   display: flex;
   align-items: baseline;
 }
 
-.searchBy span {
+.search-by-btn__container span {
   padding: 0 1rem 0 0;
 }

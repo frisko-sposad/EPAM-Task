@@ -3,16 +3,20 @@ import SearchSection from './SearchSection/SearchSection';
 import MovieInfo from './MovieInfo/MovieInfo';
 import SiteTitle from './SiteTitle/SiteTitle';
 import SortResultsSection from './SortResultsSection/SortResultsSection';
-import style from './Header.module.css';
+import './Header.css';
 
-const Header = ({ showSearch, openSearch }) => {
+const Header = ({ isSearchShown, openSearch }) => {
   return (
     <header>
-      <section className={style.header__container}>
+      <section className="header__container">
         <SiteTitle />
-        {showSearch ? <SearchSection /> : <MovieInfo openSearch={openSearch} />}
+        {isSearchShown ? (
+          <SearchSection />
+        ) : (
+          <MovieInfo openSearch={openSearch} />
+        )}
       </section>
-      {showSearch ? (
+      {isSearchShown ? (
         <SortResultsSection
           moviesFound="7 movies found"
           releaseDate="release date"
