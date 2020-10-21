@@ -4,7 +4,7 @@ import MovieItem from './MovieItem/MovieItem';
 
 const Main = ({ movieBase }) => {
   return (
-    <main className='Main'>
+    <main className='main'>
       {movieBase.map(({id, name, year, genre, image}) => {
         return (
           <MovieItem

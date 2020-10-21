@@ -14,7 +14,7 @@ const SortResultsSection = ({
       {filmsBy || moviesFound ? (
         <div>
           <span>
-            <strong>
+            <strong>              
               {filmsBy && filmsBy}
               {moviesFound && moviesFound}
             </strong>
