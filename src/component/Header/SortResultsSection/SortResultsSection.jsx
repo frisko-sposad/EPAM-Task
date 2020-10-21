@@ -1,36 +1,36 @@
 import React from 'react';
-import style from './SortResultsSection.module.css';
+import './SortResultsSection.css';
 
-const SortResultsSection = ({  
-  firstBlock,
-  secondBlock,
+const SortResultsSection = ({
+  filmsBy,
+  genre,
+  moviesFound,
   sortBy,
   releaseDate,
-  raiting,
+  rating,
 }) => {
   return (
-    <section className={style.resultSort__container}>
-      <div className={style.resultCount}>
-        <span>
-          <strong>{firstBlock} </strong>
-        </span>
-        <span>{secondBlock}</span>
-      </div>
-      <div className={style.resultSort}>
-        <span>
-          <strong>{sortBy} </strong>
-        </span>
-        <span>
-          <a href="#" className={style.sortItem}>
-            {releaseDate}
-          </a>
-        </span>
-        <span>
-          <a href="#" className={`${style.sortItem} ${style.active}`}>
-            {raiting}
-          </a>
-        </span>
-      </div>
+    <section className="result-sort__container">
+      {(filmsBy || moviesFound) && (
+        <div>
+          <span>
+            <strong>
+              {filmsBy}
+              {moviesFound}
+            </strong>
+          </span>
+          {genre && <span>{genre}</span>}
+        </div>
+      )}
+      {sortBy && (
+        <div>
+          <span>
+            <strong>{sortBy}</strong>
+          </span>
+          <button className="btn_sort">{releaseDate}</button>
+          <button className="btn_sort">{rating}</button>
+        </div>
+      )}
     </section>
   );
 };

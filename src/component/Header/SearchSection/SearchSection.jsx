@@ -1,21 +1,21 @@
 import React from 'react';
-import style from './SearchSection.module.css';
+import './SearchSection.css';
 import Button from '../../Generic/Button/Button';
 
 const SearchSection = () => {
   return (
-    <div className={style.search__container}>
+    <div className="search__container">
       <p>FIND YOUR MOVIE</p>
-      <input type="text" className={style.formControl}></input>
-      <div className={style.btn__container}>
-        <div className={style.searchBy}>
+      <input type="text" className="search__search-query"></input>
+      <div className="search-by__container">
+        <div className="search-by-btn__container">
           <span>SEARCH BY</span>
           <div className="btn-group" role="group">
-            <Button className="btnSearchBy">TITLE</Button>
-            <Button className="btnSearchBy">GENRE</Button>
+            <Button className="btn_search-by">TITLE</Button>
+            <Button className="btn_search-by">GENRE</Button>
           </div>
         </div>
-        <Button className="btnSearch">SEARCH</Button>
+        <Button className="btn_search">SEARCH</Button>
       </div>
     </div>
   );

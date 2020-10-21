@@ -4,36 +4,36 @@
   padding: 1rem 3rem;
 }
 
-.btnSearch_container {
+.btn-search__container {
   display: flex;
   justify-content: flex-end;
   align-items: center;    
 }
 
-.btn-search {  
+.btn_search {  
   height: 36px;
   }
 
-.conteiner {
+.movie-info {
   display: flex;
 }
 
-.MovieInfo__img {
+.movie-info__img {
   width: 240px;
 }
 
-.discription {
+.movie-info__description {
   padding: 50px 30px 30px 70px;
 }
 
-.h2 {
+.movie-info__title {
   color: #dc3545;;
 }
 
-.videoParameters{
+.movie-info__video-parameters{
   margin: 20px 0;
 }
 
-.videoParameters strong{
+.movie-info__video-parameters strong{
   padding-right: 20px;
 }

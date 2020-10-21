@@ -1,0 +1,52 @@
+.btn {
+  border: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 0.5;
+}
+
+.btn:active {
+  outline: none;
+  counter-reset: blue;
+}
+
+.btn_search {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.btn_search-by {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  margin-right: 10px;
+}
+
+.btn_sort {
+  text-decoration: none;
+  color: #000000;
+  background: transparent;
+  padding: 0 1rem;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn_sort:hover {
+  opacity: 0.5;
+}
+
+.btn_sort:active {
+  opacity: 0.8;
+}
+
+.btn_sort:focus {
+  color: tomato;
+  font-weight: 600;
+}

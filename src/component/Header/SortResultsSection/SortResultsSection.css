@@ -1,0 +1,9 @@
+.result-sort__container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  font-weight: 400;
+  text-decoration: none;
+  background-color: #dddddd;
+}

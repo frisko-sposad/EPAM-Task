@@ -1,19 +1,19 @@
-.MovieItem {  
+.movie-item {  
   color: gray;
   margin: 1rem;  
 }
 
-.MovieItem__img {
+.movie-item__img {
   width: 300px;
 }
 
-.MovieItem__info {
+.movie-item__info {
   display: flex;  
   justify-content: space-between;
   padding: 0.3rem 0.5rem;
 }
 
-.MovieItem__year {
+.movie-item__year {
   font-size: 0.8rem;
   padding: 0 0.4rem;
   border: 1px solid gray;
