@@ -11,17 +11,17 @@ const SortResultsSection = ({
 }) => {
   return (
     <section className="result-sort__container">
-      {filmsBy || moviesFound ? (
+      {(filmsBy || moviesFound) && (
         <div>
           <span>
-            <strong>              
-              {filmsBy && filmsBy}
-              {moviesFound && moviesFound}
+            <strong>
+              {filmsBy}
+              {moviesFound}
             </strong>
           </span>
           {genre && <span>{genre}</span>}
         </div>
-      ) : null}
+      )}
       {sortBy && (
         <div>
           <span>
