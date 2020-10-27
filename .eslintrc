@@ -21,11 +21,9 @@
     "prettier",
     "react-hooks"
   ],
-  "rules": {
-    "react/jsx-uses-react": "error",
-    "react/jsx-uses-vars": "error",
+  "rules": {    
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/exhaustive-deps": "error",
     "linebreak-style": 0,
     "react/prop-types": 0,
     "object-curly-newline": 0

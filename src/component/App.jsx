@@ -7,7 +7,7 @@ import movieBase from './MovieBase';
 
 const App = () => {
   const [isSearchShown, setIsSearchShown] = useState(false);
-  
+
   function openSearch() {
     setIsSearchShown(true);
   }

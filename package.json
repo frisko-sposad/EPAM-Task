@@ -40,7 +40,9 @@
     "build:dev": "webpack --env",
     "build:prod": "webpack --env.production",
     "lint": "eslint ./src/**/*.jsx",
-    "prettier": "prettier --write src/**/*.jsx"
+    "lint:fix": "eslint ./src/**/*.jsx --fix",
+    "prettier": "prettier src/**/*.jsx",
+    "prettier:write": "prettier --write src/**/*.jsx"
   },
   "repository": {
     "type": "git",
