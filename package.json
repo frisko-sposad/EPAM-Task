@@ -41,8 +41,9 @@
     "build:prod": "webpack --env.production",
     "lint": "eslint ./src/**/*.jsx",
     "lint:fix": "npm run lint -- --fix",
-    "prettier": "prettier src/**/*.jsx",
+    "prettier": "prettier ./src/**/*.jsx",
     "prettier:write": "npm run prettier -- --write"
+    
   },
   "repository": {
     "type": "git",
