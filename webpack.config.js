@@ -1,4 +1,3 @@
-const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -7,7 +6,7 @@ module.exports = (env) => {
 
   return {
     entry: './src/index.jsx',
-    mode: mode,
+    mode,
     output: {
       filename: './main.js',
     },
