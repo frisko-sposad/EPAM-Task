@@ -5,7 +5,9 @@ import SiteTitle from './SiteTitle/SiteTitle';
 import SortResultsSection from './SortResultsSection/SortResultsSection';
 import './Header.css';
 
-const Header = ({ isSearchShown, openSearch }) => (
+interface HeaderProps {isSearchShown:boolean, openSearch:() => void}
+
+const Header = ({ isSearchShown, openSearch }: HeaderProps) => (
   <header>
     <section className="header__container">
       <SiteTitle />

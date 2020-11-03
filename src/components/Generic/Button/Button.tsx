@@ -1,7 +1,9 @@
 import React from 'react';
 import './Button.css';
 
-const Button = ({ className, onClick, children }) => (
+interface ButtonProps { className: string, onClick?: () => void, children?: string }
+
+const Button = ({ className, onClick, children }: ButtonProps) => (
   <button type="button" className={`${className} btn`} onClick={onClick}>
     {children}
   </button>

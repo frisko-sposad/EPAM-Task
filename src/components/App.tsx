@@ -12,13 +12,13 @@ const App = () => {
     setIsSearchShown(true);
   }
 
-  function closeSearch() {
-    setIsSearchShown(false);
-  }
+  // function closeSearch() {
+  //   setIsSearchShown(false);
+  // }
 
   return (
     <>
-      <Header isSearchShown={isSearchShown} openSearch={openSearch} closeSearch={closeSearch} />
+      <Header isSearchShown={isSearchShown} openSearch={openSearch} />
       <Main movieBase={movieBase} />
       <Footer />
     </>

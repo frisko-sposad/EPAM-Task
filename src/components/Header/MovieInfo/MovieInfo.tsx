@@ -2,7 +2,9 @@ import React from 'react';
 import './MovieInfo.css';
 import Button from '../../Generic/Button/Button';
 
-const MovieInfo = ({ openSearch }) => (
+interface MovieInfoProps { openSearch: () => void }
+
+const MovieInfo = ({ openSearch }: MovieInfoProps) => (
   <div className="search__container">
     <div className="btn-search__container">
       <Button className="btn_search" onClick={openSearch}>
