@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <>
-      <Header isSearchShown={isSearchShown} openSearch={openSearch} closeSearch={closeSearch} />
+      <Header isSearchShown={isSearchShown} openSearch={openSearch} />
       <Main movieBase={movieBase} />
       <Footer />
     </>

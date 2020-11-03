@@ -17,10 +17,11 @@ const MovieItem = ({ image, name, year, genre }: MovieItemProps) => (
         <div className="movie-item__year">{year}</div>
       </div>
       <div className="movie-item__info">
-        <div>{genre}</div>
+        <div>{genre}{console.log("MovieItem")}</div>
       </div>
     </div>
   </div>
+  
 );
 
 export default MovieItem;
