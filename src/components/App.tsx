@@ -17,7 +17,7 @@ const App: FC = () => {
 
   return (
     <>
-      <Header isSearchShown={isSearchShown} openSearch={openSearch} />
+      <Header isSearchShown={isSearchShown} openSearch={openSearch} closeSearch={closeSearch} />
       <Main movieBase={movieBase} />
       <Footer />
     </>
