@@ -1,12 +1,12 @@
 import React from 'react';
 import './Button.css';
 
-interface ButtonProps { className: string, onClick?: () => void, children?: string }
+interface ButtonProps { className: string, onClick?: () => void, buttonTitle?: string }
 
-const Button = ({ className, onClick, children }: ButtonProps) => (
+const Button = ({ className, onClick, buttonTitle }: ButtonProps) => (
   <button type="button" className={`${className} btn`} onClick={onClick}>
-    {children}
+    {buttonTitle}    
   </button>
 );
 
-export default Button;
+export default React.memo(Button);
