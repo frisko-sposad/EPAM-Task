@@ -6,7 +6,6 @@ module.exports = (env) => {
 
   return {
     entry: './src/index.tsx',
-    devtool: 'inline-source-map',
     mode,
     output: {
       filename: './main.js',

@@ -7,9 +7,7 @@ interface MovieInfoProps { openSearch: () => void }
 const MovieInfo = ({ openSearch }: MovieInfoProps) => (
   <div className="search__container">
     <div className="btn-search__container">
-      <Button className="btn_search" onClick={openSearch}>
-        SEARCH
-      </Button>
+      <Button className="btn_search" onClick={openSearch} buttonTitle="SEARCH"></Button>
     </div>
     <div className="movie-info">
       <img
@@ -34,4 +32,4 @@ const MovieInfo = ({ openSearch }: MovieInfoProps) => (
   </div>
 );
 
-export default MovieInfo;
+export default React.memo(MovieInfo);

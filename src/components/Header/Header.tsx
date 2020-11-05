@@ -5,13 +5,13 @@ import SiteTitle from './SiteTitle/SiteTitle';
 import SortResultsSection from './SortResultsSection/SortResultsSection';
 import './Header.css';
 
-interface HeaderProps {isSearchShown:boolean, openSearch:() => void}
+interface HeaderProps {isSearchShown:boolean, openSearch:() => void, closeSearch:() => void}
 
-const Header = ({ isSearchShown, openSearch }: HeaderProps) => (
+const Header = ({ isSearchShown, openSearch, closeSearch }: HeaderProps) => (
   <header>
     <section className="header__container">
       <SiteTitle />
-      {isSearchShown ? <SearchSection /> : <MovieInfo openSearch={openSearch} />}
+      {isSearchShown ? <SearchSection closeSearch={closeSearch}/> : <MovieInfo openSearch={openSearch} />}
     </section>
     {isSearchShown ? (
       <SortResultsSection moviesFound="7 movies found" releaseDate="release date" sortBy="Sort by" rating="rating" />
@@ -21,4 +21,4 @@ const Header = ({ isSearchShown, openSearch }: HeaderProps) => (
   </header>
 );
 
-export default Header;
+export default React.memo(Header);
