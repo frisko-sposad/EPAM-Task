@@ -5,7 +5,11 @@ import Button from '../../Generic/Button/Button';
 interface SearchSectionProps {
   closeSearch: () => void;
 }
+<<<<<<< HEAD
 const SearchSection: FC<SearchSectionProps> = ({ closeSearch }) => (
+=======
+const SearchSection = ({ closeSearch }: SearchSectionProps) => (
+>>>>>>> c2c061a... lint jsx -> tsx,
   <div className="search__container">
     <p>FIND YOUR MOVIE</p>
     <input type="text" className="search__search-query" />
