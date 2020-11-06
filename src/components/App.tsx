@@ -8,16 +8,8 @@ import movieBase from './MovieBase';
 const App = () => {
   const [isSearchShown, setIsSearchShown] = useState(false);
 
-const openSearch = useCallback(() => {setIsSearchShown(true)},[true])
-const closeSearch = useCallback(() => {setIsSearchShown(false)},[false])
-
-  // function openSearch() {
-  //   setIsSearchShown(true);
-  // }
-
-  // function closeSearch() {
-  //   setIsSearchShown(false);
-  // }
+const openSearch = useCallback(() => {setIsSearchShown(true)},[])
+const closeSearch = useCallback(() => {setIsSearchShown(false)},[])
 
   return (
     <>

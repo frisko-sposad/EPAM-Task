@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './MovieInfo.css';
 import Button from '../../Generic/Button/Button';
 
@@ -7,7 +7,7 @@ interface MovieInfoProps { openSearch: () => void }
 const MovieInfo = ({ openSearch }: MovieInfoProps) => (
   <div className="search__container">
     <div className="btn-search__container">
-      <Button className="btn_search" onClick={openSearch} buttonTitle="SEARCH"></Button>
+      <Button className="btn_search" onClick={openSearch}>SEARCH</Button>
     </div>
     <div className="movie-info">
       <img
@@ -32,4 +32,4 @@ const MovieInfo = ({ openSearch }: MovieInfoProps) => (
   </div>
 );
 
-export default React.memo(MovieInfo);
+export default memo(MovieInfo);

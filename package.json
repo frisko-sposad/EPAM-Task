@@ -46,7 +46,7 @@
     "start": "webpack-dev-server --env",
     "build:dev": "webpack --env",
     "build:prod": "webpack --env.production",
-    "lint": "eslint ./src/**/*.jsx",
+    "lint": "eslint ./src/**/*.tsx",
     "lint:fix": "npm run lint -- --fix",
     "prettier:write": "npm run prettier -- --write",
     "tsc": "tsc"
