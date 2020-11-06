@@ -10,6 +10,7 @@ const App = () => {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   const openSearch = useCallback(() => {
     setIsSearchShown(true);
   }, []);
@@ -32,6 +33,10 @@ const closeSearch = useCallback(() => {setIsSearchShown(false)},[false])
 const openSearch = useCallback(() => {setIsSearchShown(true)},[])
 const closeSearch = useCallback(() => {setIsSearchShown(false)},[])
 >>>>>>> 31bd3fc... lint jsx -> tsx,
+=======
+  const openSearch = useCallback(() => { setIsSearchShown(true) }, [])
+  const closeSearch = useCallback(() => { setIsSearchShown(false) }, [])
+>>>>>>> d7067df... MovieItemProps - remove key
 
   return (
     <>
