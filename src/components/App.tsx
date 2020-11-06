@@ -9,6 +9,7 @@ const App = () => {
   const [isSearchShown, setIsSearchShown] = useState(false);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   const openSearch = useCallback(() => {
     setIsSearchShown(true);
   }, []);
@@ -27,6 +28,10 @@ const closeSearch = useCallback(() => {setIsSearchShown(false)},[false])
   //   setIsSearchShown(false);
   // }
 >>>>>>> 7b7863b... fixed bugs,
+=======
+const openSearch = useCallback(() => {setIsSearchShown(true)},[])
+const closeSearch = useCallback(() => {setIsSearchShown(false)},[])
+>>>>>>> 31bd3fc... lint jsx -> tsx,
 
   return (
     <>
