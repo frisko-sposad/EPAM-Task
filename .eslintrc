@@ -5,6 +5,8 @@
   },
   "extends": [
     "airbnb",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
@@ -22,11 +24,20 @@
   "plugins": [
     "import",
     "react",
+<<<<<<< HEAD
     "react-hooks",
     "@typescript-eslint",
     "prettier"
   ],
   "rules": {    
+=======
+    "prettier",
+    "@typescript-eslint",
+    "react-hooks",
+    "import"
+  ],
+  "rules": {
+>>>>>>> f3d4461... ts linter
     "react/jsx-filename-extension": [
       1,
       {
@@ -38,6 +49,7 @@
         ]
       }
     ],
+<<<<<<< HEAD
     "react/prop-types": 0,
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
@@ -59,3 +71,39 @@
   "parser": "@typescript-eslint/parser"
 }
 
+=======
+    "prettier/prettier": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error",
+    "react/prop-types": 0,
+    "react/require-default-props": 0,
+    "no-use-before-define": 0,
+    "@typescript-eslint/no-use-before-define": 1,
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "mjs": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+  },
+  "parser": "@typescript-eslint/parser",
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx",
+          ".json"
+        ]
+      }
+    }
+  }
+}
+>>>>>>> f3d4461... ts linter

@@ -13,7 +13,13 @@ const App: FC = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> f6e8b07... MovieItemProps - remove key
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 28def4c... ts linter
+>>>>>>> f3d4461... ts linter
   const openSearch = useCallback(() => {
     setIsSearchShown(true);
   }, []);
@@ -21,7 +27,10 @@ const App: FC = () => {
     setIsSearchShown(false);
   }, []);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> f3d4461... ts linter
 =======
 const openSearch = useCallback(() => {setIsSearchShown(true)},[true])
 const closeSearch = useCallback(() => {setIsSearchShown(false)},[false])
@@ -42,7 +51,12 @@ const closeSearch = useCallback(() => {setIsSearchShown(false)},[])
   const openSearch = useCallback(() => { setIsSearchShown(true) }, [])
   const closeSearch = useCallback(() => { setIsSearchShown(false) }, [])
 >>>>>>> d7067df... MovieItemProps - remove key
+<<<<<<< HEAD
 >>>>>>> f6e8b07... MovieItemProps - remove key
+=======
+=======
+>>>>>>> 28def4c... ts linter
+>>>>>>> f3d4461... ts linter
 
   return (
     <>

@@ -7,10 +7,14 @@ import MovieItem, { MovieItemProps } from './MovieItem/MovieItem';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> c2c061a... lint jsx -> tsx,
 =======
 <<<<<<< HEAD
 >>>>>>> f6e8b07... MovieItemProps - remove key
+=======
+<<<<<<< HEAD
+>>>>>>> f3d4461... ts linter
 interface MainProps {
   movieBase: (MovieItemProps & { id: number })[];
 }
@@ -34,6 +38,11 @@ const Main = ({ movieBase }: { movieBase: MovieItemProps[] }) => (
 =======
 =======
 interface MainProps { movieBase: (MovieItemProps & { id: number })[] }
+=======
+interface MainProps {
+  movieBase: (MovieItemProps & { id: number })[];
+}
+>>>>>>> 28def4c... ts linter
 
 const Main = ({ movieBase }: MainProps) => (
   <main className="main">

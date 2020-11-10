@@ -9,21 +9,35 @@ import './Header.css';
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> c2c061a... lint jsx -> tsx,
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 28def4c... ts linter
+>>>>>>> f3d4461... ts linter
 interface HeaderProps {
   isSearchShown: boolean;
   openSearch: () => void;
   closeSearch: () => void;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> f3d4461... ts linter
 =======
 interface HeaderProps {isSearchShown:boolean, openSearch:() => void, closeSearch:() => void}
 >>>>>>> 7b7863b... fixed bugs,
 =======
 interface HeaderProps { isSearchShown: boolean, openSearch: () => void, closeSearch: () => void }
 >>>>>>> 31bd3fc... lint jsx -> tsx,
+<<<<<<< HEAD
 >>>>>>> c2c061a... lint jsx -> tsx,
+=======
+=======
+>>>>>>> 28def4c... ts linter
+>>>>>>> f3d4461... ts linter
 
 const Header = ({ isSearchShown, openSearch, closeSearch }: HeaderProps) => (
   <header>
@@ -46,8 +60,8 @@ const Header = ({ isSearchShown, openSearch, closeSearch }: HeaderProps) => (
     {isSearchShown ? (
       <SortResultsSection moviesFound="7 movies found" releaseDate="release date" sortBy="Sort by" rating="rating" />
     ) : (
-        <SortResultsSection filmsBy="Films by " genre="Drama genre" />
-      )}
+      <SortResultsSection filmsBy="Films by " genre="Drama genre" />
+    )}
   </header>
 );
 
