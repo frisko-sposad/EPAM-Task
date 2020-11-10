@@ -9,7 +9,9 @@ interface MovieInfoProps {
 const MovieInfo = ({ openSearch }: MovieInfoProps) => (
   <div className="search__container">
     <div className="btn-search__container">
-      <Button className="btn_search" onClick={openSearch}>SEARCH</Button>
+      <Button className="btn_search" onClick={openSearch}>
+        SEARCH
+      </Button>
     </div>
     <div className="movie-info">
       <img

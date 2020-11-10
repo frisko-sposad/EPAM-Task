@@ -5,6 +5,7 @@ import MovieItem, { MovieItemProps } from './MovieItem/MovieItem';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 interface MainProps {
   movieBase: (MovieItemProps & { id: number })[];
 }
@@ -23,6 +24,11 @@ const Main = ({ movieBase }: { movieBase: MovieItemProps[] }) => (
 >>>>>>> 7b7863b... fixed bugs,
 =======
 interface MainProps { movieBase: (MovieItemProps & { id: number })[] }
+=======
+interface MainProps {
+  movieBase: (MovieItemProps & { id: number })[];
+}
+>>>>>>> 28def4c... ts linter
 
 const Main = ({ movieBase }: MainProps) => (
   <main className="main">
