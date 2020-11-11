@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import './MovieItem.css';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -12,12 +13,15 @@ import './MovieItem.css';
 =======
 >>>>>>> 28def4c... ts linter
 >>>>>>> f3d4461... ts linter
+=======
+>>>>>>> f18e8e4... linted file
 export interface MovieItemProps {
   image: string;
   name: string;
   year: string;
   genre: string;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -40,6 +44,10 @@ const MovieItem = ({ image, name, year, genre }: MovieItemProps) => (
 >>>>>>> f6e8b07... MovieItemProps - remove key
 =======
 >>>>>>> f3d4461... ts linter
+=======
+
+const MovieItem: FC<MovieItemProps> = ({ image, name, year, genre }) => (
+>>>>>>> f18e8e4... linted file
   <div className="movie-item">
     <img className="movie-item__img" src={image} alt="movieImage" />
     <div>

@@ -38,8 +38,12 @@
     "@typescript-eslint",
     "prettier"
   ],
+<<<<<<< HEAD
   "rules": {
 >>>>>>> f3d4461... ts linter
+=======
+  "rules": {    
+>>>>>>> f18e8e4... linted file
     "react/jsx-filename-extension": [
       1,
       {
@@ -52,6 +56,9 @@
       }
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f18e8e4... linted file
     "react/prop-types": 0,
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
@@ -73,6 +80,7 @@
   "parser": "@typescript-eslint/parser"
 }
 
+<<<<<<< HEAD
 =======
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
@@ -112,3 +120,5 @@
   "parser": "@typescript-eslint/parser"  
 }
 >>>>>>> 5549138... fixed import eslint errors
+=======
+>>>>>>> f18e8e4... linted file

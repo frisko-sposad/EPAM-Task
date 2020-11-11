@@ -9,6 +9,7 @@ const App: FC = () => {
   const [isSearchShown, setIsSearchShown] = useState(false);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -20,12 +21,15 @@ const App: FC = () => {
 =======
 >>>>>>> 28def4c... ts linter
 >>>>>>> f3d4461... ts linter
+=======
+>>>>>>> f18e8e4... linted file
   const openSearch = useCallback(() => {
     setIsSearchShown(true);
   }, []);
   const closeSearch = useCallback(() => {
     setIsSearchShown(false);
   }, []);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -57,6 +61,8 @@ const closeSearch = useCallback(() => {setIsSearchShown(false)},[])
 =======
 >>>>>>> 28def4c... ts linter
 >>>>>>> f3d4461... ts linter
+=======
+>>>>>>> f18e8e4... linted file
 
   return (
     <>

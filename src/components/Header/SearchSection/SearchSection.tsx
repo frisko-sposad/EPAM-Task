@@ -6,10 +6,14 @@ interface SearchSectionProps {
   closeSearch: () => void;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 const SearchSection: FC<SearchSectionProps> = ({ closeSearch }) => (
 =======
 const SearchSection = ({ closeSearch }: SearchSectionProps) => (
 >>>>>>> c2c061a... lint jsx -> tsx,
+=======
+const SearchSection: FC<SearchSectionProps> = ({ closeSearch }: SearchSectionProps) => (
+>>>>>>> f18e8e4... linted file
   <div className="search__container">
     <p>FIND YOUR MOVIE</p>
     <input type="text" className="search__search-query" />
