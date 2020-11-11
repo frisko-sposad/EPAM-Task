@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import './SortResultsSection.css';
 
 interface SortResultsSectionProps {
@@ -10,7 +10,7 @@ interface SortResultsSectionProps {
   rating?: string;
 }
 
-const SortResultsSection = ({
+const SortResultsSection: FC<SortResultsSectionProps> = ({
   filmsBy,
   genre,
   moviesFound,

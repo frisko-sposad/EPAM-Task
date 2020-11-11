@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import './SearchSection.css';
 import Button from '../../Generic/Button/Button';
 
 interface SearchSectionProps {
   closeSearch: () => void;
 }
-const SearchSection = ({ closeSearch }: SearchSectionProps) => (
+const SearchSection: FC<SearchSectionProps> = ({ closeSearch }: SearchSectionProps) => (
   <div className="search__container">
     <p>FIND YOUR MOVIE</p>
     <input type="text" className="search__search-query" />

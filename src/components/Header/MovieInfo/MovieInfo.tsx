@@ -36,12 +36,4 @@ const MovieInfo = ({ openSearch }: MovieInfoProps) => (
   </div>
 );
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 export default memo(MovieInfo);
-=======
-export default React.memo(MovieInfo);
->>>>>>> 7b7863b... fixed bugs,
-=======
-export default memo(MovieInfo);
->>>>>>> 31bd3fc... lint jsx -> tsx,
