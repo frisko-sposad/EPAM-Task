@@ -1,7 +1,23 @@
 import React from 'react';
 import './SortResultsSection.css';
 
-const SortResultsSection = ({ filmsBy, genre, moviesFound, sortBy, releaseDate, rating }) => (
+interface SortResultsSectionProps {
+  filmsBy?: string;
+  genre?: string;
+  moviesFound?: string;
+  sortBy?: string;
+  releaseDate?: string;
+  rating?: string;
+}
+
+const SortResultsSection = ({
+  filmsBy,
+  genre,
+  moviesFound,
+  sortBy,
+  releaseDate,
+  rating,
+}: SortResultsSectionProps) => (
   <section className="result-sort__container">
     {(filmsBy || moviesFound) && (
       <div>

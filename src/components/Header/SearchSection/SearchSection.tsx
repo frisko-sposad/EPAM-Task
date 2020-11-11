@@ -2,7 +2,10 @@ import React from 'react';
 import './SearchSection.css';
 import Button from '../../Generic/Button/Button';
 
-const SearchSection = () => (
+interface SearchSectionProps {
+  closeSearch: () => void;
+}
+const SearchSection = ({ closeSearch }: SearchSectionProps) => (
   <div className="search__container">
     <p>FIND YOUR MOVIE</p>
     <input type="text" className="search__search-query" />
@@ -14,7 +17,9 @@ const SearchSection = () => (
           <Button className="btn_search-by">GENRE</Button>
         </div>
       </div>
-      <Button className="btn_search">SEARCH</Button>
+      <Button className="btn_search" onClick={closeSearch}>
+        SEARCH
+      </Button>
     </div>
   </div>
 );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import Main from './Main/Main';
@@ -8,13 +8,12 @@ import movieBase from './MovieBase';
 const App = () => {
   const [isSearchShown, setIsSearchShown] = useState(false);
 
-  function openSearch() {
+  const openSearch = useCallback(() => {
     setIsSearchShown(true);
-  }
-
-  function closeSearch() {
+  }, []);
+  const closeSearch = useCallback(() => {
     setIsSearchShown(false);
-  }
+  }, []);
 
   return (
     <>

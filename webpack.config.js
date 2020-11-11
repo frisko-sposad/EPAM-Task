@@ -5,7 +5,7 @@ module.exports = (env) => {
   const mode = env.production ? 'production' : 'development';
 
   return {
-    entry: './src/index.jsx',
+    entry: './src/index.tsx',
     mode,
     output: {
       filename: './main.js',
@@ -18,15 +18,14 @@ module.exports = (env) => {
     },
 
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
     module: {
       rules: [
         {
-          test: /\.(jsx|js)$/,
-          use: {
-            loader: 'babel-loader',
-          },
+          test: /\.(ts|js)x?$/,
+          exclude: /node_modules/,
+          use: [{ loader: 'babel-loader' }, { loader: 'ts-loader' }],
         },
         {
           test: /\.css$/,
