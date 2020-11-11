@@ -1,10 +1,14 @@
 import React from 'react';
 import './MovieItem.css';
 
-export interface MovieItemProps { image: string, name: string, year: string, genre: string }
+export interface MovieItemProps {
+  image: string;
+  name: string;
+  year: string;
+  genre: string;
+}
 
 const MovieItem = ({ image, name, year, genre }: MovieItemProps) => (
-  
   <div className="movie-item">
     <img className="movie-item__img" src={image} alt="movieImage" />
     <div>
@@ -17,7 +21,6 @@ const MovieItem = ({ image, name, year, genre }: MovieItemProps) => (
       </div>
     </div>
   </div>
-  
 );
 
 export default MovieItem;

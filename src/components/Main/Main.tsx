@@ -2,7 +2,9 @@ import React, { memo } from 'react';
 import './Main.css';
 import MovieItem, { MovieItemProps } from './MovieItem/MovieItem';
 
-interface MainProps { movieBase: (MovieItemProps & { id: number })[] }
+interface MainProps {
+  movieBase: (MovieItemProps & { id: number })[];
+}
 
 const Main = ({ movieBase }: MainProps) => (
   <main className="main">

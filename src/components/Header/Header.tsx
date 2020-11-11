@@ -5,7 +5,11 @@ import SiteTitle from './SiteTitle/SiteTitle';
 import SortResultsSection from './SortResultsSection/SortResultsSection';
 import './Header.css';
 
-interface HeaderProps { isSearchShown: boolean, openSearch: () => void, closeSearch: () => void }
+interface HeaderProps {
+  isSearchShown: boolean;
+  openSearch: () => void;
+  closeSearch: () => void;
+}
 
 const Header = ({ isSearchShown, openSearch, closeSearch }: HeaderProps) => (
   <header>
@@ -16,8 +20,8 @@ const Header = ({ isSearchShown, openSearch, closeSearch }: HeaderProps) => (
     {isSearchShown ? (
       <SortResultsSection moviesFound="7 movies found" releaseDate="release date" sortBy="Sort by" rating="rating" />
     ) : (
-        <SortResultsSection filmsBy="Films by " genre="Drama genre" />
-      )}
+      <SortResultsSection filmsBy="Films by " genre="Drama genre" />
+    )}
   </header>
 );
 
