@@ -5,12 +5,13 @@
   },
   "extends": [
     "airbnb",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
     "prettier",
-    "prettier/react"
+    "prettier/react",
+    "prettier/@typescript-eslint"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -19,11 +20,11 @@
     "sourceType": "module"
   },
   "plugins": [
+    "import",
     "react",
-    "prettier",
-    "@typescript-eslint",
     "react-hooks",
-    "import"
+    "@typescript-eslint",
+    "prettier"
   ],
   "rules": {
     "react/jsx-filename-extension": [
@@ -40,34 +41,19 @@
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error",
-    "react/prop-types": 0,
     "react/require-default-props": 0,
     "no-use-before-define": 0,
+    "import/no-unresolved": [
+      2,
+      {
+        "commonjs": false
+      }
+    ],
     "@typescript-eslint/no-use-before-define": 1,
     "import/extensions": [
       "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "mjs": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
+      "never"
     ]
   },
-  "parser": "@typescript-eslint/parser",
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx",
-          ".json"
-        ]
-      }
-    }
-  }
+  "parser": "@typescript-eslint/parser"  
 }
