@@ -17,7 +17,7 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({
   sortBy,
   releaseDate,
   rating,
-}: SortResultsSectionProps) => (
+}) => (
   <section className="result-sort__container">
     {(filmsBy || moviesFound) && (
       <div>
