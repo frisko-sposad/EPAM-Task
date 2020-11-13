@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import './MovieItem.css';
 
 export interface MovieItemProps {
@@ -8,7 +8,7 @@ export interface MovieItemProps {
   genre: string;
 }
 
-const MovieItem = ({ image, name, year, genre }: MovieItemProps) => (
+const MovieItem: FC<MovieItemProps> = ({ image, name, year, genre }) => (
   <div className="movie-item">
     <img className="movie-item__img" src={image} alt="movieImage" />
     <div>

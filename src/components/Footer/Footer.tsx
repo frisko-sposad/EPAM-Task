@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 import './Footer.css';
 
-const Footer = () => <footer className="footer">NetflixRoulette</footer>;
+const Footer: FC = () => <footer className="footer">NetflixRoulette</footer>;
 
 export default Footer;
