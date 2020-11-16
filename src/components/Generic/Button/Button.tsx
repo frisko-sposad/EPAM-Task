@@ -1,10 +1,9 @@
-import React, { memo } from 'react';
+import React, { ButtonHTMLAttributes, memo } from 'react';
 import './Button.css';
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className: string;
   onClick?: () => void;
-  children: string;
 }
 
 const Button = ({ className, onClick, children }: ButtonProps) => (
