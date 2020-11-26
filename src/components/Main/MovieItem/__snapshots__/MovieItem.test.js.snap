@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render MovieItem. MovieItem 1`] = `
+<div
+  className="movie-item"
+>
+  <img
+    alt="movieImage"
+    className="movie-item__img"
+  />
+  <div>
+    <div
+      className="movie-item__info"
+    >
+      <div />
+      <div
+        className="movie-item__year"
+      />
+    </div>
+    <div
+      className="movie-item__info"
+    >
+      <div />
+    </div>
+  </div>
+</div>
+`;

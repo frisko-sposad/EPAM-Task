@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Header closeSearch. State isSearchShown = false 1`] = `
+<header>
+  <section
+    className="header__container"
+  >
+    <SiteTitle />
+    <Memo(MovieInfo) />
+  </section>
+  <SortResultsSection
+    filmsBy="Films by "
+    genre="Drama genre"
+  />
+</header>
+`;
+
+exports[`Testing Header openSearch. State isSearchShown = true 1`] = `
+<header>
+  <section
+    className="header__container"
+  >
+    <SiteTitle />
+    <SearchSection />
+  </section>
+  <SortResultsSection
+    moviesFound="7 movies found"
+    rating="rating"
+    releaseDate="release date"
+    sortBy="Sort by"
+  />
+</header>
+`;
