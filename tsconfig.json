@@ -13,7 +13,7 @@
     "resolveJsonModule": true
   },
   "include": [
-    "src/**/*", "setupTests.js"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules",

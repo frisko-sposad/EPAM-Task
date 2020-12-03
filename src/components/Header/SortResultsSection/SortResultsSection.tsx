@@ -21,24 +21,24 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({
   <section className="result-sort__container">
     {(filmsBy || moviesFound) && (
       <div>
-        <span>
-          <strong>
-            {filmsBy}
-            {moviesFound}
-          </strong>
+        <span className="filmsBy">
+          <strong>{filmsBy}</strong>
         </span>
-        {genre && <span>{genre}</span>}
+        <span>
+          <strong className="moviesFound">{moviesFound}</strong>
+        </span>
+        {genre && <span className="genre">{genre}</span>}
       </div>
     )}
     {sortBy && (
       <div>
-        <span>
+        <span className="sortBy">
           <strong>{sortBy}</strong>
         </span>
-        <button type="button" className="btn_sort">
+        <button type="button" className="btn_sort releaseDate">
           {releaseDate}
         </button>
-        <button type="button" className="btn_sort">
+        <button type="button" className="btn_sort rating">
           {rating}
         </button>
       </div>

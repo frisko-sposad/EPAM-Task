@@ -31,3 +31,35 @@ exports[`Testing Header openSearch. State isSearchShown = true 1`] = `
   />
 </header>
 `;
+
+exports[`Testing the closeSearch block in Header. If State isSearchShown = false, we check the closeSearch snapshot 1`] = `
+<header>
+  <section
+    className="header__container"
+  >
+    <SiteTitle />
+    <Memo(MovieInfo) />
+  </section>
+  <SortResultsSection
+    filmsBy="Films by "
+    genre="Drama genre"
+  />
+</header>
+`;
+
+exports[`Testing the openSearch block in Header. If State isSearchShown = true, we check the openSearch snapshot 1`] = `
+<header>
+  <section
+    className="header__container"
+  >
+    <SiteTitle />
+    <SearchSection />
+  </section>
+  <SortResultsSection
+    moviesFound="7 movies found"
+    rating="rating"
+    releaseDate="release date"
+    sortBy="Sort by"
+  />
+</header>
+`;

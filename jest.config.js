@@ -4,4 +4,7 @@ module.exports = {
     '^.+\\.[t|j]sx?$': 'babel-jest',
   },
   setupFilesAfterEnv: ['./setupTests.js'],
+  jest: {
+    snapshotSerializers: ['enzyme-to-json/serializer'],
+  },
 };
