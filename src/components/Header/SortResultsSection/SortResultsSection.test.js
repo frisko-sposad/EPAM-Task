@@ -12,9 +12,9 @@ const rating = 'rating';
 describe('Films by genre.', () => {
   it('Do we have filmsBy and genre in the SortResultsSection?', () => {
     const component = shallow(<SortResultsSection filmsBy={filmsBy} genre={genre} />);
-    const componentFilmsBy = component.find('.filmsBy');
+    const componentFilmsBy = component.find('.filmsBy').find('strong').text();
     const componentGenre = component.find('.genre');
-    expect(componentFilmsBy.length).toBe(1);
+    expect(componentFilmsBy).toBe(filmsBy);
     expect(componentGenre.length).toBe(1);
   });
 });

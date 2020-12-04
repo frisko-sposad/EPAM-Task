@@ -7,7 +7,7 @@ const testChildren = 'test1';
 
 const setUp = () => mount(<Button className={className}>{testChildren}</Button>);
 
-describe('Render Button.', () => {
+describe('Button Tests.', () => {
   let component;
   beforeEach(() => {
     component = setUp();
@@ -27,11 +27,9 @@ describe('Render Button.', () => {
 
 describe('Testing button click.', () => {
   const handlerMock = jest.fn();
-  handlerMock.mockImplementation((btnState) => [btnState, handlerMock]);
-  const btn = shallow(<Button onClick={() => handlerMock(true)} />);
-
+  const btn = shallow(<Button onClick={handlerMock()} />);
   it('Simulate btn click, btnState to be true', () => {
     btn.find('.btn').simulate('click');
-    expect(handlerMock).toBeCalledWith(true);
+    expect(handlerMock).toBeCalledTimes(1);
   });
 });
