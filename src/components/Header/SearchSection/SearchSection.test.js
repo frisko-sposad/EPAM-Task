@@ -17,3 +17,12 @@ describe('Testing SearchSection.', () => {
     expect(input.length).toBe(2);
   });
 });
+
+describe('Testing button click into SearchSection.', () => {
+  const handlerMock = jest.fn();
+  const btn = shallow(<SearchSection onClick={handlerMock()} />);
+  it('Click on the button trigger onClick prop function', () => {
+    btn.find('.btn_search').simulate('click');
+    expect(handlerMock).toBeCalledTimes(1);
+  });
+});

@@ -13,9 +13,9 @@ describe('Films by genre.', () => {
   it('Do we have filmsBy and genre in the SortResultsSection?', () => {
     const component = shallow(<SortResultsSection filmsBy={filmsBy} genre={genre} />);
     const componentFilmsBy = component.find('.filmsBy').find('strong').text();
-    const componentGenre = component.find('.genre');
+    const componentGenre = component.find('.genre').text();
     expect(componentFilmsBy).toBe(filmsBy);
-    expect(componentGenre.length).toBe(1);
+    expect(componentGenre).toBe(genre);
   });
 });
 describe('Films by sort.', () => {
@@ -23,13 +23,13 @@ describe('Films by sort.', () => {
     const component = shallow(
       <SortResultsSection moviesFound={moviesFound} releaseDate={releaseDate} sortBy={sortBy} rating={rating} />,
     );
-    const componentMoviesFound = component.find('.moviesFound');
-    const componentSortBy = component.find('.sortBy');
-    const componentReleaseDate = component.find('.releaseDate');
-    const componentRating = component.find('.rating');
-    expect(componentMoviesFound.length).toBe(1);
-    expect(componentSortBy.length).toBe(1);
-    expect(componentReleaseDate.length).toBe(1);
-    expect(componentRating.length).toBe(1);
+    const componentMoviesFound = component.find('.moviesFound').find('strong').text();
+    const componentSortBy = component.find('.sortBy').find('strong').text();
+    const componentReleaseDate = component.find('.releaseDate').text();
+    const componentRating = component.find('.rating').text();
+    expect(componentMoviesFound).toBe(moviesFound);
+    expect(componentSortBy).toBe(sortBy);
+    expect(componentReleaseDate).toBe(releaseDate);
+    expect(componentRating).toBe(rating);
   });
 });
