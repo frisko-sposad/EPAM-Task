@@ -20,16 +20,17 @@ describe('Button Tests.', () => {
 
   it('Btn text to be children', () => {
     const childrenProp = component.prop('children');
-    const childrenText = component.children().text();
-    expect(childrenText).toBe(childrenProp);
+    const buttonText = component.text();
+    expect(buttonText).toBe(childrenProp);
   });
 });
 
 describe('Testing button click.', () => {
   const handlerMock = jest.fn();
-  const btn = shallow(<Button onClick={handlerMock()} />);
+  const btn = shallow(<Button onClick={handlerMock} />);
   it('Click on the button trigger onClick prop function', () => {
     btn.find('.btn').simulate('click');
-    expect(handlerMock).toBeCalledTimes(1);
+    btn.find('.btn').simulate('click');
+    expect(handlerMock).toBeCalledTimes(2);
   });
 });
