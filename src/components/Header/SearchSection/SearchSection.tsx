@@ -1,10 +1,13 @@
 import React, { FC } from 'react';
 import './SearchSection.css';
 import Button from '../../Generic/Button/Button';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import BuggyCounter from '../ErrorBoundary/BuggyCounter';
 
 interface SearchSectionProps {
   closeSearch: () => void;
 }
+
 const SearchSection: FC<SearchSectionProps> = ({ closeSearch }) => (
   <div className="search__container">
     <p>FIND YOUR MOVIE</p>
@@ -16,6 +19,9 @@ const SearchSection: FC<SearchSectionProps> = ({ closeSearch }) => (
           <Button className="btn_search-by">TITLE</Button>
           <Button className="btn_search-by">GENRE</Button>
         </div>
+        <ErrorBoundary>
+          <BuggyCounter />
+        </ErrorBoundary>
       </div>
       <Button className="btn_search" onClick={closeSearch}>
         SEARCH

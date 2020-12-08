@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render MovieItem. MovieItem 1`] = `
+<div
+  className="movie-item"
+>
+  <img
+    alt="movieImage"
+    className="movie-item__img"
+    src="https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/57375a05-4883-4994-b33b-8d60741a0706/300x450"
+  />
+  <div>
+    <div
+      className="movie-item__info"
+    >
+      <div>
+        The Witcher
+      </div>
+      <div
+        className="movie-item__year"
+      >
+        2019
+      </div>
+    </div>
+    <div
+      className="movie-item__info"
+    >
+      fantasy
+    </div>
+  </div>
+</div>
+`;

@@ -5,6 +5,9 @@
   },
   "extends": [
     "airbnb",
+    "plugin:jest/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
@@ -21,6 +24,7 @@
   },
   "plugins": [
     "import",
+    "jest",
     "react",
     "react-hooks",
     "@typescript-eslint",

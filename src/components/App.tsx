@@ -1,26 +1,45 @@
-import React, { useState, useCallback, FC } from 'react';
+import React, { Component } from 'react';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import Main from './Main/Main';
 import './App.css';
 import movieBase from './MovieBase';
 
-const App: FC = () => {
-  const [isSearchShown, setIsSearchShown] = useState(false);
+interface AppState {
+  isSearchShown: boolean;
+}
+type AppProps = Record<string, unknown>;
 
-  const openSearch = useCallback(() => {
-    setIsSearchShown(true);
-  }, []);
-  const closeSearch = useCallback(() => {
-    setIsSearchShown(false);
-  }, []);
+export default class App extends Component<AppProps, AppState> {
+  constructor(props: AppProps) {
+    super(props);
+    this.state = {
+      isSearchShown: true,
+    };
+    this.openSearch = this.openSearch.bind(this);
+    this.closeSearch = this.closeSearch.bind(this);
+  }
 
-  return (
-    <>
-      <Header isSearchShown={isSearchShown} openSearch={openSearch} closeSearch={closeSearch} />
-      <Main movieBase={movieBase} />
-      <Footer />
-    </>
-  );
-};
-export default App;
+  openSearch(): void {
+    this.setState({
+      isSearchShown: true,
+    });
+  }
+
+  closeSearch(): void {
+    this.setState({
+      isSearchShown: false,
+    });
+  }
+
+  render(): JSX.Element {
+    const { isSearchShown } = this.state;
+    return (
+      <>
+        <Header isSearchShown={isSearchShown} openSearch={this.openSearch} closeSearch={this.closeSearch} />
+        <Main movieBase={movieBase} />
+        <Footer />
+      </>
+    );
+  }
+}
