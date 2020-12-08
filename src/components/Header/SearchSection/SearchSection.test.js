@@ -4,7 +4,7 @@ import SearchSection from './SearchSection';
 
 describe('Testing SearchSection.', () => {
   const handlerMock = jest.fn();
-  const component = shallow(<SearchSection closeSearch={() => handlerMock()} />);
+  const component = shallow(<SearchSection closeSearch={handlerMock} />);
 
   it('Do we have input in the Search Section?', () => {
     const input = component.find('input');

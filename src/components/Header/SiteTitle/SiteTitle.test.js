@@ -4,7 +4,7 @@ import SiteTitle from './SiteTitle';
 
 describe('render SiteTitle', () => {
   it('Do we Have only one H1 title in the SiteTitle', () => {
-    const wrapper = shallow(<SiteTitle />).find('h1');
-    expect(wrapper.length).toBe(1);
+    const siteTitleH1 = shallow(<SiteTitle />).find('h1');
+    expect(siteTitleH1.length).toBe(1);
   });
 });

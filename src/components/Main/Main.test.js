@@ -5,7 +5,7 @@ import movieBase from '../MovieBase';
 
 describe('Render Main.', () => {
   it('The number of MovieItem components is equal to the number of elements in the movieBase', () => {
-    const component = shallow(<Main movieBase={movieBase} />).find('MovieItem');
-    expect(component.length).toBe(movieBase.length);
+    const movieItemElements = shallow(<Main movieBase={movieBase} />).find('MovieItem');
+    expect(movieItemElements.length).toBe(movieBase.length);
   });
 });

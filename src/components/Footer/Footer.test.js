@@ -3,9 +3,7 @@ import { shallow } from 'enzyme';
 import Footer from './Footer';
 
 it('Is the footer title equal to NetflixRoulette?', () => {
-  const wrapper = shallow(<Footer />);
-  const footer = wrapper.find('footer');
-  const result = footer.text();
+  const footerText = shallow(<Footer />).text();
 
-  expect(result).toBe('NetflixRoulette');
+  expect(footerText).toBe('NetflixRoulette');
 });
