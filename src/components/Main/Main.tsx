@@ -8,8 +8,8 @@ interface MainProps {
 
 const Main = ({ movieBase }: MainProps) => (
   <main className="main">
-    {movieBase.map(({ id, name, year, genre, image }) => (
-      <MovieItem key={id} name={name} year={year} genre={genre} image={image} />
+    {movieBase.map(({ id, title, releaseDate, genres, posterPath }) => (
+      <MovieItem key={id} title={title} releaseDate={releaseDate} genres={genres} posterPath={posterPath} />
     ))}
   </main>
 );

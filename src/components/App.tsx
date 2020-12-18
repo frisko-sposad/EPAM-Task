@@ -4,6 +4,16 @@ import Header from './Header/Header';
 import Main from './Main/Main';
 import './App.css';
 import movieBase from './MovieBase';
+import fetch from 'cross-fetch';
+
+const getMoviesList = async () => {
+  const url = 'https://reactjs-cdp.herokuapp.com/movies?search=game&searchBy=title&limit=2';
+  const res = await fetch(url);
+  const moviesList = res.json();
+  console.log(moviesList);
+};
+
+getMoviesList();
 
 interface AppState {
   isSearchShown: boolean;
@@ -34,6 +44,7 @@ export default class App extends Component<AppProps, AppState> {
 
   render(): JSX.Element {
     const { isSearchShown } = this.state;
+
     return (
       <>
         <Header isSearchShown={isSearchShown} openSearch={this.openSearch} closeSearch={this.closeSearch} />
