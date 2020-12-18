@@ -11,18 +11,28 @@ interface HeaderProps {
   closeSearch: () => void;
 }
 
-const Header = ({ isSearchShown, openSearch, closeSearch }: HeaderProps) => (
-  <header>
-    <section className="header__container">
-      <SiteTitle />
-      {isSearchShown ? <SearchSection closeSearch={closeSearch} /> : <MovieInfo openSearch={openSearch} />}
-    </section>
-    {isSearchShown ? (
-      <SortResultsSection moviesFound="7 movies found" releaseDate="release date" sortBy="Sort by" rating="rating" />
-    ) : (
-      <SortResultsSection filmsBy="Films by " genre="Drama genre" />
-    )}
-  </header>
-);
+const fetchFilms = async () => {
+  const response = await fetch('https://reactjs-cdp.herokuapp.com/movies');
+  const { data } = await response.json();
+  console.log('DATA: ', data);
+};
+
+const Header = ({ isSearchShown, openSearch, closeSearch }: HeaderProps) => {
+  fetchFilms();
+
+  return (
+    <header>
+      <section className="header__container">
+        <SiteTitle />
+        {isSearchShown ? <SearchSection closeSearch={closeSearch} /> : <MovieInfo openSearch={openSearch} />}
+      </section>
+      {isSearchShown ? (
+        <SortResultsSection moviesFound="7 movies found" releaseDate="release date" sortBy="Sort by" rating="rating" />
+      ) : (
+        <SortResultsSection filmsBy="Films by " genre="Drama genre" />
+      )}
+    </header>
+  );
+};
 
 export default memo(Header);
