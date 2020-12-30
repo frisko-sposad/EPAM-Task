@@ -1,4 +1,5 @@
-import React, { memo } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import SearchSection from './SearchSection/SearchSection';
 import MovieInfo from './MovieInfo/MovieInfo';
 import SiteTitle from './SiteTitle/SiteTitle';
@@ -7,32 +8,36 @@ import './Header.css';
 
 interface HeaderProps {
   isSearchShown: boolean;
-  openSearch: () => void;
-  closeSearch: () => void;
+  searchQuery: string;
+  total: number;
 }
 
-const fetchFilms = async () => {
-  const response = await fetch('https://reactjs-cdp.herokuapp.com/movies');
-  const { data } = await response.json();
-  console.log('DATA: ', data);
-};
-
-const Header = ({ isSearchShown, openSearch, closeSearch }: HeaderProps) => {
-  fetchFilms();
-
+const Header = ({ isSearchShown, searchQuery, total }: HeaderProps) => {
+  console.log(total);
   return (
     <header>
       <section className="header__container">
         <SiteTitle />
-        {isSearchShown ? <SearchSection closeSearch={closeSearch} /> : <MovieInfo openSearch={openSearch} />}
+        {isSearchShown ? <SearchSection /> : <MovieInfo />}
       </section>
       {isSearchShown ? (
-        <SortResultsSection moviesFound="7 movies found" releaseDate="release date" sortBy="Sort by" rating="rating" />
+        <SortResultsSection
+          moviesFound={`${total} movies found`}
+          releaseDate="release date"
+          sortBy="Sort by"
+          rating="rating"
+        />
       ) : (
-        <SortResultsSection filmsBy="Films by " genre="Drama genre" />
+        <SortResultsSection filmsBy="Films by " genre={searchQuery} />
       )}
     </header>
   );
 };
 
-export default memo(Header);
+const mapStateToProps = ({ isSearchShown, searchQuery, total }) => ({
+  isSearchShown,
+  searchQuery,
+  total,
+});
+
+export default connect(mapStateToProps, null)(Header);

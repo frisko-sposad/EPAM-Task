@@ -1,5 +1,8 @@
 import React, { FC } from 'react';
 import './SortResultsSection.css';
+import { connect } from 'react-redux';
+import { AnyAction, bindActionCreators, Dispatch } from 'redux';
+import { searchMovies, sortMovies } from '../../App.actions';
 
 interface SortResultsSectionProps {
   filmsBy?: string;
@@ -17,6 +20,8 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({
   sortBy,
   releaseDate,
   rating,
+  sortMovies,
+  searchMovies,
 }) => (
   <section className="result-sort__container">
     {(filmsBy || moviesFound) && (
@@ -35,10 +40,24 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({
         <span className="sortBy">
           <strong>{sortBy}</strong>
         </span>
-        <button type="button" className="btn_sort releaseDate">
+        <button
+          type="button"
+          className="btn_sort releaseDate"
+          onClick={() => {
+            sortMovies('release_date');
+            searchMovies();
+          }}
+        >
           {releaseDate}
         </button>
-        <button type="button" className="btn_sort rating">
+        <button
+          type="button"
+          className="btn_sort rating"
+          onClick={() => {
+            sortMovies('vote_average');
+            searchMovies();
+          }}
+        >
           {rating}
         </button>
       </div>
@@ -46,4 +65,13 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({
   </section>
 );
 
-export default SortResultsSection;
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
+  bindActionCreators(
+    {
+      sortMovies,
+      searchMovies,
+    },
+    dispatch,
+  );
+
+export default connect(null, mapDispatchToProps)(SortResultsSection);
