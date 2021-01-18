@@ -5,13 +5,16 @@ import { AnyAction, bindActionCreators, Dispatch } from 'redux';
 import Button from '../../Generic/Button/Button';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import BuggyCounter from '../ErrorBoundary/BuggyCounter';
-import { searchMovies, setSearchByOption, setSearchQuery } from '../../App.actions';
+import { fetchMovies, setSearchByOption, setSearchQuery } from '../../App.actions';
+import { SearchMovies, SetSearchByOption, SetSearchQuery } from '../../App.types';
 
 interface SearchSectionProps {
-  closeSearch: () => void;
+  searchMovies: SearchMovies;
+  setSearchByOption: SetSearchByOption;
+  setSearchQuery: SetSearchQuery;
 }
 
-const SearchSection: FC<SearchSectionProps> = ({ searchMovies, setSearchByOption, setSearchQuery }) => {
+const SearchSection: FC<SearchSectionProps> = ({ searchMovies, setSearchByOption, setSearchQuery, searchByOption }) => {
   const [inputValue, setInputValue] = useState('');
   const chengeSearchQuery = (e) => setInputValue(e.target.value);
   const sendSearchQueryIfClickingEnter = (e) => {
@@ -36,10 +39,16 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies, setSearchByOption
         <div className="search-by-btn__container">
           <span>SEARCH BY</span>
           <div className="btn-group" role="group">
-            <Button className="btn_search-by" onClick={() => setSearchByOption('title')}>
+            <Button
+              className={`btn_search-by ${searchByOption === 'title' ? 'active' : ''}`}
+              onClick={() => setSearchByOption('title')}
+            >
               TITLE
             </Button>
-            <Button className="btn_search-by" onClick={() => setSearchByOption('genres')}>
+            <Button
+              className={`btn_search-by ${searchByOption === 'genres' ? 'active' : ''}`}
+              onClick={() => setSearchByOption('genres')}
+            >
               GENRE
             </Button>
           </div>
@@ -64,7 +73,7 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies, setSearchByOption
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
   bindActionCreators(
     {
-      searchMovies,
+      searchMovies: fetchMovies,
       setSearchByOption,
       setSearchQuery,
     },

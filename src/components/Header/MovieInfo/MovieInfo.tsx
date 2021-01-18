@@ -4,25 +4,24 @@ import { connect } from 'react-redux';
 import { AnyAction, bindActionCreators } from 'redux';
 import Button from '../../Generic/Button/Button';
 import { setIsSearchShown, setSearchByOption } from '../../App.actions';
+import { StateType, SetIsSearchShown, MovieInfoType } from '../../App.types';
 
-export interface MovieItemProps {
-  id: number;
-  poster_path: string;
-  title: string;
-  release_date: string;
-  genres?: [];
+interface MovieInfoProps {
+  setIsSearchShown: SetIsSearchShown;
+  setSearchByOption: (searchByOption: string) => void;
+  movie: MovieInfoType;
+  searchByOption: string;
 }
 
-const MovieInfo: FC<MovieItemProps> = ({ setIsSearchShown, setSearchByOption, movie }) => {
-  const { title, overview, release_date, poster_path, genres } = movie;
-  console.log(genres);
+const MovieInfo: FC<MovieInfoProps> = ({ setIsSearchShown, setSearchByOption, movie, searchByOption }) => {
+  const { title, overview, releaseDate, posterPath, genres, runtime } = movie;
   return (
     <div className="search__container">
       <div className="btn-search__container">
         <Button
           className="btn_search"
           onClick={() => {
-            setSearchByOption('title');
+            setSearchByOption(searchByOption);
             setIsSearchShown(true);
           }}
         >
@@ -30,13 +29,13 @@ const MovieInfo: FC<MovieItemProps> = ({ setIsSearchShown, setSearchByOption, mo
         </Button>
       </div>
       <div className="movie-info">
-        <img className="movie-info__img" src={poster_path} alt="movieImage" />
+        <img className="movie-info__img" src={posterPath} alt="movieImage" />
         <div className="movie-info__description">
           <h2 className="movie-info__title">{title}</h2>
           <p>{genres?.join(', ')}</p>
           <div className="movie-info__video-parameters">
-            <strong>{release_date}</strong>
-            <strong>154 min</strong>
+            <strong>{releaseDate?.split('-')[0]}</strong>
+            <strong>{`${runtime === null ? '0' : runtime} min`}</strong>
           </div>
           <p>{overview}</p>
         </div>
@@ -54,8 +53,9 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
     dispatch,
   );
 
-const mapStateToProps = ({ movie }) => ({
+const mapStateToProps = ({ movie, searchByOption }: Pick<StateType, 'movie' | 'searchByOption'>) => ({
   movie,
+  searchByOption,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieInfo);

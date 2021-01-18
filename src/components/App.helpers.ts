@@ -1,3 +1,5 @@
+import { RawMovie, ConvertedMovie } from './App.types';
+
 export const convertMovieToCamelCase = ({
   id,
   title,
@@ -8,7 +10,7 @@ export const convertMovieToCamelCase = ({
   poster_path,
   overview,
   runtime,
-}) => ({
+}: RawMovie): ConvertedMovie => ({
   id,
   title,
   tagline,

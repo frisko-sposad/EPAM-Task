@@ -3,23 +3,28 @@ import './SortResultsSection.css';
 import { connect } from 'react-redux';
 import { AnyAction, bindActionCreators, Dispatch } from 'redux';
 import { searchMovies, sortMovies } from '../../App.actions';
+import { SearchMovies, SortMovies } from '../../App.types';
 
 interface SortResultsSectionProps {
   filmsBy?: string;
   genre?: string;
   moviesFound?: string;
-  sortBy?: string;
+  sortByTitle?: string;
   releaseDate?: string;
   rating?: string;
+  sortBy: string;
+  sortMovies: SortMovies;
+  searchMovies: SearchMovies;
 }
 
 const SortResultsSection: FC<SortResultsSectionProps> = ({
   filmsBy,
   genre,
   moviesFound,
-  sortBy,
+  sortByTitle,
   releaseDate,
   rating,
+  sortBy,
   sortMovies,
   searchMovies,
 }) => (
@@ -35,14 +40,14 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({
         {genre && <span className="genre">{genre}</span>}
       </div>
     )}
-    {sortBy && (
+    {sortByTitle && (
       <div>
         <span className="sortBy">
-          <strong>{sortBy}</strong>
+          <strong>{sortByTitle}</strong>
         </span>
         <button
           type="button"
-          className="btn_sort releaseDate"
+          className={`btn_sort ${sortBy === 'release_date' ? 'btn_sort_active' : ''}`}
           onClick={() => {
             sortMovies('release_date');
             searchMovies();
@@ -52,7 +57,7 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({
         </button>
         <button
           type="button"
-          className="btn_sort rating"
+          className={`btn_sort ${sortBy === 'vote_average' ? 'btn_sort_active' : ''}`}
           onClick={() => {
             sortMovies('vote_average');
             searchMovies();

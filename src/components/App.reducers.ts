@@ -5,9 +5,10 @@ import {
   SORT_MOVIES_ACTION,
   CURRENT_REQUEST,
   IS_SEARCH_SHOWN,
-} from './App.actions';
+  StateType,
+} from './App.types';
 
-const initialState = {
+const initialState: StateType = {
   movies: [],
   movie: {},
   searchByOption: 'title',
@@ -18,6 +19,16 @@ const initialState = {
   movieId: 17,
   genre: '',
 };
+
+type Action<K, V = void> = V extends void ? { type: K } : { type: K } & V;
+
+type ActionType =
+  | Action<'SEARCH_MOVIES_ACTION', { value: string }>
+  | Action<'SEARCH_MOVIES_BY_ID_ACTION', { value: string }>
+  | Action<'SEARCH_BY', { value: string }>
+  | Action<'SORT_MOVIES_ACTION', { value: string }>
+  | Action<'CURRENT_REQUEST', { value: string }>
+  | Action<'IS_SEARCH_SHOWN', { value: string }>;
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {

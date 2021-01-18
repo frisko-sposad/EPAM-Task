@@ -58,7 +58,8 @@
     "import/extensions": [
       "error",
       "never"
-    ]
+    ],
+    "camelcase": "off"    
   },
   "parser": "@typescript-eslint/parser"
 }

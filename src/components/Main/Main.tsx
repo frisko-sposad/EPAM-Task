@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
 import './Main.css';
-import MovieItem, { MovieItemProps } from './MovieItem/MovieItem';
+import MovieItem from './MovieItem/MovieItem';
+import { MovieItemType } from '../App.types';
 
 interface MainProps {
-  movies: (MovieItemProps & { id: number })[];
+  movies: MovieItemType[];
 }
 
 const Main = ({ movies }: MainProps) => {
@@ -13,8 +14,8 @@ const Main = ({ movies }: MainProps) => {
 
   return (
     <main className="main">
-      {movies.map(({ id, title, releaseDate, genres, posterPath }) => (
-        <MovieItem key={id} id={id} title={title} releaseDate={releaseDate} genres={genres} posterPath={posterPath} />
+      {movies.map((movie) => (
+        <MovieItem key={movie.id} {...movie} /> // выключить правила
       ))}
     </main>
   );

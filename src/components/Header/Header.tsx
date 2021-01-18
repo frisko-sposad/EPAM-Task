@@ -5,26 +5,50 @@ import MovieInfo from './MovieInfo/MovieInfo';
 import SiteTitle from './SiteTitle/SiteTitle';
 import SortResultsSection from './SortResultsSection/SortResultsSection';
 import './Header.css';
+import { SearchMovies, SetSearchByOption, SetSearchQuery } from '../App.types';
 
 interface HeaderProps {
   isSearchShown: boolean;
   searchQuery: string;
   total: number;
+  searchByOption: string;
+  sortBy: string;
+  searchMovies: SearchMovies;
+  setSearchByOption: SetSearchByOption;
+  setSearchQuery: SetSearchQuery;
 }
 
-const Header = ({ isSearchShown, searchQuery, total }: HeaderProps) => {
-  console.log(total);
+const Header = ({
+  isSearchShown,
+  searchQuery,
+  total,
+  searchByOption,
+  sortBy,
+  searchMovies,
+  setSearchByOption,
+  setSearchQuery,
+}: HeaderProps) => {
   return (
     <header>
       <section className="header__container">
         <SiteTitle />
-        {isSearchShown ? <SearchSection /> : <MovieInfo />}
+        {isSearchShown ? (
+          <SearchSection
+            searchMovies={searchMovies}
+            searchByOption={searchByOption}
+            setSearchByOption={setSearchByOption}
+            setSearchQuery={setSearchQuery}
+          />
+        ) : (
+          <MovieInfo />
+        )}
       </section>
       {isSearchShown ? (
         <SortResultsSection
           moviesFound={`${total} movies found`}
+          sortBy={sortBy}
           releaseDate="release date"
-          sortBy="Sort by"
+          sortByTitle="Sort by"
           rating="rating"
         />
       ) : (
@@ -34,9 +58,8 @@ const Header = ({ isSearchShown, searchQuery, total }: HeaderProps) => {
   );
 };
 
-const mapStateToProps = ({ isSearchShown, searchQuery, total }) => ({
+const mapStateToProps = ({ isSearchShown, total }) => ({
   isSearchShown,
-  searchQuery,
   total,
 });
 

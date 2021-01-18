@@ -1,52 +1,56 @@
+import { Action, Dispatch } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import { convertMovieToCamelCase } from './App.helpers';
+import {
+  SEARCH_MOVIES_ACTION,
+  SEARCH_MOVIES_BY_ID_ACTION,
+  SEARCH_BY,
+  SORT_MOVIES_ACTION,
+  CURRENT_REQUEST,
+  IS_SEARCH_SHOWN,
+  SearchMoviesResult,
+  SearchMovies,
+  ConvertedMovie,
+  SearchMovieById,
+  SetSearchByOption,
+  SortMovies,
+  SetSearchQuery,
+  SetIsSearchShown,
+  StateType,
+} from './App.types';
 
-export const SEARCH_MOVIES_ACTION = 'SEARCH_MOVIES_ACTION';
-export const SEARCH_MOVIES_BY_ID_ACTION = 'SEARCH_MOVIES_BY_ID_ACTION';
-export const SEARCH_BY = 'SEARCH_BY';
-export const SORT_MOVIES_ACTION = 'SORT_MOVIES_ACTION';
-export const CURRENT_REQUEST = 'CURRENT_REQUEST';
-export const TOTAL_MOVIES = 'TOTAL_MOVIES';
-export const IS_SEARCH_SHOWN = 'IS_SEARCH_SHOWN';
-export const GET_MOVIE_ID = 'GET_MOVIE_ID';
-export const GET_MOVIE_GENRE = 'GET_MOVIE_GENRE';
-
-export const searchMoviesAction = (movies, total) => ({
+export const searchMoviesAction = ({ movies, total }: SearchMoviesResult): SearchMovies => ({
   type: SEARCH_MOVIES_ACTION,
-  result: { movies, total }
+  result: { movies, total },
 });
 
-export const searchMovieByIdAction = (base) => ({
+export const searchMovieByIdAction = (base: ConvertedMovie): SearchMovieById => ({
   type: SEARCH_MOVIES_BY_ID_ACTION,
   result: base,
 });
 
-export const setSearchByOption = (searchByOption: string) => ({
+export const setSearchByOption = (searchByOption: string): SetSearchByOption => ({
   type: SEARCH_BY,
   result: searchByOption,
 });
 
-export const sortMovies = (sortBy: string) => ({
+export const sortMovies = (sortBy: string): SortMovies => ({
   type: SORT_MOVIES_ACTION,
   result: sortBy,
 });
 
-export const setSearchQuery = (query: string) => ({
+export const setSearchQuery = (query: string): SetSearchQuery => ({
   type: CURRENT_REQUEST,
   result: query,
 });
 
-export const getTotalMovies = (total: string) => ({
-  type: GET_TOTAL_MOVIES,
-  result: total,
-});
-
-export const setIsSearchShown = (isSearchShown: boolean) => ({
+export const setIsSearchShown = (isSearchShown: boolean): SetIsSearchShown => ({
   type: IS_SEARCH_SHOWN,
   result: isSearchShown,
 });
 
-export function searchMovies() {
-  return (dispatch, getState) => {
+export function fetchMovies() {
+  return (dispatch: Dispatch, getState: () => StateType): void => {
     const { searchByOption, searchQuery, sortBy } = getState();
     fetch(
       `https://reactjs-cdp.herokuapp.com/movies?sortBy=${sortBy}&sortOrder=desc&search=${searchQuery}&searchBy=${searchByOption}`,
@@ -54,20 +58,20 @@ export function searchMovies() {
       .then((res) => res.json())
       .then(({ data, total }) => {
         const mappedData = data.map(convertMovieToCamelCase);
-        dispatch(searchMoviesAction(mappedData, total));
-        // dispatch(getTotalMovies(total));
+        dispatch(searchMoviesAction({ movies: mappedData, total }));
       });
   };
 }
 
-export function searchMovieByIdAndRelatedMovies(movieId) {
-  return (dispatch) => {
+export function searchMovieByIdAndRelatedMovies(movieId: number) {
+  return (dispatch: ThunkDispatch<StateType, void, Action>): void => {
     fetch(`https://reactjs-cdp.herokuapp.com/movies/${movieId}`)
       .then((res) => res.json())
       .then((data) => {
-        dispatch(searchMovieByIdAction(data));
+        const camelCaseData = convertMovieToCamelCase(data);
+        dispatch(searchMovieByIdAction(camelCaseData));
         dispatch(setSearchByOption('genres'));
-        dispatch(setSearchQuery(data.genres[0]));
+        dispatch(setSearchQuery(camelCaseData.genres[0]));
         dispatch(searchMovies());
       });
   };
