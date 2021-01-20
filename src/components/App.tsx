@@ -1,12 +1,13 @@
 import React, { FC, useEffect } from 'react';
-import { AnyAction, bindActionCreators, Dispatch } from 'redux';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import Main from './Main/Main';
 import './App.css';
-import { searchMovies } from './App.actions';
-import { ConvertedMovie, SearchMovies } from './App.types';
+import { fetchMovies } from './App.actions';
+import { Action, ConvertedMovie, StateType } from './App.types';
 
 interface AppPropsType {
   movies: ConvertedMovie[];
@@ -14,13 +15,21 @@ interface AppPropsType {
   sortBy: string;
   searchQuery: string;
   isSearchShown: boolean;
-  searchMovies: SearchMovies;
   searchByOption: string;
+  searchMovies: () => void;
 }
 
-const App: FC = ({ movies, total, searchByOption, sortBy, searchQuery, isSearchShown, searchMovies }: AppPropsType) => {
+const App: FC<AppPropsType> = ({
+  movies,
+  total,
+  sortBy,
+  searchQuery,
+  isSearchShown,
+  searchByOption,
+  searchMovies,
+}: AppPropsType) => {
   useEffect(() => {
-    searchMovies('');
+    searchMovies();
   }, [searchMovies]);
 
   return (
@@ -31,7 +40,6 @@ const App: FC = ({ movies, total, searchByOption, sortBy, searchQuery, isSearchS
         sortBy={sortBy}
         total={total}
         searchQuery={searchQuery}
-        searchMovies={searchMovies}
       />
       <Main movies={movies} />
       <Footer />
@@ -39,10 +47,10 @@ const App: FC = ({ movies, total, searchByOption, sortBy, searchQuery, isSearchS
   );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
+const mapDispatchToProps = (dispatch: ThunkDispatch<StateType, void, Action>) =>
   bindActionCreators(
     {
-      searchMovies,
+      searchMovies: fetchMovies,
     },
     dispatch,
   );

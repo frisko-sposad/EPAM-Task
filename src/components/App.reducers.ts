@@ -6,11 +6,12 @@ import {
   CURRENT_REQUEST,
   IS_SEARCH_SHOWN,
   StateType,
+  Action,
 } from './App.types';
 
 const initialState: StateType = {
   movies: [],
-  movie: {},
+  movie: null,
   searchByOption: 'title',
   searchQuery: '',
   sortBy: 'release_date',
@@ -20,17 +21,7 @@ const initialState: StateType = {
   genre: '',
 };
 
-type Action<K, V = void> = V extends void ? { type: K } : { type: K } & V;
-
-type ActionType =
-  | Action<'SEARCH_MOVIES_ACTION', { value: string }>
-  | Action<'SEARCH_MOVIES_BY_ID_ACTION', { value: string }>
-  | Action<'SEARCH_BY', { value: string }>
-  | Action<'SORT_MOVIES_ACTION', { value: string }>
-  | Action<'CURRENT_REQUEST', { value: string }>
-  | Action<'IS_SEARCH_SHOWN', { value: string }>;
-
-export default function rootReducer(state = initialState, action) {
+export default function rootReducer(state = initialState, action: Action): StateType {
   switch (action.type) {
     case SEARCH_MOVIES_ACTION:
       return { ...state, movies: action.result.movies, total: action.result.total };

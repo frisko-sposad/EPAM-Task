@@ -1,19 +1,21 @@
-import React, { Dispatch, FC } from 'react';
+import React, { FC } from 'react';
 import './MovieInfo.css';
 import { connect } from 'react-redux';
-import { AnyAction, bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import Button from '../../Generic/Button/Button';
-import { setIsSearchShown, setSearchByOption } from '../../App.actions';
-import { StateType, SetIsSearchShown, MovieInfoType } from '../../App.types';
+import { setIsSearchShownAction, setSearchByOptionAction } from '../../App.actions';
+import { StateType, ConvertedMovie, Action } from '../../App.types';
 
 interface MovieInfoProps {
-  setIsSearchShown: SetIsSearchShown;
+  setIsSearchShown: (isSearchShown: boolean) => void;
   setSearchByOption: (searchByOption: string) => void;
-  movie: MovieInfoType;
+  movie: ConvertedMovie | null;
   searchByOption: string;
 }
 
 const MovieInfo: FC<MovieInfoProps> = ({ setIsSearchShown, setSearchByOption, movie, searchByOption }) => {
+  if (movie === null) return null;
   const { title, overview, releaseDate, posterPath, genres, runtime } = movie;
   return (
     <div className="search__container">
@@ -44,11 +46,11 @@ const MovieInfo: FC<MovieInfoProps> = ({ setIsSearchShown, setSearchByOption, mo
   );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
+const mapDispatchToProps = (dispatch: ThunkDispatch<StateType, void, Action>) =>
   bindActionCreators(
     {
-      setIsSearchShown,
-      setSearchByOption,
+      setIsSearchShown: setIsSearchShownAction,
+      setSearchByOption: setSearchByOptionAction,
     },
     dispatch,
   );

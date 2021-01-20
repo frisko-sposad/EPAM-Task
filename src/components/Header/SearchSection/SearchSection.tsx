@@ -1,23 +1,25 @@
-import React, { FC, useState } from 'react';
+import React, { FC, KeyboardEvent, ChangeEvent, useState } from 'react';
 import './SearchSection.css';
 import { connect } from 'react-redux';
-import { AnyAction, bindActionCreators, Dispatch } from 'redux';
+import { bindActionCreators } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import Button from '../../Generic/Button/Button';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import BuggyCounter from '../ErrorBoundary/BuggyCounter';
-import { fetchMovies, setSearchByOption, setSearchQuery } from '../../App.actions';
-import { SearchMovies, SetSearchByOption, SetSearchQuery } from '../../App.types';
+import { fetchMovies, setSearchByOptionAction, setSearchQueryAction } from '../../App.actions';
+import { Action, StateType } from '../../App.types';
 
 interface SearchSectionProps {
-  searchMovies: SearchMovies;
-  setSearchByOption: SetSearchByOption;
-  setSearchQuery: SetSearchQuery;
+  searchMovies: () => void;
+  setSearchByOption: (searchByOption: string) => void;
+  setSearchQuery: (query: string) => void;
+  searchByOption: string;
 }
 
 const SearchSection: FC<SearchSectionProps> = ({ searchMovies, setSearchByOption, setSearchQuery, searchByOption }) => {
   const [inputValue, setInputValue] = useState('');
-  const chengeSearchQuery = (e) => setInputValue(e.target.value);
-  const sendSearchQueryIfClickingEnter = (e) => {
+  const chengeSearchQuery = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
+  const sendSearchQueryIfClickingEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       setSearchQuery(inputValue);
       searchMovies();
@@ -70,12 +72,12 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies, setSearchByOption
   );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
+const mapDispatchToProps = (dispatch: ThunkDispatch<StateType, void, Action>) =>
   bindActionCreators(
     {
       searchMovies: fetchMovies,
-      setSearchByOption,
-      setSearchQuery,
+      setSearchByOption: setSearchByOptionAction,
+      setSearchQuery: setSearchQueryAction,
     },
     dispatch,
   );

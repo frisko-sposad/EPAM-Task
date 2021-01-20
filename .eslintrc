@@ -30,7 +30,7 @@
     "@typescript-eslint",
     "prettier"
   ],
-  "rules": {    
+  "rules": {
     "react/jsx-filename-extension": [
       1,
       {
@@ -59,8 +59,9 @@
       "error",
       "never"
     ],
-    "camelcase": "off"    
+    "camelcase": "off",
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/click-events-have-key-events": 0
   },
   "parser": "@typescript-eslint/parser"
 }
-

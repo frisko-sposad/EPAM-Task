@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 import './SortResultsSection.css';
 import { connect } from 'react-redux';
-import { AnyAction, bindActionCreators, Dispatch } from 'redux';
-import { searchMovies, sortMovies } from '../../App.actions';
-import { SearchMovies, SortMovies } from '../../App.types';
+import { ThunkDispatch } from 'redux-thunk';
+import { bindActionCreators } from 'redux';
+import { fetchMovies, sortMoviesAction } from '../../App.actions';
+import { Action, StateType } from '../../App.types';
 
 interface SortResultsSectionProps {
   filmsBy?: string;
@@ -12,9 +13,9 @@ interface SortResultsSectionProps {
   sortByTitle?: string;
   releaseDate?: string;
   rating?: string;
-  sortBy: string;
-  sortMovies: SortMovies;
-  searchMovies: SearchMovies;
+  sortBy?: string;
+  sortMovies: (sortBy: string) => void;
+  searchMovies: () => void;
 }
 
 const SortResultsSection: FC<SortResultsSectionProps> = ({
@@ -70,11 +71,11 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({
   </section>
 );
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
+const mapDispatchToProps = (dispatch: ThunkDispatch<StateType, void, Action>) =>
   bindActionCreators(
     {
-      sortMovies,
-      searchMovies,
+      sortMovies: sortMoviesAction,
+      searchMovies: fetchMovies,
     },
     dispatch,
   );

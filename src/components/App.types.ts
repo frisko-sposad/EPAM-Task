@@ -7,7 +7,7 @@ export const IS_SEARCH_SHOWN = 'IS_SEARCH_SHOWN';
 
 export interface StateType {
   movies: ConvertedMovie[];
-  movie: ConvertedMovie;
+  movie: ConvertedMovie | null;
   searchByOption: string;
   searchQuery: string;
   sortBy: string;
@@ -46,7 +46,7 @@ export type MovieItemType = Pick<ConvertedMovie, 'id' | 'posterPath' | 'title' |
 export type MovieInfoType = Pick<
   ConvertedMovie,
   'id' | 'posterPath' | 'title' | 'releaseDate' | 'genres' | 'overview' | 'runtime'
->;
+> | null;
 
 export interface SearchMoviesResult {
   movies: ConvertedMovie[];
@@ -82,3 +82,11 @@ export interface SetIsSearchShown {
   type: typeof IS_SEARCH_SHOWN;
   result: boolean;
 }
+
+export type Action =
+  | SearchMovies
+  | SearchMovieById
+  | SetSearchByOption
+  | SortMovies
+  | SetSearchQuery
+  | SetIsSearchShown;

@@ -5,7 +5,7 @@ import MovieInfo from './MovieInfo/MovieInfo';
 import SiteTitle from './SiteTitle/SiteTitle';
 import SortResultsSection from './SortResultsSection/SortResultsSection';
 import './Header.css';
-import { SearchMovies, SetSearchByOption, SetSearchQuery } from '../App.types';
+import { StateType } from '../App.types';
 
 interface HeaderProps {
   isSearchShown: boolean;
@@ -13,35 +13,14 @@ interface HeaderProps {
   total: number;
   searchByOption: string;
   sortBy: string;
-  searchMovies: SearchMovies;
-  setSearchByOption: SetSearchByOption;
-  setSearchQuery: SetSearchQuery;
 }
 
-const Header = ({
-  isSearchShown,
-  searchQuery,
-  total,
-  searchByOption,
-  sortBy,
-  searchMovies,
-  setSearchByOption,
-  setSearchQuery,
-}: HeaderProps) => {
+const Header = ({ isSearchShown, searchQuery, total, searchByOption, sortBy }: HeaderProps) => {
   return (
     <header>
       <section className="header__container">
         <SiteTitle />
-        {isSearchShown ? (
-          <SearchSection
-            searchMovies={searchMovies}
-            searchByOption={searchByOption}
-            setSearchByOption={setSearchByOption}
-            setSearchQuery={setSearchQuery}
-          />
-        ) : (
-          <MovieInfo />
-        )}
+        {isSearchShown ? <SearchSection searchByOption={searchByOption} /> : <MovieInfo />}
       </section>
       {isSearchShown ? (
         <SortResultsSection
@@ -58,7 +37,7 @@ const Header = ({
   );
 };
 
-const mapStateToProps = ({ isSearchShown, total }) => ({
+const mapStateToProps = ({ isSearchShown, total }: Pick<StateType, 'isSearchShown' | 'total'>) => ({
   isSearchShown,
   total,
 });
