@@ -15,7 +15,7 @@ const Main = ({ movies }: MainProps) => {
   return (
     <main className="main">
       {movies.map((movie) => (
-        <MovieItem key={movie.id} {...movie} /> // выключить правила
+        <MovieItem key={movie.id} {...movie} />
       ))}
     </main>
   );

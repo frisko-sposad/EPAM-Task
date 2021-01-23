@@ -2,29 +2,35 @@ import React, { FC } from 'react';
 import './MovieInfo.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ThunkDispatch } from 'redux-thunk';
 import Button from '../../Generic/Button/Button';
-import { setIsSearchShownAction, setSearchByOptionAction } from '../../App.actions';
-import { StateType, ConvertedMovie, Action } from '../../App.types';
+import { setIsSearchShownAction, setSearchByOptionAction, setSearchQueryAction } from '../../App.actions';
+import { AppState, ConvertedMovie, AppDispatch } from '../../App.types';
 
 interface MovieInfoProps {
   setIsSearchShown: (isSearchShown: boolean) => void;
   setSearchByOption: (searchByOption: string) => void;
+  setSearchQuery: (searchQuery: string) => void;
   movie: ConvertedMovie | null;
   searchByOption: string;
 }
 
-const MovieInfo: FC<MovieInfoProps> = ({ setIsSearchShown, setSearchByOption, movie, searchByOption }) => {
+const MovieInfo: FC<MovieInfoProps> = ({ setIsSearchShown, setSearchByOption, movie, setSearchQuery }) => {
   if (movie === null) return null;
   const { title, overview, releaseDate, posterPath, genres, runtime } = movie;
+
+  const showMovieInfo = () => {
+    setSearchQuery('');
+    setSearchByOption('title');
+    setIsSearchShown(false);
+  };
+
   return (
     <div className="search__container">
       <div className="btn-search__container">
         <Button
           className="btn_search"
           onClick={() => {
-            setSearchByOption(searchByOption);
-            setIsSearchShown(true);
+            showMovieInfo();
           }}
         >
           SEARCH
@@ -37,7 +43,7 @@ const MovieInfo: FC<MovieInfoProps> = ({ setIsSearchShown, setSearchByOption, mo
           <p>{genres?.join(', ')}</p>
           <div className="movie-info__video-parameters">
             <strong>{releaseDate?.split('-')[0]}</strong>
-            <strong>{`${runtime === null ? '0' : runtime} min`}</strong>
+            <strong>{`${runtime === null ? 'run time is unknown' : `${runtime} min`}`}</strong>
           </div>
           <p>{overview}</p>
         </div>
@@ -46,16 +52,17 @@ const MovieInfo: FC<MovieInfoProps> = ({ setIsSearchShown, setSearchByOption, mo
   );
 };
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<StateType, void, Action>) =>
+const mapDispatchToProps = (dispatch: AppDispatch) =>
   bindActionCreators(
     {
       setIsSearchShown: setIsSearchShownAction,
       setSearchByOption: setSearchByOptionAction,
+      setSearchQuery: setSearchQueryAction,
     },
     dispatch,
   );
 
-const mapStateToProps = ({ movie, searchByOption }: Pick<StateType, 'movie' | 'searchByOption'>) => ({
+const mapStateToProps = ({ movie, searchByOption }: AppState) => ({
   movie,
   searchByOption,
 });

@@ -1,81 +1,67 @@
 import React, { FC } from 'react';
 import './SortResultsSection.css';
 import { connect } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
 import { bindActionCreators } from 'redux';
-import { fetchMovies, sortMoviesAction } from '../../App.actions';
-import { Action, StateType } from '../../App.types';
+import { setSortByOptionAction } from '../../App.actions';
+import { AppDispatch } from '../../App.types';
+import Button from '../../Generic/Button/Button';
 
 interface SortResultsSectionProps {
-  filmsBy?: string;
+  isSearchShown: boolean;
   genre?: string;
-  moviesFound?: string;
-  sortByTitle?: string;
-  releaseDate?: string;
-  rating?: string;
+  moviesFound?: number;
   sortBy?: string;
   sortMovies: (sortBy: string) => void;
-  searchMovies: () => void;
 }
 
-const SortResultsSection: FC<SortResultsSectionProps> = ({
-  filmsBy,
-  genre,
-  moviesFound,
-  sortByTitle,
-  releaseDate,
-  rating,
-  sortBy,
-  sortMovies,
-  searchMovies,
-}) => (
-  <section className="result-sort__container">
-    {(filmsBy || moviesFound) && (
+const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, genre, moviesFound, sortBy, sortMovies }) => {
+  const handleSortMoviesClick = (option: string) => () => sortMovies(option);
+  return (
+    <section className="result-sort__container">
       <div>
-        <span className="filmsBy">
-          <strong>{filmsBy}</strong>
-        </span>
-        <span>
-          <strong className="moviesFound">{moviesFound}</strong>
-        </span>
-        {genre && <span className="genre">{genre}</span>}
+        {isSearchShown ? (
+          <>
+            <span className="filmsBy">
+              <strong>Films by: </strong>
+            </span>
+            {genre && <span className="genre">{genre} genre</span>}
+          </>
+        ) : (
+          <span>
+            <strong className="moviesFound">{`${moviesFound} movies found`}</strong>
+          </span>
+        )}
       </div>
-    )}
-    {sortByTitle && (
-      <div>
-        <span className="sortBy">
-          <strong>{sortByTitle}</strong>
-        </span>
-        <button
-          type="button"
-          className={`btn_sort ${sortBy === 'release_date' ? 'btn_sort_active' : ''}`}
-          onClick={() => {
-            sortMovies('release_date');
-            searchMovies();
-          }}
-        >
-          {releaseDate}
-        </button>
-        <button
-          type="button"
-          className={`btn_sort ${sortBy === 'vote_average' ? 'btn_sort_active' : ''}`}
-          onClick={() => {
-            sortMovies('vote_average');
-            searchMovies();
-          }}
-        >
-          {rating}
-        </button>
-      </div>
-    )}
-  </section>
-);
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<StateType, void, Action>) =>
+      {!isSearchShown && (
+        <div>
+          <span className="sortBy">
+            <strong>Sort by: </strong>
+          </span>
+          <Button
+            type="button"
+            className={`btn_sort ${sortBy === 'release_date' ? 'btn_sort_active' : ''}`}
+            onClick={handleSortMoviesClick('release_date')}
+          >
+            release date
+          </Button>
+          <Button
+            type="button"
+            className={`btn_sort ${sortBy === 'vote_average' ? 'btn_sort_active' : ''}`}
+            onClick={handleSortMoviesClick('vote_average')}
+          >
+            rating
+          </Button>
+        </div>
+      )}
+    </section>
+  );
+};
+
+const mapDispatchToProps = (dispatch: AppDispatch) =>
   bindActionCreators(
     {
-      sortMovies: sortMoviesAction,
-      searchMovies: fetchMovies,
+      sortMovies: setSortByOptionAction,
     },
     dispatch,
   );

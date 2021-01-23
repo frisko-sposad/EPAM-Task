@@ -1,17 +1,11 @@
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ThunkDispatch } from 'redux-thunk';
 import { fetchMovieByIdAndRelatedMovies, setIsSearchShownAction } from '../../App.actions';
-import { Action, StateType } from '../../App.types';
+import { AppDispatch, MovieItemType } from '../../App.types';
 import './MovieItem.css';
 
-interface MovieItemProps {
-  id: number;
-  title: string;
-  posterPath: string;
-  releaseDate: string;
-  genres: string[];
+interface MovieItemProps extends MovieItemType {
   setIsSearchShown: (isSearchShown: boolean) => void;
   searchMovieByIdAndRelatedMovies: (movieId: number) => void;
 }
@@ -29,7 +23,7 @@ const MovieItem: FC<MovieItemProps> = ({
     <div
       className="movie-item"
       onClick={() => {
-        setIsSearchShown(false);
+        setIsSearchShown(true);
         searchMovieByIdAndRelatedMovies(id);
       }}
     >
@@ -45,7 +39,7 @@ const MovieItem: FC<MovieItemProps> = ({
   );
 };
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<StateType, void, Action>) =>
+const mapDispatchToProps = (dispatch: AppDispatch) =>
   bindActionCreators(
     {
       setIsSearchShown: setIsSearchShownAction,

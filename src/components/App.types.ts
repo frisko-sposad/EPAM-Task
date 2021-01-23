@@ -1,19 +1,20 @@
-export const SEARCH_MOVIES_ACTION = 'SEARCH_MOVIES_ACTION';
-export const SEARCH_MOVIES_BY_ID_ACTION = 'SEARCH_MOVIES_BY_ID_ACTION';
-export const SEARCH_BY = 'SEARCH_BY';
-export const SORT_MOVIES_ACTION = 'SORT_MOVIES_ACTION';
-export const CURRENT_REQUEST = 'CURRENT_REQUEST';
-export const IS_SEARCH_SHOWN = 'IS_SEARCH_SHOWN';
+import { ThunkDispatch } from 'redux-thunk';
 
-export interface StateType {
+export const SET_SEARCH_MOVIES = 'SET_SEARCH_MOVIES';
+export const SET_SEARCH_MOVIE_BY_ID = 'SET_SEARCH_MOVIE_BY_ID';
+export const SET_SEARCH_BY = 'SET_SEARCH_BY';
+export const SET_SORT_MOVIES = 'SET_SORT_MOVIES';
+export const SET_CURRENT_REQUEST = 'SET_CURRENT_REQUEST';
+export const SET_IS_SEARCH_SHOWN = 'SET_IS_SEARCH_SHOWN';
+
+export interface AppState {
   movies: ConvertedMovie[];
   movie: ConvertedMovie | null;
   searchByOption: string;
   searchQuery: string;
-  sortBy: string;
-  total: number;
+  sortByOption: string;
+  moviesFound: number;
   isSearchShown: boolean;
-  movieId: number;
   genre: string;
 }
 
@@ -43,43 +44,38 @@ export interface ConvertedMovie {
 
 export type MovieItemType = Pick<ConvertedMovie, 'id' | 'posterPath' | 'title' | 'releaseDate' | 'genres'>;
 
-export type MovieInfoType = Pick<
-  ConvertedMovie,
-  'id' | 'posterPath' | 'title' | 'releaseDate' | 'genres' | 'overview' | 'runtime'
-> | null;
-
 export interface SearchMoviesResult {
   movies: ConvertedMovie[];
-  total: number;
+  moviesFound: number;
 }
 
 export interface SearchMovies {
-  type: typeof SEARCH_MOVIES_ACTION;
+  type: typeof SET_SEARCH_MOVIES;
   result: SearchMoviesResult;
 }
 
 export interface SearchMovieById {
-  type: typeof SEARCH_MOVIES_BY_ID_ACTION;
+  type: typeof SET_SEARCH_MOVIE_BY_ID;
   result: ConvertedMovie;
 }
 
 export interface SetSearchByOption {
-  type: typeof SEARCH_BY;
+  type: typeof SET_SEARCH_BY;
   result: string;
 }
 
 export interface SortMovies {
-  type: typeof SORT_MOVIES_ACTION;
+  type: typeof SET_SORT_MOVIES;
   result: string;
 }
 
 export interface SetSearchQuery {
-  type: typeof CURRENT_REQUEST;
+  type: typeof SET_CURRENT_REQUEST;
   result: string;
 }
 
 export interface SetIsSearchShown {
-  type: typeof IS_SEARCH_SHOWN;
+  type: typeof SET_IS_SEARCH_SHOWN;
   result: boolean;
 }
 
@@ -90,3 +86,5 @@ export type Action =
   | SortMovies
   | SetSearchQuery
   | SetIsSearchShown;
+
+export type AppDispatch = ThunkDispatch<AppState, void, Action>;

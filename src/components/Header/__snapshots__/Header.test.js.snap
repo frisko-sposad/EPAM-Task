@@ -24,7 +24,7 @@ exports[`Testing Header openSearch. State isSearchShown = true 1`] = `
     <SearchSection />
   </section>
   <SortResultsSection
-    moviesFound="7 movies found"
+    total="7 movies found"
     rating="rating"
     releaseDate="release date"
     sortBy="Sort by"
@@ -56,7 +56,7 @@ exports[`Testing the openSearch block in Header. If State isSearchShown = true, 
     <SearchSection />
   </section>
   <SortResultsSection
-    moviesFound="7 movies found"
+    total="7 movies found"
     rating="rating"
     releaseDate="release date"
     sortBy="Sort by"

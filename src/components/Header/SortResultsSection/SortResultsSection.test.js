@@ -4,7 +4,7 @@ import SortResultsSection from './SortResultsSection';
 
 const filmsByProps = 'Films by ';
 const genreProps = 'Drama genre';
-const moviesFoundProps = '7 movies found';
+const totalProps = '7 movies found';
 const sortByProps = 'Sort by';
 const releaseDateProps = 'release date';
 const ratingProps = 'rating';
@@ -19,20 +19,20 @@ describe('Films by genre.', () => {
   });
 });
 describe('Films by sort.', () => {
-  it('Do we have moviesFound, sortBy, releaseDate, rating in the SortResultsSection?', () => {
+  it('Do we have total, sortBy, releaseDate, rating in the SortResultsSection?', () => {
     const component = shallow(
       <SortResultsSection
-        moviesFound={moviesFoundProps}
+        total={totalProps}
         releaseDate={releaseDateProps}
         sortBy={sortByProps}
         rating={ratingProps}
       />,
     );
-    const moviesFoundText = component.find('.moviesFound').find('strong').text();
+    const totalText = component.find('.total').find('strong').text();
     const sortByText = component.find('.sortBy').find('strong').text();
     const releaseDateText = component.find('.releaseDate').text();
     const ratingText = component.find('.rating').text();
-    expect(moviesFoundText).toBe(moviesFoundProps);
+    expect(totalText).toBe(totalProps);
     expect(sortByText).toBe(sortByProps);
     expect(releaseDateText).toBe(releaseDateProps);
     expect(ratingText).toBe(ratingProps);

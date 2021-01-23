@@ -5,41 +5,31 @@ import MovieInfo from './MovieInfo/MovieInfo';
 import SiteTitle from './SiteTitle/SiteTitle';
 import SortResultsSection from './SortResultsSection/SortResultsSection';
 import './Header.css';
-import { StateType } from '../App.types';
+import { AppState } from '../App.types';
 
 interface HeaderProps {
   isSearchShown: boolean;
   searchQuery: string;
-  total: number;
+  moviesFound: number;
   searchByOption: string;
   sortBy: string;
 }
 
-const Header = ({ isSearchShown, searchQuery, total, searchByOption, sortBy }: HeaderProps) => {
+const Header = ({ isSearchShown, searchQuery, moviesFound, searchByOption, sortBy }: HeaderProps) => {
   return (
     <header>
       <section className="header__container">
         <SiteTitle />
-        {isSearchShown ? <SearchSection searchByOption={searchByOption} /> : <MovieInfo />}
+        {isSearchShown ? <MovieInfo /> : <SearchSection searchByOption={searchByOption} />}
       </section>
-      {isSearchShown ? (
-        <SortResultsSection
-          moviesFound={`${total} movies found`}
-          sortBy={sortBy}
-          releaseDate="release date"
-          sortByTitle="Sort by"
-          rating="rating"
-        />
-      ) : (
-        <SortResultsSection filmsBy="Films by " genre={searchQuery} />
-      )}
+      <SortResultsSection isSearchShown={isSearchShown} moviesFound={moviesFound} sortBy={sortBy} genre={searchQuery} />
     </header>
   );
 };
 
-const mapStateToProps = ({ isSearchShown, total }: Pick<StateType, 'isSearchShown' | 'total'>) => ({
+const mapStateToProps = ({ isSearchShown, moviesFound }: Pick<AppState, 'isSearchShown' | 'moviesFound'>) => ({
   isSearchShown,
-  total,
+  moviesFound,
 });
 
 export default connect(mapStateToProps, null)(Header);

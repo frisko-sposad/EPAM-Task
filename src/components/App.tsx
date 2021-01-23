@@ -1,44 +1,43 @@
 import React, { FC, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import Main from './Main/Main';
 import './App.css';
 import { fetchMovies } from './App.actions';
-import { Action, ConvertedMovie, StateType } from './App.types';
+import { ConvertedMovie, AppDispatch, AppState } from './App.types';
 
-interface AppPropsType {
+interface AppProps {
   movies: ConvertedMovie[];
-  total: number;
-  sortBy: string;
+  moviesFound: number;
+  sortByOption: string;
   searchQuery: string;
   isSearchShown: boolean;
   searchByOption: string;
   searchMovies: () => void;
 }
 
-const App: FC<AppPropsType> = ({
+const App: FC<AppProps> = ({
   movies,
-  total,
-  sortBy,
+  moviesFound,
+  sortByOption,
   searchQuery,
   isSearchShown,
   searchByOption,
   searchMovies,
-}: AppPropsType) => {
+}: AppProps) => {
   useEffect(() => {
     searchMovies();
-  }, [searchMovies]);
+  }, [searchMovies, sortByOption, searchQuery, searchByOption]);
 
   return (
     <>
       <Header
         isSearchShown={isSearchShown}
         searchByOption={searchByOption}
-        sortBy={sortBy}
-        total={total}
+        sortBy={sortByOption}
+        moviesFound={moviesFound}
         searchQuery={searchQuery}
       />
       <Main movies={movies} />
@@ -47,7 +46,7 @@ const App: FC<AppPropsType> = ({
   );
 };
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<StateType, void, Action>) =>
+const mapDispatchToProps = (dispatch: AppDispatch) =>
   bindActionCreators(
     {
       searchMovies: fetchMovies,
@@ -55,13 +54,6 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<StateType, void, Action>) =>
     dispatch,
   );
 
-const mapStateToProps = ({ movies, total, searchByOption, sortBy, searchQuery, isSearchShown }: AppPropsType) => ({
-  movies,
-  total,
-  searchByOption,
-  sortBy,
-  searchQuery,
-  isSearchShown,
-});
+const mapStateToProps = (state: AppState) => state;
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

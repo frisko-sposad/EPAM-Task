@@ -1,40 +1,43 @@
 import {
-  SEARCH_MOVIES_ACTION,
-  SEARCH_MOVIES_BY_ID_ACTION,
-  SEARCH_BY,
-  SORT_MOVIES_ACTION,
-  CURRENT_REQUEST,
-  IS_SEARCH_SHOWN,
-  StateType,
+  SET_SEARCH_MOVIES,
+  SET_SEARCH_MOVIE_BY_ID,
+  SET_SEARCH_BY,
+  SET_SORT_MOVIES,
+  SET_CURRENT_REQUEST,
+  SET_IS_SEARCH_SHOWN,
+  AppState,
   Action,
+  SearchMoviesResult,
+  ConvertedMovie,
 } from './App.types';
 
-const initialState: StateType = {
+const initialState: AppState = {
   movies: [],
   movie: null,
   searchByOption: 'title',
   searchQuery: '',
-  sortBy: 'release_date',
-  total: 0,
-  isSearchShown: true,
-  movieId: 17,
+  sortByOption: 'release_date',
+  moviesFound: 0,
+  isSearchShown: false,
   genre: '',
 };
 
-export default function rootReducer(state = initialState, action: Action): StateType {
-  switch (action.type) {
-    case SEARCH_MOVIES_ACTION:
-      return { ...state, movies: action.result.movies, total: action.result.total };
-    case SEARCH_MOVIES_BY_ID_ACTION:
-      return { ...state, movie: action.result };
-    case SEARCH_BY:
-      return { ...state, searchByOption: action.result };
-    case SORT_MOVIES_ACTION:
-      return { ...state, sortBy: action.result };
-    case CURRENT_REQUEST:
-      return { ...state, searchQuery: action.result };
-    case IS_SEARCH_SHOWN:
-      return { ...state, isSearchShown: action.result };
+export default function rootReducer(state = initialState, { type, result }: Action): AppState {
+  switch (type) {
+    case SET_SEARCH_MOVIES: {
+      const { movies, moviesFound } = result as SearchMoviesResult;
+      return { ...state, movies, moviesFound };
+    }
+    case SET_SEARCH_MOVIE_BY_ID:
+      return { ...state, movie: result as ConvertedMovie };
+    case SET_SEARCH_BY:
+      return { ...state, searchByOption: result as string };
+    case SET_SORT_MOVIES:
+      return { ...state, sortByOption: result as string };
+    case SET_CURRENT_REQUEST:
+      return { ...state, searchQuery: result as string };
+    case SET_IS_SEARCH_SHOWN:
+      return { ...state, isSearchShown: result as boolean };
     default:
       return state;
   }

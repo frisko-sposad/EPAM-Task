@@ -2,29 +2,31 @@ import React, { FC, KeyboardEvent, ChangeEvent, useState } from 'react';
 import './SearchSection.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ThunkDispatch } from 'redux-thunk';
 import Button from '../../Generic/Button/Button';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import BuggyCounter from '../ErrorBoundary/BuggyCounter';
-import { fetchMovies, setSearchByOptionAction, setSearchQueryAction } from '../../App.actions';
-import { Action, StateType } from '../../App.types';
+import { setSearchByOptionAction, setSearchQueryAction } from '../../App.actions';
+import { AppDispatch } from '../../App.types';
 
 interface SearchSectionProps {
-  searchMovies: () => void;
   setSearchByOption: (searchByOption: string) => void;
   setSearchQuery: (query: string) => void;
   searchByOption: string;
 }
 
-const SearchSection: FC<SearchSectionProps> = ({ searchMovies, setSearchByOption, setSearchQuery, searchByOption }) => {
+const SearchSection: FC<SearchSectionProps> = ({ setSearchByOption, setSearchQuery, searchByOption }) => {
   const [inputValue, setInputValue] = useState('');
-  const chengeSearchQuery = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
-  const sendSearchQueryIfClickingEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+  const chenge = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
+  const startMovieSearch = () => {
+    setSearchQuery(inputValue);
+  };
+  const handleEnterClick = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      setSearchQuery(inputValue);
-      searchMovies();
+      startMovieSearch();
     }
   };
+
+  const handleSearchByOptonClick = (option: string) => () => setSearchByOption(option);
 
   return (
     <div className="search__container">
@@ -34,8 +36,8 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies, setSearchByOption
         className="search__search-query"
         placeholder="search"
         value={inputValue}
-        onChange={chengeSearchQuery}
-        onKeyPress={sendSearchQueryIfClickingEnter}
+        onChange={chenge}
+        onKeyPress={handleEnterClick}
       />
       <div className="search-by__container">
         <div className="search-by-btn__container">
@@ -43,13 +45,13 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies, setSearchByOption
           <div className="btn-group" role="group">
             <Button
               className={`btn_search-by ${searchByOption === 'title' ? 'active' : ''}`}
-              onClick={() => setSearchByOption('title')}
+              onClick={handleSearchByOptonClick('title')}
             >
               TITLE
             </Button>
             <Button
               className={`btn_search-by ${searchByOption === 'genres' ? 'active' : ''}`}
-              onClick={() => setSearchByOption('genres')}
+              onClick={handleSearchByOptonClick('genres')}
             >
               GENRE
             </Button>
@@ -61,8 +63,7 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies, setSearchByOption
         <Button
           className="btn_search"
           onClick={() => {
-            setSearchQuery(inputValue);
-            searchMovies();
+            startMovieSearch();
           }}
         >
           SEARCH
@@ -72,10 +73,9 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies, setSearchByOption
   );
 };
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<StateType, void, Action>) =>
+const mapDispatchToProps = (dispatch: AppDispatch) =>
   bindActionCreators(
     {
-      searchMovies: fetchMovies,
       setSearchByOption: setSearchByOptionAction,
       setSearchQuery: setSearchQueryAction,
     },
