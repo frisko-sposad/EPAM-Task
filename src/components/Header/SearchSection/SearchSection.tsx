@@ -1,4 +1,4 @@
-import React, { FC, KeyboardEvent, ChangeEvent, useState } from 'react';
+import React, { FC, KeyboardEvent, ChangeEvent, useState, useCallback } from 'react';
 import './SearchSection.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -26,7 +26,9 @@ const SearchSection: FC<SearchSectionProps> = ({ setSearchByOption, setSearchQue
     }
   };
 
-  const handleSearchByOptonClick = (option: string) => () => setSearchByOption(option);
+  const handleSearchByOptonClick = useCallback((option: string) => () => setSearchByOption(option), [
+    setSearchByOption,
+  ]);
 
   return (
     <div className="search__container">
