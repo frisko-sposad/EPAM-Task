@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchMovieByIdAndRelatedMovies, setIsSearchShownAction } from '../../App.actions';
@@ -19,14 +19,15 @@ const MovieItem: FC<MovieItemProps> = ({
   setIsSearchShown,
   searchMovieByIdAndRelatedMovies,
 }) => {
+  const showMovieInfo = useCallback(
+    () => () => {
+      setIsSearchShown(true);
+      searchMovieByIdAndRelatedMovies(id);
+    },
+    [id, searchMovieByIdAndRelatedMovies, setIsSearchShown],
+  );
   return (
-    <div
-      className="movie-item"
-      onClick={() => {
-        setIsSearchShown(true);
-        searchMovieByIdAndRelatedMovies(id);
-      }}
-    >
+    <div className="movie-item" onClick={showMovieInfo()}>
       <img className="movie-item__img" src={posterPath} alt={`poster from ${title}`} />
       <div>
         <div className="movie-item__info">

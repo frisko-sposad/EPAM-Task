@@ -16,10 +16,10 @@ interface SearchSectionProps {
 
 const SearchSection: FC<SearchSectionProps> = ({ setSearchByOption, setSearchQuery, searchByOption }) => {
   const [inputValue, setInputValue] = useState('');
-  const chenge = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
-  const startMovieSearch = () => {
+  const chengeInputValue = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
+  const startMovieSearch = useCallback(() => {
     setSearchQuery(inputValue);
-  };
+  }, [inputValue, setSearchQuery]);
   const handleEnterClick = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       startMovieSearch();
@@ -38,7 +38,7 @@ const SearchSection: FC<SearchSectionProps> = ({ setSearchByOption, setSearchQue
         className="search__search-query"
         placeholder="search"
         value={inputValue}
-        onChange={chenge}
+        onChange={chengeInputValue}
         onKeyPress={handleEnterClick}
       />
       <div className="search-by__container">

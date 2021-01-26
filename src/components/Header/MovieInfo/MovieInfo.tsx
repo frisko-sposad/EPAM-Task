@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import './MovieInfo.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -18,21 +18,19 @@ const MovieInfo: FC<MovieInfoProps> = ({ setIsSearchShown, setSearchByOption, mo
   if (movie === null) return null;
   const { title, overview, releaseDate, posterPath, genres, runtime } = movie;
 
-  const showMovieInfo = () => {
-    setSearchQuery('');
-    setSearchByOption('title');
-    setIsSearchShown(false);
-  };
+  const showMovieInfo = useCallback(
+    () => () => {
+      setSearchQuery('');
+      setSearchByOption('title');
+      setIsSearchShown(false);
+    },
+    [setIsSearchShown, setSearchByOption, setSearchQuery],
+  );
 
   return (
     <div className="search__container">
       <div className="btn-search__container">
-        <Button
-          className="btn_search"
-          onClick={() => {
-            showMovieInfo();
-          }}
-        >
+        <Button className="btn_search" onClick={showMovieInfo()}>
           SEARCH
         </Button>
       </div>

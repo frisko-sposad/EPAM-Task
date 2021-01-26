@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import './SortResultsSection.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -15,7 +15,7 @@ interface SortResultsSectionProps {
 }
 
 const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, genre, moviesFound, sortBy, sortMovies }) => {
-  const handleSortMoviesClick = (option: string) => () => sortMovies(option);
+  const handleSortMoviesClick = useCallback((option: string) => () => sortMovies(option), [sortMovies]);
   return (
     <section className="result-sort__container">
       <div>
