@@ -1,45 +1,59 @@
-import React, { Component } from 'react';
+import React, { FC, useEffect } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import Main from './Main/Main';
 import './App.css';
-import movieBase from './MovieBase';
+import { fetchMovies } from './App.actions';
+import { ConvertedMovie, AppDispatch, AppState } from './App.types';
 
-interface AppState {
+interface AppProps {
+  movies: ConvertedMovie[];
+  moviesFound: number;
+  sortByOption: string;
+  searchQuery: string;
   isSearchShown: boolean;
+  searchByOption: string;
+  searchMovies: () => void;
 }
-type AppProps = Record<string, unknown>;
 
-export default class App extends Component<AppProps, AppState> {
-  constructor(props: AppProps) {
-    super(props);
-    this.state = {
-      isSearchShown: true,
-    };
-    this.openSearch = this.openSearch.bind(this);
-    this.closeSearch = this.closeSearch.bind(this);
-  }
+const App: FC<AppProps> = ({
+  movies,
+  moviesFound,
+  sortByOption,
+  searchQuery,
+  isSearchShown,
+  searchByOption,
+  searchMovies,
+}: AppProps) => {
+  useEffect(() => {
+    searchMovies();
+  }, [searchMovies, sortByOption, searchQuery, searchByOption]);
 
-  openSearch(): void {
-    this.setState({
-      isSearchShown: true,
-    });
-  }
+  return (
+    <>
+      <Header
+        isSearchShown={isSearchShown}
+        searchByOption={searchByOption}
+        sortBy={sortByOption}
+        moviesFound={moviesFound}
+        searchQuery={searchQuery}
+      />
+      <Main movies={movies} />
+      <Footer />
+    </>
+  );
+};
 
-  closeSearch(): void {
-    this.setState({
-      isSearchShown: false,
-    });
-  }
+const mapDispatchToProps = (dispatch: AppDispatch) =>
+  bindActionCreators(
+    {
+      searchMovies: fetchMovies,
+    },
+    dispatch,
+  );
 
-  render(): JSX.Element {
-    const { isSearchShown } = this.state;
-    return (
-      <>
-        <Header isSearchShown={isSearchShown} openSearch={this.openSearch} closeSearch={this.closeSearch} />
-        <Main movieBase={movieBase} />
-        <Footer />
-      </>
-    );
-  }
-}
+const mapStateToProps = (state: AppState) => state;
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

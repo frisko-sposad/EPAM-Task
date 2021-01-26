@@ -11,14 +11,8 @@
   opacity: 0.5;
 }
 
-.btn:active {
-  outline: none;
-  counter-reset: blue;
-}
-
 .btn_search {
   background-color: #c82333;
-  border-color: #bd2130;
 }
 
 .btn_search-by {
@@ -42,11 +36,13 @@
   opacity: 0.5;
 }
 
-.btn_sort:active {
-  opacity: 0.8;
-}
-
-.btn_sort:focus {
+.btn_sort_active {
   color: tomato;
   font-weight: 600;
+}
+
+.active {
+  background-color: #c82333;
+  border: none;
+  outline: none;  
 }

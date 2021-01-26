@@ -1,17 +1,24 @@
 import React, { memo } from 'react';
 import './Main.css';
-import MovieItem, { MovieItemProps } from './MovieItem/MovieItem';
+import MovieItem from './MovieItem/MovieItem';
+import { MovieItemType } from '../App.types';
 
 interface MainProps {
-  movieBase: (MovieItemProps & { id: number })[];
+  movies: MovieItemType[];
 }
 
-const Main = ({ movieBase }: MainProps) => (
-  <main className="main">
-    {movieBase.map(({ id, name, year, genre, image }) => (
-      <MovieItem key={id} name={name} year={year} genre={genre} image={image} />
-    ))}
-  </main>
-);
+const Main = ({ movies }: MainProps) => {
+  if (movies.length === 0) {
+    return null;
+  }
+
+  return (
+    <main className="main">
+      {movies.map((movie) => (
+        <MovieItem key={movie.id} {...movie} />
+      ))}
+    </main>
+  );
+};
 
 export default memo(Main);

@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { FC } from 'react';
 import SearchSection from './SearchSection/SearchSection';
 import MovieInfo from './MovieInfo/MovieInfo';
 import SiteTitle from './SiteTitle/SiteTitle';
@@ -7,22 +7,22 @@ import './Header.css';
 
 interface HeaderProps {
   isSearchShown: boolean;
-  openSearch: () => void;
-  closeSearch: () => void;
+  searchQuery: string;
+  moviesFound: number;
+  searchByOption: string;
+  sortBy: string;
 }
 
-const Header = ({ isSearchShown, openSearch, closeSearch }: HeaderProps) => (
-  <header>
-    <section className="header__container">
-      <SiteTitle />
-      {isSearchShown ? <SearchSection closeSearch={closeSearch} /> : <MovieInfo openSearch={openSearch} />}
-    </section>
-    {isSearchShown ? (
-      <SortResultsSection moviesFound="7 movies found" releaseDate="release date" sortBy="Sort by" rating="rating" />
-    ) : (
-      <SortResultsSection filmsBy="Films by " genre="Drama genre" />
-    )}
-  </header>
-);
+const Header: FC<HeaderProps> = ({ isSearchShown, searchQuery, moviesFound, searchByOption, sortBy }: HeaderProps) => {
+  return (
+    <header>
+      <section className="header__container">
+        <SiteTitle />
+        {isSearchShown ? <MovieInfo /> : <SearchSection searchByOption={searchByOption} />}
+      </section>
+      <SortResultsSection isSearchShown={isSearchShown} moviesFound={moviesFound} sortBy={sortBy} genre={searchQuery} />
+    </header>
+  );
+};
 
-export default memo(Header);
+export default Header;

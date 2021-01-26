@@ -1,49 +1,69 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import './SortResultsSection.css';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { setSortByOptionAction } from '../../App.actions';
+import { AppDispatch } from '../../App.types';
+import Button from '../../Generic/Button/Button';
 
 interface SortResultsSectionProps {
-  filmsBy?: string;
+  isSearchShown: boolean;
   genre?: string;
-  moviesFound?: string;
+  moviesFound?: number;
   sortBy?: string;
-  releaseDate?: string;
-  rating?: string;
+  sortMovies: (sortBy: string) => void;
 }
 
-const SortResultsSection: FC<SortResultsSectionProps> = ({
-  filmsBy,
-  genre,
-  moviesFound,
-  sortBy,
-  releaseDate,
-  rating,
-}) => (
-  <section className="result-sort__container">
-    {(filmsBy || moviesFound) && (
+const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, genre, moviesFound, sortBy, sortMovies }) => {
+  const handleSortMoviesClick = useCallback((option: string) => () => sortMovies(option), [sortMovies]);
+  return (
+    <section className="result-sort__container">
       <div>
-        <span className="filmsBy">
-          <strong>{filmsBy}</strong>
-        </span>
-        <span>
-          <strong className="moviesFound">{moviesFound}</strong>
-        </span>
-        {genre && <span className="genre">{genre}</span>}
+        {isSearchShown ? (
+          <>
+            <span className="filmsBy">
+              <strong>Films by: </strong>
+            </span>
+            {genre && <span className="genre">{genre} genre</span>}
+          </>
+        ) : (
+          <span>
+            <strong className="moviesFound">{`${moviesFound} movies found`}</strong>
+          </span>
+        )}
       </div>
-    )}
-    {sortBy && (
-      <div>
-        <span className="sortBy">
-          <strong>{sortBy}</strong>
-        </span>
-        <button type="button" className="btn_sort releaseDate">
-          {releaseDate}
-        </button>
-        <button type="button" className="btn_sort rating">
-          {rating}
-        </button>
-      </div>
-    )}
-  </section>
-);
 
-export default SortResultsSection;
+      {!isSearchShown && (
+        <div>
+          <span className="sortBy">
+            <strong>Sort by: </strong>
+          </span>
+          <Button
+            type="button"
+            className={`btn_sort ${sortBy === 'release_date' ? 'btn_sort_active' : ''}`}
+            onClick={handleSortMoviesClick('release_date')}
+          >
+            release date
+          </Button>
+          <Button
+            type="button"
+            className={`btn_sort ${sortBy === 'vote_average' ? 'btn_sort_active' : ''}`}
+            onClick={handleSortMoviesClick('vote_average')}
+          >
+            rating
+          </Button>
+        </div>
+      )}
+    </section>
+  );
+};
+
+const mapDispatchToProps = (dispatch: AppDispatch) =>
+  bindActionCreators(
+    {
+      sortMovies: setSortByOptionAction,
+    },
+    dispatch,
+  );
+
+export default connect(null, mapDispatchToProps)(SortResultsSection);
