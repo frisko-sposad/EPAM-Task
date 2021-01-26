@@ -15,22 +15,19 @@ interface MovieInfoProps {
 }
 
 const MovieInfo: FC<MovieInfoProps> = ({ setIsSearchShown, setSearchByOption, movie, setSearchQuery }) => {
+  const showMovieInfo = useCallback(() => {
+    setSearchQuery('');
+    setSearchByOption('title');
+    setIsSearchShown(false);
+  }, [setIsSearchShown, setSearchByOption, setSearchQuery]);
+
   if (movie === null) return null;
   const { title, overview, releaseDate, posterPath, genres, runtime } = movie;
-
-  const showMovieInfo = useCallback(
-    () => () => {
-      setSearchQuery('');
-      setSearchByOption('title');
-      setIsSearchShown(false);
-    },
-    [setIsSearchShown, setSearchByOption, setSearchQuery],
-  );
 
   return (
     <div className="search__container">
       <div className="btn-search__container">
-        <Button className="btn_search" onClick={showMovieInfo()}>
+        <Button className="btn_search" onClick={showMovieInfo}>
           SEARCH
         </Button>
       </div>

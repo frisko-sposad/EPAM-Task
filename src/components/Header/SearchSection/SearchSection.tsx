@@ -16,7 +16,7 @@ interface SearchSectionProps {
 
 const SearchSection: FC<SearchSectionProps> = ({ setSearchByOption, setSearchQuery, searchByOption }) => {
   const [inputValue, setInputValue] = useState('');
-  const chengeInputValue = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
+  const changeInputValue = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
   const startMovieSearch = useCallback(() => {
     setSearchQuery(inputValue);
   }, [inputValue, setSearchQuery]);
@@ -38,7 +38,7 @@ const SearchSection: FC<SearchSectionProps> = ({ setSearchByOption, setSearchQue
         className="search__search-query"
         placeholder="search"
         value={inputValue}
-        onChange={chengeInputValue}
+        onChange={changeInputValue}
         onKeyPress={handleEnterClick}
       />
       <div className="search-by__container">
@@ -62,12 +62,7 @@ const SearchSection: FC<SearchSectionProps> = ({ setSearchByOption, setSearchQue
             <BuggyCounter />
           </ErrorBoundary>
         </div>
-        <Button
-          className="btn_search"
-          onClick={() => {
-            startMovieSearch();
-          }}
-        >
+        <Button className="btn_search" onClick={startMovieSearch}>
           SEARCH
         </Button>
       </div>

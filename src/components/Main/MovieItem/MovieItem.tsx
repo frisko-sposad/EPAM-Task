@@ -19,15 +19,12 @@ const MovieItem: FC<MovieItemProps> = ({
   setIsSearchShown,
   searchMovieByIdAndRelatedMovies,
 }) => {
-  const showMovieInfo = useCallback(
-    () => () => {
-      setIsSearchShown(true);
-      searchMovieByIdAndRelatedMovies(id);
-    },
-    [id, searchMovieByIdAndRelatedMovies, setIsSearchShown],
-  );
+  const showMovieInfo = useCallback(() => {
+    setIsSearchShown(true);
+    searchMovieByIdAndRelatedMovies(id);
+  }, [id, searchMovieByIdAndRelatedMovies, setIsSearchShown]);
   return (
-    <div className="movie-item" onClick={showMovieInfo()}>
+    <div className="movie-item" onClick={showMovieInfo}>
       <img className="movie-item__img" src={posterPath} alt={`poster from ${title}`} />
       <div>
         <div className="movie-item__info">

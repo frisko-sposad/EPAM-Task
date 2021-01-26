@@ -23,7 +23,7 @@ export const searchMoviesAction = (result: SearchMoviesResult): SearchMovies => 
   result,
 });
 
-export const searchMovieById = (base: ConvertedMovie): SearchMovieById => ({
+export const searchMovieByIdAction = (base: ConvertedMovie): SearchMovieById => ({
   type: SET_SEARCH_MOVIE_BY_ID,
   result: base,
 });
@@ -68,7 +68,7 @@ export function fetchMovieByIdAndRelatedMovies(movieId: number) {
       .then((res) => res.json())
       .then((data) => {
         const convertedMovie = convertMovieToCamelCase(data);
-        dispatch(searchMovieById(convertedMovie));
+        dispatch(searchMovieByIdAction(convertedMovie));
         dispatch(setSearchByOptionAction('genres'));
         dispatch(setSearchQueryAction(convertedMovie.genres[0]));
         dispatch(fetchMovies());
