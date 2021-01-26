@@ -27,8 +27,7 @@ const Header = ({ isSearchShown, searchQuery, moviesFound, searchByOption, sortB
   );
 };
 
-const mapStateToProps = ({ isSearchShown, moviesFound }: Pick<AppState, 'isSearchShown' | 'moviesFound'>) => ({
-  isSearchShown,
+const mapStateToProps = ({ moviesFound }: Pick<AppState, 'moviesFound'>) => ({
   moviesFound,
 });
 
