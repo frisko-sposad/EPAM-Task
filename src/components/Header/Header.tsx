@@ -1,11 +1,9 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { FC } from 'react';
 import SearchSection from './SearchSection/SearchSection';
 import MovieInfo from './MovieInfo/MovieInfo';
 import SiteTitle from './SiteTitle/SiteTitle';
 import SortResultsSection from './SortResultsSection/SortResultsSection';
 import './Header.css';
-import { AppState } from '../App.types';
 
 interface HeaderProps {
   isSearchShown: boolean;
@@ -15,7 +13,7 @@ interface HeaderProps {
   sortBy: string;
 }
 
-const Header = ({ isSearchShown, searchQuery, moviesFound, searchByOption, sortBy }: HeaderProps) => {
+const Header: FC<HeaderProps> = ({ isSearchShown, searchQuery, moviesFound, searchByOption, sortBy }: HeaderProps) => {
   return (
     <header>
       <section className="header__container">
@@ -27,8 +25,4 @@ const Header = ({ isSearchShown, searchQuery, moviesFound, searchByOption, sortB
   );
 };
 
-const mapStateToProps = ({ moviesFound }: Pick<AppState, 'moviesFound'>) => ({
-  moviesFound,
-});
-
-export default connect(mapStateToProps, null)(Header);
+export default Header;
