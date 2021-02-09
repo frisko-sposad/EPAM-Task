@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { RawMovie, ConvertedMovie } from './App.types';
 
 export const convertMovieToCamelCase = ({
@@ -21,3 +22,7 @@ export const convertMovieToCamelCase = ({
   overview,
   runtime,
 });
+
+export const useParamsURL = (): URLSearchParams => {
+  return new URLSearchParams(useLocation().search);
+};

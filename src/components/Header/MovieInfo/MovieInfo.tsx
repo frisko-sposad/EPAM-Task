@@ -1,29 +1,30 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useEffect } from 'react';
 import './MovieInfo.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { useHistory, useParams } from 'react-router-dom';
 import Button from '../../Generic/Button/Button';
-import { setIsSearchShownAction, setSearchByOptionAction, setSearchQueryAction } from '../../App.actions';
+import { fetchMovieByIdAndRelatedMovies } from '../../App.actions';
 import { AppState, ConvertedMovie, AppDispatch } from '../../App.types';
 
 interface MovieInfoProps {
-  setIsSearchShown: (isSearchShown: boolean) => void;
-  setSearchByOption: (searchByOption: string) => void;
-  setSearchQuery: (searchQuery: string) => void;
+  searchMovieByIdAndRelatedMovies: (id: string) => void;
   movie: ConvertedMovie | null;
-  searchByOption: string;
 }
 
-const MovieInfo: FC<MovieInfoProps> = ({ setIsSearchShown, setSearchByOption, movie, setSearchQuery }) => {
+const MovieInfo: FC<MovieInfoProps> = ({ movie, searchMovieByIdAndRelatedMovies }) => {
+  const history = useHistory();
+
   const showMovieInfo = useCallback(() => {
-    setSearchQuery('');
-    setSearchByOption('title');
-    setIsSearchShown(false);
-  }, [setIsSearchShown, setSearchByOption, setSearchQuery]);
+    history.push('/');
+  }, [history]);
 
-  if (movie === null) return null;
-  const { title, overview, releaseDate, posterPath, genres, runtime } = movie;
+  const { id } = useParams<Record<string, string>>();
+  useEffect(() => {
+    searchMovieByIdAndRelatedMovies(id);
+  }, [id, searchMovieByIdAndRelatedMovies]);
 
+  const { title, overview, releaseDate, posterPath, genres, runtime } = movie ?? {};
   return (
     <div className="search__container">
       <div className="btn-search__container">
@@ -50,16 +51,13 @@ const MovieInfo: FC<MovieInfoProps> = ({ setIsSearchShown, setSearchByOption, mo
 const mapDispatchToProps = (dispatch: AppDispatch) =>
   bindActionCreators(
     {
-      setIsSearchShown: setIsSearchShownAction,
-      setSearchByOption: setSearchByOptionAction,
-      setSearchQuery: setSearchQueryAction,
+      searchMovieByIdAndRelatedMovies: fetchMovieByIdAndRelatedMovies,
     },
     dispatch,
   );
 
-const mapStateToProps = ({ movie, searchByOption }: AppState) => ({
+const mapStateToProps = ({ movie }: AppState) => ({
   movie,
-  searchByOption,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieInfo);

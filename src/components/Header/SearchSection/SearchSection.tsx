@@ -1,34 +1,67 @@
-import React, { FC, KeyboardEvent, ChangeEvent, useState, useCallback } from 'react';
+import React, { FC, KeyboardEvent, ChangeEvent, useState, useCallback, useEffect } from 'react';
 import './SearchSection.css';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Button from '../../Generic/Button/Button';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import BuggyCounter from '../ErrorBoundary/BuggyCounter';
-import { setSearchByOptionAction, setSearchQueryAction } from '../../App.actions';
 import { AppDispatch } from '../../App.types';
+import { fetchMovies } from '../../App.actions';
+import { useParamsURL } from '../../App.helpers';
 
 interface SearchSectionProps {
-  setSearchByOption: (searchByOption: string) => void;
-  setSearchQuery: (query: string) => void;
-  searchByOption: string;
+  searchMovies: (sortBy: string, search: string, searchBy: string) => void;
 }
 
-const SearchSection: FC<SearchSectionProps> = ({ setSearchByOption, setSearchQuery, searchByOption }) => {
+const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
   const [inputValue, setInputValue] = useState('');
+  const [searchByOption, setSearchByOption] = useState('title');
   const changeInputValue = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
-  const startMovieSearch = useCallback(() => {
-    setSearchQuery(inputValue);
-  }, [inputValue, setSearchQuery]);
-  const handleEnterClick = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      startMovieSearch();
+
+  const params = useParamsURL();
+
+  function getSerchParamsObject(serchParams: string[]) {
+    const serchParamsObject: Record<string, string> = serchParams.reduce(
+      (acc, serchParam) => ({ ...acc, [serchParam]: params.get(serchParam) }),
+      {},
+    );
+    return serchParamsObject;
+  }
+
+  const { sortBy, search, searchBy } = getSerchParamsObject(['sortBy', 'search', 'searchBy']);
+
+  useEffect(() => {
+    searchMovies(sortBy, search, searchBy);
+  }, [searchMovies, sortBy, search, searchBy]);
+
+  const history = useHistory();
+
+  function handleClick() {
+    if (inputValue !== '') {
+      history.push({
+        pathname: '/movie',
+        search: `?sortBy=${sortBy}&search=${inputValue}&searchBy=${searchByOption}`,
+      });
     }
+  }
+
+  const setSearchBy = useCallback(
+    (option) => () => {
+      setSearchByOption(option);
+    },
+    [],
+  );
+
+  const handleClickSearch = (): void => {
+    handleClick();
   };
 
-  const handleSearchByOptonClick = useCallback((option: string) => () => setSearchByOption(option), [
-    setSearchByOption,
-  ]);
+  const handleEnterClick = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleClick();
+    }
+  };
 
   return (
     <div className="search__container">
@@ -47,13 +80,13 @@ const SearchSection: FC<SearchSectionProps> = ({ setSearchByOption, setSearchQue
           <div className="btn-group" role="group">
             <Button
               className={`btn_search-by ${searchByOption === 'title' ? 'active' : ''}`}
-              onClick={handleSearchByOptonClick('title')}
+              onClick={setSearchBy('title')}
             >
               TITLE
             </Button>
             <Button
               className={`btn_search-by ${searchByOption === 'genres' ? 'active' : ''}`}
-              onClick={handleSearchByOptonClick('genres')}
+              onClick={setSearchBy('genres')}
             >
               GENRE
             </Button>
@@ -62,7 +95,7 @@ const SearchSection: FC<SearchSectionProps> = ({ setSearchByOption, setSearchQue
             <BuggyCounter />
           </ErrorBoundary>
         </div>
-        <Button className="btn_search" onClick={startMovieSearch}>
+        <Button className="btn_search" onClick={handleClickSearch}>
           SEARCH
         </Button>
       </div>
@@ -73,8 +106,7 @@ const SearchSection: FC<SearchSectionProps> = ({ setSearchByOption, setSearchQue
 const mapDispatchToProps = (dispatch: AppDispatch) =>
   bindActionCreators(
     {
-      setSearchByOption: setSearchByOptionAction,
-      setSearchQuery: setSearchQueryAction,
+      searchMovies: fetchMovies,
     },
     dispatch,
   );

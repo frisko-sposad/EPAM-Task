@@ -1,7 +1,8 @@
-import React, { memo } from 'react';
+import React from 'react';
 import './Main.css';
+import { connect } from 'react-redux';
 import MovieItem from './MovieItem/MovieItem';
-import { MovieItemType } from '../App.types';
+import { AppState, MovieItemType } from '../App.types';
 
 interface MainProps {
   movies: MovieItemType[];
@@ -21,4 +22,6 @@ const Main = ({ movies }: MainProps) => {
   );
 };
 
-export default memo(Main);
+const mapStateToProps = (state: AppState) => state;
+
+export default connect(mapStateToProps, null)(Main);
