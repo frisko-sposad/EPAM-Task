@@ -1,10 +1,9 @@
 import React, { FC, useCallback } from 'react';
 import './SortResultsSection.css';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Button from '../../Generic/Button/Button';
 import { AppState, ConvertedMovie } from '../../App.types';
-import { useParamsURL } from '../../App.helpers';
 
 interface SortResultsSectionProps {
   isSearchShown?: boolean;
@@ -24,41 +23,42 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie,
       const newSearchURL = oldSearchURL.join('&');
 
       history.push({
-        pathname: '/movie',
+        pathname: '/search/Search',
         search: newSearchURL,
       });
     },
     [history],
   );
 
-  let sortBy = useParamsURL().get('sortBy');
-  if (sortBy === null) sortBy = 'release_date';
+  const sortBy = new URLSearchParams(useLocation().search).get('sortBy') || 'release_date';
 
   return (
     <section className="result-sort__container">
-      <div>
-        {isSearchShown ? (
-          <>
-            <span className="filmsBy">
-              <strong>Films by: </strong>
+      {moviesFound !== 0 && (
+        <div>
+          {isSearchShown ? (
+            <>
+              <span className="filmsBy">
+                <strong>Films by: </strong>
+              </span>
+              {genres && <span className="genre">{genres[0]} genre</span>}
+            </>
+          ) : (
+            <span>
+              <strong className="moviesFound">{`${moviesFound} movies found`}</strong>
             </span>
-            {genres && <span className="genre">{genres[0]} genre</span>}
-          </>
-        ) : (
-          <span>
-            <strong className="moviesFound">{`${moviesFound} movies found`}</strong>
-          </span>
-        )}
-      </div>
+          )}
+        </div>
+      )}
 
-      {!isSearchShown && (
+      {!isSearchShown && moviesFound !== 0 && (
         <div>
           <span className="sortBy">
             <strong>Sort by: </strong>
           </span>
           <Button
             type="button"
-            className={`btn_sort ${sortBy === 'release_date' ? 'btn_sort_active' : ''}`}
+            className={`btn_sort ${sortBy === 'release_date' || sortBy === 'null' ? 'btn_sort_active' : ''}`}
             onClick={handleSortMoviesClick('release_date')}
           >
             release date

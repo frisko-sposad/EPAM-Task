@@ -8,7 +8,7 @@ import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import BuggyCounter from '../ErrorBoundary/BuggyCounter';
 import { AppDispatch } from '../../App.types';
 import { fetchMovies } from '../../App.actions';
-import { useParamsURL } from '../../App.helpers';
+import { useGetSerchParamsObject } from '../../App.helpers';
 
 interface SearchSectionProps {
   searchMovies: (sortBy: string, search: string, searchBy: string) => void;
@@ -19,28 +19,21 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
   const [searchByOption, setSearchByOption] = useState('title');
   const changeInputValue = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
 
-  const params = useParamsURL();
-
-  function getSerchParamsObject(serchParams: string[]) {
-    const serchParamsObject: Record<string, string> = serchParams.reduce(
-      (acc, serchParam) => ({ ...acc, [serchParam]: params.get(serchParam) }),
-      {},
-    );
-    return serchParamsObject;
-  }
-
-  const { sortBy, search, searchBy } = getSerchParamsObject(['sortBy', 'search', 'searchBy']);
+  const { sortBy, search, searchBy } = useGetSerchParamsObject(['sortBy', 'search', 'searchBy']);
 
   useEffect(() => {
-    searchMovies(sortBy, search, searchBy);
+    if (sortBy || search || searchBy) {
+      searchMovies(sortBy, search, searchBy);
+    }
   }, [searchMovies, sortBy, search, searchBy]);
 
   const history = useHistory();
 
   function handleClick() {
+    console.log(sortBy, searchByOption);
     if (inputValue !== '') {
       history.push({
-        pathname: '/movie',
+        pathname: '/search/Search',
         search: `?sortBy=${sortBy}&search=${inputValue}&searchBy=${searchByOption}`,
       });
     }

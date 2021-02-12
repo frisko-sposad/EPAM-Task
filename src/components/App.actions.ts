@@ -26,9 +26,9 @@ export function fetchMovies(
 ): (dispatch: AppDispatch) => void {
   return (dispatch: AppDispatch): void => {
     fetch(
-      `https://reactjs-cdp.herokuapp.com/movies?sortBy=${sortByOption || 'release_date'}&sortOrder=desc&search=${
-        searchQuery ?? ''
-      }&searchBy=${searchByOption || 'title'}`,
+      `https://reactjs-cdp.herokuapp.com/movies?sortBy=${
+        sortByOption !== 'null' ? sortByOption : 'release_date'
+      }&sortOrder=desc&search=${searchQuery ?? ''}&searchBy=${searchByOption || 'title'}`,
     )
       .then((res) => res.json())
       .then(({ data, total }) => {

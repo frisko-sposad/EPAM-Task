@@ -23,6 +23,7 @@ export const convertMovieToCamelCase = ({
   runtime,
 });
 
-export const useParamsURL = (): URLSearchParams => {
-  return new URLSearchParams(useLocation().search);
+export const useGetSerchParamsObject = (serchParams: string[]): Record<string, string> => {
+  const params = new URLSearchParams(useLocation().search);
+  return serchParams.reduce((acc, serchParam) => ({ ...acc, [serchParam]: params.get(serchParam) }), {});
 };

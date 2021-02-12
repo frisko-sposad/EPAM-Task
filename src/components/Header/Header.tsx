@@ -1,13 +1,10 @@
 import React, { FC } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
 import SearchSection from './SearchSection/SearchSection';
 import MovieInfo from './MovieInfo/MovieInfo';
 import SiteTitle from './SiteTitle/SiteTitle';
 import SortResultsSection from './SortResultsSection/SortResultsSection';
 import './Header.css';
-import PageNotFound from '../PageNotFound/PageNotFound';
-import { AppState } from '../App.types';
 
 const Header: FC = () => {
   return (
@@ -19,12 +16,17 @@ const Header: FC = () => {
             <MovieInfo />
             <SortResultsSection isSearchShown />
           </Route>
-          <Route>
+          <Route path="/search">
             <SearchSection />
             <SortResultsSection isSearchShown={false} />
           </Route>
-          <Route path="404">
-            <PageNotFound />
+          <Route path="/" exact>
+            <SearchSection />
+            <SortResultsSection isSearchShown={false} />
+          </Route>
+          <Route path="*">
+            <SearchSection />
+            <SortResultsSection isSearchShown={false} />
           </Route>
         </Switch>
       </section>
@@ -32,9 +34,4 @@ const Header: FC = () => {
   );
 };
 
-const mapStateToProps = ({ movie, moviesFound }: AppState) => ({
-  movie,
-  moviesFound,
-});
-
-export default connect(mapStateToProps, null)(Header);
+export default Header;
