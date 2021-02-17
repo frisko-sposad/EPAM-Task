@@ -16,7 +16,12 @@ const initialState: AppState = {
 
 export default function rootReducer(state = initialState, { type, result }: Action): AppState {
   switch (type) {
-    case SET_SEARCH_MOVIES || CLEAR_MOVIES_ACTION: {
+    case SET_SEARCH_MOVIES: {
+      const { movies, moviesFound } = result as SearchMoviesResult;
+      return { ...state, movies, moviesFound };
+    }
+
+    case CLEAR_MOVIES_ACTION: {
       const { movies, moviesFound } = result as SearchMoviesResult;
       return { ...state, movies, moviesFound };
     }

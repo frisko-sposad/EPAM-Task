@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Button from '../../Generic/Button/Button';
 import { AppState, ConvertedMovie } from '../../App.types';
-import { useGetParametersForSerch } from '../../App.helpers';
+import { useSearchParams } from '../../App.helpers';
 
 interface SortResultsSectionProps {
   isSearchShown?: boolean;
@@ -31,7 +31,7 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie,
     [history],
   );
 
-  const sortBy = useGetParametersForSerch(['sortBy']).sortBy || 'release_date';
+  const sortBy = useSearchParams(['sortBy']).sortBy || 'release_date';
 
   return (
     <section className="result-sort__container">

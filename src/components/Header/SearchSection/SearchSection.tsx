@@ -8,7 +8,7 @@ import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import BuggyCounter from '../ErrorBoundary/BuggyCounter';
 import { AppDispatch } from '../../App.types';
 import { fetchMovies } from '../../App.actions';
-import { useGetParametersForSerch } from '../../App.helpers';
+import { useSearchParams } from '../../App.helpers';
 
 interface SearchSectionProps {
   searchMovies: (sortBy: string, search: string, searchBy: string) => void;
@@ -19,10 +19,12 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
   const [searchByOption, setSearchByOption] = useState('title');
   const changeInputValue = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
 
-  const { sortBy, search, searchBy } = useGetParametersForSerch(['sortBy', 'search', 'searchBy']);
+  const { sortBy, search, searchBy } = useSearchParams(['sortBy', 'search', 'searchBy']);
 
   useEffect(() => {
     if (sortBy || search || searchBy) {
+      console.log(sortBy, search, searchBy);
+
       searchMovies(sortBy, search, searchBy);
     }
   }, [searchMovies, sortBy, search, searchBy]);
@@ -33,7 +35,7 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
     if (inputValue !== '') {
       history.push({
         pathname: '/search',
-        search: `?sortBy=${sortBy !== null || 'release_date'}&search=${inputValue}&searchBy=${searchByOption}`,
+        search: `?sortBy=${sortBy !== null ? sortBy : 'release_date'}&search=${inputValue}&searchBy=${searchByOption}`,
       });
     }
   };
