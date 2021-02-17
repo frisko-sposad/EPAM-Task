@@ -2,6 +2,7 @@ import { ThunkDispatch } from 'redux-thunk';
 
 export const SET_SEARCH_MOVIES = 'SET_SEARCH_MOVIES';
 export const SET_SEARCH_MOVIE_BY_ID = 'SET_SEARCH_MOVIE_BY_ID';
+export const CLEAR_MOVIES_ACTION = 'CLEAR_MOVIES_ACTION';
 
 export interface AppState {
   movies: ConvertedMovie[];
@@ -45,11 +46,16 @@ export interface SearchMovies {
   result: SearchMoviesResult;
 }
 
+export interface ClearMovies {
+  type: typeof CLEAR_MOVIES_ACTION;
+  result: SearchMoviesResult;
+}
+
 export interface SearchMovieById {
   type: typeof SET_SEARCH_MOVIE_BY_ID;
   result: ConvertedMovie;
 }
 
-export type Action = SearchMovies | SearchMovieById;
+export type Action = SearchMovies | SearchMovieById | ClearMovies;
 
 export type AppDispatch = ThunkDispatch<AppState, void, Action>;

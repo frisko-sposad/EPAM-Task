@@ -4,22 +4,22 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useHistory, useParams } from 'react-router-dom';
 import Button from '../../Generic/Button/Button';
-import { fetchMovieByIdAndRelatedMovies, searchMoviesAction } from '../../App.actions';
-import { AppState, ConvertedMovie, AppDispatch, SearchMoviesResult } from '../../App.types';
+import { clearMoviesAction, fetchMovieByIdAndRelatedMovies } from '../../App.actions';
+import { AppState, ConvertedMovie, AppDispatch } from '../../App.types';
 
 interface MovieInfoProps {
   searchMovieByIdAndRelatedMovies: (id: string) => void;
-  clearSearchMovies: (result: SearchMoviesResult) => void;
+  clearMovies: () => void;
   movie: ConvertedMovie | null;
 }
 
-const MovieInfo: FC<MovieInfoProps> = ({ movie, searchMovieByIdAndRelatedMovies, clearSearchMovies }) => {
+const MovieInfo: FC<MovieInfoProps> = ({ movie, searchMovieByIdAndRelatedMovies, clearMovies }) => {
   const history = useHistory();
 
   const showMovieInfo = useCallback(() => {
     history.push('/');
-    clearSearchMovies({ movies: [], moviesFound: 0 });
-  }, [clearSearchMovies, history]);
+    clearMovies();
+  }, [clearMovies, history]);
 
   const { id } = useParams<Record<string, string>>();
   useEffect(() => {
@@ -54,7 +54,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) =>
   bindActionCreators(
     {
       searchMovieByIdAndRelatedMovies: fetchMovieByIdAndRelatedMovies,
-      clearSearchMovies: searchMoviesAction,
+      clearMovies: clearMoviesAction,
     },
     dispatch,
   );

@@ -8,7 +8,7 @@ import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import BuggyCounter from '../ErrorBoundary/BuggyCounter';
 import { AppDispatch } from '../../App.types';
 import { fetchMovies } from '../../App.actions';
-import { useGetSerchParamsObject } from '../../App.helpers';
+import { useGetParametersForSerch } from '../../App.helpers';
 
 interface SearchSectionProps {
   searchMovies: (sortBy: string, search: string, searchBy: string) => void;
@@ -19,7 +19,7 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
   const [searchByOption, setSearchByOption] = useState('title');
   const changeInputValue = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
 
-  const { sortBy, search, searchBy } = useGetSerchParamsObject(['sortBy', 'search', 'searchBy']);
+  const { sortBy, search, searchBy } = useGetParametersForSerch(['sortBy', 'search', 'searchBy']);
 
   useEffect(() => {
     if (sortBy || search || searchBy) {
@@ -29,15 +29,14 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
 
   const history = useHistory();
 
-  function handleClick() {
-    console.log(sortBy, searchByOption);
+  const handleClick = () => {
     if (inputValue !== '') {
       history.push({
-        pathname: '/search/Search',
-        search: `?sortBy=${sortBy}&search=${inputValue}&searchBy=${searchByOption}`,
+        pathname: '/search',
+        search: `?sortBy=${sortBy !== null || 'release_date'}&search=${inputValue}&searchBy=${searchByOption}`,
       });
     }
-  }
+  };
 
   const setSearchBy = useCallback(
     (option) => () => {
@@ -45,10 +44,6 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
     },
     [],
   );
-
-  const handleClickSearch = (): void => {
-    handleClick();
-  };
 
   const handleEnterClick = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -88,7 +83,7 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
             <BuggyCounter />
           </ErrorBoundary>
         </div>
-        <Button className="btn_search" onClick={handleClickSearch}>
+        <Button className="btn_search" onClick={handleClick}>
           SEARCH
         </Button>
       </div>

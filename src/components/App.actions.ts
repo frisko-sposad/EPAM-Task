@@ -2,16 +2,23 @@ import { convertMovieToCamelCase } from './App.helpers';
 import {
   SET_SEARCH_MOVIES,
   SET_SEARCH_MOVIE_BY_ID,
+  CLEAR_MOVIES_ACTION,
   SearchMoviesResult,
   SearchMovies,
   ConvertedMovie,
   SearchMovieById,
   AppDispatch,
+  ClearMovies,
 } from './App.types';
 
 export const searchMoviesAction = (result: SearchMoviesResult): SearchMovies => ({
   type: SET_SEARCH_MOVIES,
   result,
+});
+
+export const clearMoviesAction = (): ClearMovies => ({
+  type: CLEAR_MOVIES_ACTION,
+  result: { movies: [], moviesFound: 0 },
 });
 
 export const searchMovieByIdAction = (base: ConvertedMovie): SearchMovieById => ({

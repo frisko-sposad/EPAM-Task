@@ -1,9 +1,10 @@
 import React, { FC, useCallback } from 'react';
 import './SortResultsSection.css';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Button from '../../Generic/Button/Button';
 import { AppState, ConvertedMovie } from '../../App.types';
+import { useGetParametersForSerch } from '../../App.helpers';
 
 interface SortResultsSectionProps {
   isSearchShown?: boolean;
@@ -23,14 +24,14 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie,
       const newSearchURL = oldSearchURL.join('&');
 
       history.push({
-        pathname: '/search/Search',
+        pathname: '/search',
         search: newSearchURL,
       });
     },
     [history],
   );
 
-  const sortBy = new URLSearchParams(useLocation().search).get('sortBy') || 'release_date';
+  const sortBy = useGetParametersForSerch(['sortBy']).sortBy || 'release_date';
 
   return (
     <section className="result-sort__container">
@@ -58,7 +59,7 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie,
           </span>
           <Button
             type="button"
-            className={`btn_sort ${sortBy === 'release_date' || sortBy === 'null' ? 'btn_sort_active' : ''}`}
+            className={`btn_sort ${sortBy === 'release_date' ? 'btn_sort_active' : ''}`}
             onClick={handleSortMoviesClick('release_date')}
           >
             release date

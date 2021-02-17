@@ -16,15 +16,7 @@ const Header: FC = () => {
             <MovieInfo />
             <SortResultsSection isSearchShown />
           </Route>
-          <Route path="/search">
-            <SearchSection />
-            <SortResultsSection isSearchShown={false} />
-          </Route>
-          <Route path="/" exact>
-            <SearchSection />
-            <SortResultsSection isSearchShown={false} />
-          </Route>
-          <Route path="*">
+          <Route path="/">
             <SearchSection />
             <SortResultsSection isSearchShown={false} />
           </Route>
