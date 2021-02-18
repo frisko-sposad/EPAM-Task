@@ -23,8 +23,6 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
 
   useEffect(() => {
     if (sortBy || search || searchBy) {
-      console.log(sortBy, search, searchBy);
-
       searchMovies(sortBy, search, searchBy);
     }
   }, [searchMovies, sortBy, search, searchBy]);
@@ -35,7 +33,7 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
     if (inputValue !== '') {
       history.push({
         pathname: '/search',
-        search: `?sortBy=${sortBy !== null ? sortBy : 'release_date'}&search=${inputValue}&searchBy=${searchByOption}`,
+        search: `?sortBy=${sortBy ?? 'release_date'}&search=${inputValue}&searchBy=${searchByOption}`,
       });
     }
   };
