@@ -2,20 +2,12 @@ import { ThunkDispatch } from 'redux-thunk';
 
 export const SET_SEARCH_MOVIES = 'SET_SEARCH_MOVIES';
 export const SET_SEARCH_MOVIE_BY_ID = 'SET_SEARCH_MOVIE_BY_ID';
-export const SET_SEARCH_BY = 'SET_SEARCH_BY';
-export const SET_SORT_MOVIES = 'SET_SORT_MOVIES';
-export const SET_CURRENT_REQUEST = 'SET_CURRENT_REQUEST';
-export const SET_IS_SEARCH_SHOWN = 'SET_IS_SEARCH_SHOWN';
+export const CLEAR_MOVIES_ACTION = 'CLEAR_MOVIES_ACTION';
 
 export interface AppState {
   movies: ConvertedMovie[];
   movie: ConvertedMovie | null;
-  searchByOption: string;
-  searchQuery: string;
-  sortByOption: string;
   moviesFound: number;
-  isSearchShown: boolean;
-  genre: string;
 }
 
 export interface RawMovie {
@@ -54,37 +46,16 @@ export interface SearchMovies {
   result: SearchMoviesResult;
 }
 
+export interface ClearMovies {
+  type: typeof CLEAR_MOVIES_ACTION;
+  result: SearchMoviesResult;
+}
+
 export interface SearchMovieById {
   type: typeof SET_SEARCH_MOVIE_BY_ID;
   result: ConvertedMovie;
 }
 
-export interface SetSearchByOption {
-  type: typeof SET_SEARCH_BY;
-  result: string;
-}
-
-export interface SortMovies {
-  type: typeof SET_SORT_MOVIES;
-  result: string;
-}
-
-export interface SetSearchQuery {
-  type: typeof SET_CURRENT_REQUEST;
-  result: string;
-}
-
-export interface SetIsSearchShown {
-  type: typeof SET_IS_SEARCH_SHOWN;
-  result: boolean;
-}
-
-export type Action =
-  | SearchMovies
-  | SearchMovieById
-  | SetSearchByOption
-  | SortMovies
-  | SetSearchQuery
-  | SetIsSearchShown;
+export type Action = SearchMovies | SearchMovieById | ClearMovies;
 
 export type AppDispatch = ThunkDispatch<AppState, void, Action>;

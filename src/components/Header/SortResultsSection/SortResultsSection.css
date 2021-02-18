@@ -1,4 +1,5 @@
 .result-sort__container {
+  height: 1.2rem;
   display: flex;
   justify-content: space-between;
   padding: 1rem 3rem;
@@ -6,4 +7,5 @@
   font-weight: 400;
   text-decoration: none;
   background-color: #dddddd;
+  color: #000000;
 }

@@ -1,39 +1,58 @@
 import React, { FC, useCallback } from 'react';
 import './SortResultsSection.css';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { setSortByOptionAction } from '../../App.actions';
-import { AppDispatch } from '../../App.types';
 import Button from '../../Generic/Button/Button';
+import { AppState, ConvertedMovie } from '../../App.types';
+import { useSearchParams } from '../../App.helpers';
 
 interface SortResultsSectionProps {
-  isSearchShown: boolean;
-  genre?: string;
+  isSearchShown?: boolean;
+  movie?: ConvertedMovie;
   moviesFound?: number;
-  sortBy?: string;
-  sortMovies: (sortBy: string) => void;
 }
 
-const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, genre, moviesFound, sortBy, sortMovies }) => {
-  const handleSortMoviesClick = useCallback((option: string) => () => sortMovies(option), [sortMovies]);
+const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie, moviesFound }) => {
+  const { genres } = movie ?? {};
+
+  const history = useHistory();
+
+  const handleSortMoviesClick = useCallback(
+    (option) => () => {
+      const oldSearchURL = history.location.search.split('&');
+      oldSearchURL.splice(0, 1, `?sortBy=${option}`);
+      const newSearchURL = oldSearchURL.join('&');
+
+      history.push({
+        pathname: '/search',
+        search: newSearchURL,
+      });
+    },
+    [history],
+  );
+
+  const sortBy = useSearchParams(['sortBy']).sortBy || 'release_date';
+
   return (
     <section className="result-sort__container">
-      <div>
-        {isSearchShown ? (
-          <>
-            <span className="filmsBy">
-              <strong>Films by: </strong>
+      {moviesFound !== 0 && (
+        <div>
+          {isSearchShown ? (
+            <>
+              <span className="filmsBy">
+                <strong>Films by: </strong>
+              </span>
+              {genres && <span className="genre">{genres[0]} genre</span>}
+            </>
+          ) : (
+            <span>
+              <strong className="moviesFound">{`${moviesFound} movies found`}</strong>
             </span>
-            {genre && <span className="genre">{genre} genre</span>}
-          </>
-        ) : (
-          <span>
-            <strong className="moviesFound">{`${moviesFound} movies found`}</strong>
-          </span>
-        )}
-      </div>
+          )}
+        </div>
+      )}
 
-      {!isSearchShown && (
+      {!isSearchShown && moviesFound !== 0 && (
         <div>
           <span className="sortBy">
             <strong>Sort by: </strong>
@@ -58,12 +77,9 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, genre,
   );
 };
 
-const mapDispatchToProps = (dispatch: AppDispatch) =>
-  bindActionCreators(
-    {
-      sortMovies: setSortByOptionAction,
-    },
-    dispatch,
-  );
+const mapStateToProps = ({ movie, moviesFound }: AppState) => ({
+  movie,
+  moviesFound,
+});
 
-export default connect(null, mapDispatchToProps)(SortResultsSection);
+export default connect(mapStateToProps, null)(SortResultsSection);

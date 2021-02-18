@@ -2,20 +2,13 @@ import { convertMovieToCamelCase } from './App.helpers';
 import {
   SET_SEARCH_MOVIES,
   SET_SEARCH_MOVIE_BY_ID,
-  SET_SEARCH_BY,
-  SET_SORT_MOVIES,
-  SET_CURRENT_REQUEST,
-  SET_IS_SEARCH_SHOWN,
+  CLEAR_MOVIES_ACTION,
   SearchMoviesResult,
   SearchMovies,
   ConvertedMovie,
   SearchMovieById,
-  SetSearchByOption,
-  SortMovies,
-  SetSearchQuery,
-  SetIsSearchShown,
-  AppState,
   AppDispatch,
+  ClearMovies,
 } from './App.types';
 
 export const searchMoviesAction = (result: SearchMoviesResult): SearchMovies => ({
@@ -23,36 +16,26 @@ export const searchMoviesAction = (result: SearchMoviesResult): SearchMovies => 
   result,
 });
 
+export const clearMoviesAction = (): ClearMovies => ({
+  type: CLEAR_MOVIES_ACTION,
+  result: { movies: [], moviesFound: 0 },
+});
+
 export const searchMovieByIdAction = (base: ConvertedMovie): SearchMovieById => ({
   type: SET_SEARCH_MOVIE_BY_ID,
   result: base,
 });
 
-export const setSearchByOptionAction = (searchByOption: string): SetSearchByOption => ({
-  type: SET_SEARCH_BY,
-  result: searchByOption,
-});
-
-export const setSortByOptionAction = (sortByOption: string): SortMovies => ({
-  type: SET_SORT_MOVIES,
-  result: sortByOption,
-});
-
-export const setSearchQueryAction = (query: string): SetSearchQuery => ({
-  type: SET_CURRENT_REQUEST,
-  result: query,
-});
-
-export const setIsSearchShownAction = (isSearchShown: boolean): SetIsSearchShown => ({
-  type: SET_IS_SEARCH_SHOWN,
-  result: isSearchShown,
-});
-
-export function fetchMovies() {
-  return (dispatch: AppDispatch, getState: () => AppState): void => {
-    const { searchByOption, searchQuery, sortByOption } = getState();
+export function fetchMovies(
+  sortByOption?: string | null,
+  searchQuery?: string | null,
+  searchByOption?: string | null,
+): (dispatch: AppDispatch) => void {
+  return (dispatch: AppDispatch): void => {
     fetch(
-      `https://reactjs-cdp.herokuapp.com/movies?sortBy=${sortByOption}&sortOrder=desc&search=${searchQuery}&searchBy=${searchByOption}`,
+      `https://reactjs-cdp.herokuapp.com/movies?sortBy=${
+        sortByOption !== 'null' ? sortByOption : 'release_date'
+      }&sortOrder=desc&search=${searchQuery ?? ''}&searchBy=${searchByOption || 'title'}`,
     )
       .then((res) => res.json())
       .then(({ data, total }) => {
@@ -62,16 +45,14 @@ export function fetchMovies() {
   };
 }
 
-export function fetchMovieByIdAndRelatedMovies(movieId: number) {
+export function fetchMovieByIdAndRelatedMovies(movieId: string) {
   return (dispatch: AppDispatch): void => {
     fetch(`https://reactjs-cdp.herokuapp.com/movies/${movieId}`)
       .then((res) => res.json())
       .then((data) => {
         const convertedMovie = convertMovieToCamelCase(data);
         dispatch(searchMovieByIdAction(convertedMovie));
-        dispatch(setSearchByOptionAction('genres'));
-        dispatch(setSearchQueryAction(convertedMovie.genres[0]));
-        dispatch(fetchMovies());
+        dispatch(fetchMovies('release_date', convertedMovie.genres[0], 'genres'));
       });
   };
 }

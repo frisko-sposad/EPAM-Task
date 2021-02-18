@@ -1,6 +1,5 @@
 .header__container {
-  color: white;
-  padding: 1rem;
+  color: white;  
   background-image: linear-gradient(
       rgba(0, 0, 0, 0.8) 0%,
       rgba(0, 0, 0, 0.8) 100%

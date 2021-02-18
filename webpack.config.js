@@ -9,8 +9,10 @@ module.exports = (env) => {
     mode,
     output: {
       filename: './main.js',
+      publicPath: '/',
     },
     devServer: {
+      historyApiFallback: true,
       compress: true,
       port: 9000,
       watchContentBase: true,
