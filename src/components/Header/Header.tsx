@@ -4,25 +4,23 @@ import SearchSection from './SearchSection/SearchSection';
 import MovieInfo from './MovieInfo/MovieInfo';
 import SiteTitle from './SiteTitle/SiteTitle';
 import SortResultsSection from './SortResultsSection/SortResultsSection';
-import './Header.css';
+import HeaderContainer from './Header.styled';
 
 const Header: FC = () => {
   return (
-    <header>
-      <section className="header__container">
-        <SiteTitle />
-        <Switch>
-          <Route path="/film/:id">
-            <MovieInfo />
-            <SortResultsSection isSearchShown />
-          </Route>
-          <Route path="/">
-            <SearchSection />
-            <SortResultsSection isSearchShown={false} />
-          </Route>
-        </Switch>
-      </section>
-    </header>
+    <HeaderContainer>
+      <SiteTitle />
+      <Switch>
+        <Route path="/film/:id">
+          <MovieInfo />
+          <SortResultsSection isSearchShown />
+        </Route>
+        <Route path="/">
+          <SearchSection />
+          <SortResultsSection isSearchShown={false} />
+        </Route>
+      </Switch>
+    </HeaderContainer>
   );
 };
 

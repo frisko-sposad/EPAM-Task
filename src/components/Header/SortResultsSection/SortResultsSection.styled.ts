@@ -1,4 +1,6 @@
-/* .result-sort__container {
+import styled from 'styled-components';
+
+const SortResultContainer = styled.h1`
   height: 1.2rem;
   display: flex;
   justify-content: space-between;
@@ -8,4 +10,6 @@
   text-decoration: none;
   background-color: #dddddd;
   color: #000000;
-} */
+`;
+
+export default SortResultContainer;

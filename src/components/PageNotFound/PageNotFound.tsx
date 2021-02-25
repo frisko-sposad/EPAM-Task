@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import './PageNotFound.css';
+import PageNotFoundContainer from './PageNotFound.styled';
 
-const PageNotFound: FC = () => <div className="page-not-found">404 Page Not Found</div>;
+const PageNotFound: FC = () => <PageNotFoundContainer>404 Page Not Found</PageNotFoundContainer>;
 
 export default PageNotFound;
