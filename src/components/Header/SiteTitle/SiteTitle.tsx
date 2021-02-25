@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import './SiteTitle.css';
+import SiteTitleH1 from './SiteTitle.styled';
 
-const SiteTitle: FC = () => <h1 className="site-title">NetflixRoulette</h1>;
+const SiteTitle: FC = () => <SiteTitleH1 className="site-title">NetflixRoulette</SiteTitleH1>;
 
 export default SiteTitle;

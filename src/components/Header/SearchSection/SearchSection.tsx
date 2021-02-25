@@ -1,5 +1,4 @@
 import React, { FC, KeyboardEvent, ChangeEvent, useState, useCallback, useEffect } from 'react';
-import './SearchSection.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -9,6 +8,7 @@ import BuggyCounter from '../ErrorBoundary/BuggyCounter';
 import { AppDispatch } from '../../App.types';
 import { fetchMovies } from '../../App.actions';
 import { useSearchParams } from '../../App.helpers';
+import { Container, Input, SearchByContainer, SearchByBtnContainer, SearchByBtnTitle } from './SearchSection.styled';
 
 interface SearchSectionProps {
   searchMovies: (sortBy: string, search: string, searchBy: string) => void;
@@ -52,42 +52,29 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
   };
 
   return (
-    <div className="search__container">
+    <Container>
       <p>FIND YOUR MOVIE</p>
-      <input
-        type="text"
-        className="search__search-query"
-        placeholder="search"
-        value={inputValue}
-        onChange={changeInputValue}
-        onKeyPress={handleEnterClick}
-      />
-      <div className="search-by__container">
-        <div className="search-by-btn__container">
-          <span>SEARCH BY</span>
-          <div className="btn-group" role="group">
-            <Button
-              className={`btn_search-by ${searchByOption === 'title' ? 'active' : ''}`}
-              onClick={setSearchBy('title')}
-            >
+      <Input placeholder="search" value={inputValue} onChange={changeInputValue} onKeyPress={handleEnterClick} />
+      <SearchByContainer>
+        <SearchByBtnContainer>
+          <SearchByBtnTitle>SEARCH BY</SearchByBtnTitle>
+          <div role="group">
+            <Button variantBtn="searchBy" active={searchByOption === 'title'} onClick={setSearchBy('title')}>
               TITLE
             </Button>
-            <Button
-              className={`btn_search-by ${searchByOption === 'genres' ? 'active' : ''}`}
-              onClick={setSearchBy('genres')}
-            >
+            <Button variantBtn="searchBy" active={searchByOption === 'genres'} onClick={setSearchBy('genres')}>
               GENRE
             </Button>
           </div>
           <ErrorBoundary>
             <BuggyCounter />
           </ErrorBoundary>
-        </div>
-        <Button className="btn_search" onClick={handleClick}>
+        </SearchByBtnContainer>
+        <Button active={false} variantBtn="search" onClick={handleClick}>
           SEARCH
         </Button>
-      </div>
-    </div>
+      </SearchByContainer>
+    </Container>
   );
 };
 

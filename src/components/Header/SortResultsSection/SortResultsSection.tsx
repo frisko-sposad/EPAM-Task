@@ -1,10 +1,10 @@
 import React, { FC, useCallback } from 'react';
-import './SortResultsSection.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Button from '../../Generic/Button/Button';
 import { AppState, ConvertedMovie } from '../../App.types';
 import { useSearchParams } from '../../App.helpers';
+import SortResultContainer from './SortResultsSection.styled';
 
 interface SortResultsSectionProps {
   isSearchShown?: boolean;
@@ -34,7 +34,7 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie,
   const sortBy = useSearchParams(['sortBy']).sortBy || 'release_date';
 
   return (
-    <section className="result-sort__container">
+    <SortResultContainer>
       {moviesFound !== 0 && (
         <div>
           {isSearchShown ? (
@@ -58,22 +58,22 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie,
             <strong>Sort by: </strong>
           </span>
           <Button
-            type="button"
-            className={`btn_sort ${sortBy === 'release_date' ? 'btn_sort_active' : ''}`}
+            variantBtn="sortBy"
+            active={sortBy === 'release_date'}
             onClick={handleSortMoviesClick('release_date')}
           >
             release date
           </Button>
           <Button
-            type="button"
-            className={`btn_sort ${sortBy === 'vote_average' ? 'btn_sort_active' : ''}`}
+            variantBtn="sortBy"
+            active={sortBy === 'vote_average'}
             onClick={handleSortMoviesClick('vote_average')}
           >
             rating
           </Button>
         </div>
       )}
-    </section>
+    </SortResultContainer>
   );
 };
 

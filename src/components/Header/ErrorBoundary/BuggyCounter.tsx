@@ -26,7 +26,7 @@ class BuggyCounter extends Component<BuggyCounterProps, CounterState> {
       throw new Error('I crashed!');
     }
     return (
-      <Button className="btn_search" onClick={this.handleClick}>
+      <Button variantBtn="searchBy" active={false} className="btn_search" onClick={this.handleClick}>
         {counter}
       </Button>
     );

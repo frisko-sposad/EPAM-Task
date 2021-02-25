@@ -2,11 +2,12 @@ import React, { FC } from 'react';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import Main from './Main/Main';
-import './App.css';
+import GlobalStyle from './App.styled';
 
 const App: FC = () => {
   return (
     <>
+      <GlobalStyle />
       <Header />
       <Main />
       <Footer />

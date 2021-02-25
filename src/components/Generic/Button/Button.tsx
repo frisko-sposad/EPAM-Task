@@ -1,15 +1,29 @@
 import React, { ButtonHTMLAttributes, memo } from 'react';
-import './Button.css';
+import { SearchBtn, SearchByBtn, SortByBtn } from './Button.styled';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  className: string;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variantBtn: string;
   onClick?: () => void;
+  active: boolean;
 }
 
-const Button = ({ className, onClick, children }: ButtonProps) => (
-  <button type="button" className={`${className} btn`} onClick={onClick}>
-    {children}
-  </button>
-);
+const Button = ({ active, variantBtn, onClick, children }: ButtonProps) => {
+  return (
+    <>
+      {variantBtn === 'search' && <SearchBtn onClick={onClick}>{children}</SearchBtn>}
+      {variantBtn === 'searchBy' && (
+        <SearchByBtn active={active} onClick={onClick}>
+          {children}
+        </SearchByBtn>
+      )}
+
+      {variantBtn === 'sortBy' && (
+        <SortByBtn active={active} onClick={onClick}>
+          {children}
+        </SortByBtn>
+      )}
+    </>
+  );
+};
 
 export default memo(Button);

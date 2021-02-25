@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import './NoFilmsFound.css';
+import NoFilmsFoundContainer from './NoFilmsFound.styled';
 
-const PageNotFound: FC = () => <div className="no-films-found">No Films Found</div>;
+const NoFilmsFound: FC = () => <NoFilmsFoundContainer>No Films Found</NoFilmsFoundContainer>;
 
-export default PageNotFound;
+export default NoFilmsFound;
