@@ -26,7 +26,7 @@ export const SearchByBtn = styled(Btn)<BtnAction>`
   border-color: #6c757d;
   margin-right: 10px;
   padding: 10px;
-  background-color: ${(props) => props.active && '#c82333'};
+  background-color: ${({ active }) => active && '#c82333'};
 `;
 
 export const SortByBtn = styled(Btn)<BtnAction>`
@@ -34,9 +34,6 @@ export const SortByBtn = styled(Btn)<BtnAction>`
   color: #000000;
   background: transparent;
   padding: 0 1rem;
-  border: none;
   outline: none;
-  font-size: 1rem;
-  cursor: pointer;
-  ${(props) => props.active && 'color:tomato; font-weight: 600'};
+  ${({ active }) => active && 'color:tomato; font-weight: 600'};
 `;

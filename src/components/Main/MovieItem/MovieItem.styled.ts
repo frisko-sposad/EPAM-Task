@@ -22,11 +22,12 @@ export const Info = styled.div`
 `;
 
 export const Title = styled.div`
-  display: flex;
-  font-size: 0.8rem;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.3rem 0.5rem;
+  font-size: 0.9rem;
+  color: black;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const Year = styled.div`
