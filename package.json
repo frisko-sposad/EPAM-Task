@@ -10,8 +10,7 @@
     "react-redux": "7.2.1",
     "react-router-dom": "5.2.0",
     "redux": "4.0.5",
-    "redux-thunk": "2.3.0",
-    "styled-components": "5.2.1"
+    "redux-thunk": "2.3.0"
   },
   "devDependencies": {
     "@babel/core": "7.11.6",
@@ -19,24 +18,18 @@
     "@babel/preset-env": "7.11.5",
     "@babel/preset-react": "7.10.4",
     "@babel/preset-typescript": "7.12.1",
-    "@storybook/addon-actions": "6.1.18",
-    "@storybook/addon-essentials": "6.1.18",
-    "@storybook/addon-links": "6.1.18",
-    "@storybook/react": "6.1.18",
     "@types/enzyme": "3.10.8",
     "@types/jest": "26.0.15",
     "@types/react": "16.9.55",
     "@types/react-dom": "16.9.9",
     "@types/react-redux": "7.1.12",
     "@types/react-router-dom": "5.1.7",
-    "@types/styled-components": "5.1.7",
     "@types/webpack": "4.41.24",
     "@types/webpack-dev-server": "3.11.1",
     "@typescript-eslint/eslint-plugin": "4.6.1",
     "@typescript-eslint/parser": "4.6.1",
     "babel-jest": "26.6.3",
     "babel-loader": "8.1.0",
-    "babel-plugin-styled-components": "1.12.0",
     "cross-fetch": "3.0.6",
     "css-loader": "4.3.0",
     "enzyme": "3.11.0",
@@ -72,9 +65,7 @@
     "lint": "eslint ./src/**/*.tsx",
     "lint:fix": "npm run lint -- --fix",
     "prettier:write": "npm run prettier -- --write",
-    "tsc": "tsc",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",
