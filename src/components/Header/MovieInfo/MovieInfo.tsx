@@ -41,7 +41,7 @@ const MovieInfo: FC<MovieInfoProps> = ({ movie, searchMovieByIdAndRelatedMovies,
           <p>{genres?.join(', ')}</p>
           <VideoInfo>
             <strong>{releaseDate?.split('-')[0]}</strong>
-            <strong>{` ${runtime === null ? 'run time is unknown' : `${runtime} min`}`}</strong>
+            {runtime && <strong> {runtime} min</strong>}
           </VideoInfo>
           <p>{overview}</p>
         </Description>

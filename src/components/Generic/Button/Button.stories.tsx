@@ -1,29 +1,43 @@
-import React from 'react';
-import { Story, Meta } from '@storybook/react/types-6-0';
-
-import Button, { ButtonProps } from './Button';
+import React, { useState } from 'react';
+import Button from './Button';
 
 export default {
-  title: 'Example2/Button',
+  title: 'Button',
   component: Button,
-} as Meta;
-
-const Template: Story<ButtonProps> = (props) => <Button {...props} />;
-
-export const search = Template.bind({});
-search.args = {
-  variantBtn: 'search',
-  children: 'search',
 };
 
-export const searchBy = Template.bind({});
-searchBy.args = {
-  variantBtn: 'searchBy',
-  children: 'Title',
+export const search = (): JSX.Element => (
+  <Button variantBtn="search" active>
+    SEARCH
+  </Button>
+);
+
+export const SearchBy = (): JSX.Element => {
+  const [isActive, setIsActive] = useState(true);
+  const setActive = () => setIsActive(!isActive);
+  return (
+    <>
+      <Button variantBtn="searchBy" active={isActive} onClick={setActive}>
+        TITLE
+      </Button>
+      <Button variantBtn="searchBy" active={!isActive} onClick={setActive}>
+        GENRE
+      </Button>
+    </>
+  );
 };
 
-export const sortBy = Template.bind({});
-sortBy.args = {
-  variantBtn: 'sortBy',
-  children: 'sortBy',
+export const SortBy = (): JSX.Element => {
+  const [isActive, setIsActive] = useState(true);
+  const setActive = () => setIsActive(!isActive);
+  return (
+    <>
+      <Button variantBtn="sortBy" active={isActive} onClick={setActive}>
+        release date
+      </Button>
+      <Button variantBtn="sortBy" active={!isActive} onClick={setActive}>
+        rating
+      </Button>
+    </>
+  );
 };
