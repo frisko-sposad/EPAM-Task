@@ -1,3 +1,4 @@
+import { createSelector } from 'reselect';
 import { convertMovieToCamelCase } from './App.helpers';
 import {
   SET_SEARCH_MOVIES,
@@ -9,6 +10,7 @@ import {
   SearchMovieById,
   AppDispatch,
   ClearMovies,
+  RawMovie,
 } from './App.types';
 
 export const searchMoviesAction = (result: SearchMoviesResult): SearchMovies => ({
@@ -50,9 +52,35 @@ export function fetchMovieByIdAndRelatedMovies(movieId: string) {
     fetch(`https://reactjs-cdp.herokuapp.com/movies/${movieId}`)
       .then((res) => res.json())
       .then((data) => {
-        const convertedMovie = convertMovieToCamelCase(data);
+        const convertedMovie = data;
+        // const convertedMovie = convertMovieToCamelCase(data);
         dispatch(searchMovieByIdAction(convertedMovie));
         dispatch(fetchMovies('release_date', convertedMovie.genres[0], 'genres'));
       });
   };
 }
+
+// export function convertMovie(movie: RawMovie) {
+//   return (dispatch: AppDispatch): void => {
+//     const convertedMovie = convertMovieToCamelCase(movie);
+//     dispatch(searchMovieByIdAction(convertedMovie));
+//   };
+// }
+
+// export const convertMovie(movie: RawMovie) {
+//   return (dispatch: AppDispatch): void => {
+//     const convertedMovie = convertMovieToCamelCase(movie);
+//     dispatch(searchMovieByIdAction(convertedMovie));
+//   };
+// }
+
+const unconvertedMovies = (state: { movie: RawMovie }) => state.movie;
+
+export const convertMovie = createSelector(unconvertedMovies, (movie) =>
+  movie !== null ? convertMovieToCamelCase(movie) : null,
+);
+
+// const subtotalSelector = createSelector(
+//   shopItemsSelector,
+//   items => items.reduce((acc, item) => acc + item.value, 0)
+// )

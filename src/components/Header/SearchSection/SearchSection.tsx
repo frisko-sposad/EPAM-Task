@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import Button from '../../Generic/Button/Button';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import BuggyCounter from '../ErrorBoundary/BuggyCounter';
-import { AppDispatch } from '../../App.types';
+import { AppDispatch, VariantBtn } from '../../App.types';
 import { fetchMovies } from '../../App.actions';
 import { useSearchParams } from '../../App.helpers';
 import { Container, Input, SearchByContainer, SearchByBtnContainer, SearchByBtnTitle } from './SearchSection.styled';
@@ -59,10 +59,14 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
         <SearchByBtnContainer>
           <SearchByBtnTitle>SEARCH BY</SearchByBtnTitle>
           <div role="group">
-            <Button variantBtn="searchBy" active={searchByOption === 'title'} onClick={setSearchBy('title')}>
+            <Button variantBtn={VariantBtn.SearchBy} active={searchByOption === 'title'} onClick={setSearchBy('title')}>
               TITLE
             </Button>
-            <Button variantBtn="searchBy" active={searchByOption === 'genres'} onClick={setSearchBy('genres')}>
+            <Button
+              variantBtn={VariantBtn.SearchBy}
+              active={searchByOption === 'genres'}
+              onClick={setSearchBy('genres')}
+            >
               GENRE
             </Button>
           </div>
@@ -70,7 +74,7 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
             <BuggyCounter />
           </ErrorBoundary>
         </SearchByBtnContainer>
-        <Button active={false} variantBtn="search" onClick={handleClick}>
+        <Button active={false} variantBtn={VariantBtn.Search} onClick={handleClick}>
           SEARCH
         </Button>
       </SearchByContainer>

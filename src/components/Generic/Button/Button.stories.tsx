@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from './Button';
+import { VariantBtn } from '../../App.types';
 
 export default {
   title: 'Button',
@@ -7,7 +8,7 @@ export default {
 };
 
 export const search = (): JSX.Element => (
-  <Button variantBtn="search" active>
+  <Button variantBtn={VariantBtn.Search} active>
     SEARCH
   </Button>
 );
@@ -17,10 +18,10 @@ export const SearchBy = (): JSX.Element => {
   const setActive = () => setIsActive(!isActive);
   return (
     <>
-      <Button variantBtn="searchBy" active={isActive} onClick={setActive}>
+      <Button variantBtn={VariantBtn.SearchBy} active={isActive} onClick={setActive}>
         TITLE
       </Button>
-      <Button variantBtn="searchBy" active={!isActive} onClick={setActive}>
+      <Button variantBtn={VariantBtn.SearchBy} active={!isActive} onClick={setActive}>
         GENRE
       </Button>
     </>
@@ -32,10 +33,10 @@ export const SortBy = (): JSX.Element => {
   const setActive = () => setIsActive(!isActive);
   return (
     <>
-      <Button variantBtn="sortBy" active={isActive} onClick={setActive}>
+      <Button variantBtn={VariantBtn.SortBy} active={isActive} onClick={setActive}>
         release date
       </Button>
-      <Button variantBtn="sortBy" active={!isActive} onClick={setActive}>
+      <Button variantBtn={VariantBtn.SortBy} active={!isActive} onClick={setActive}>
         rating
       </Button>
     </>

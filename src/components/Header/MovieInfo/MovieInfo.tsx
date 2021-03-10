@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useHistory, useParams } from 'react-router-dom';
 import Button from '../../Generic/Button/Button';
-import { clearMoviesAction, fetchMovieByIdAndRelatedMovies } from '../../App.actions';
-import { AppState, ConvertedMovie, AppDispatch } from '../../App.types';
+import { VariantBtn, AppState, ConvertedMovie, AppDispatch } from '../../App.types';
+import { clearMoviesAction, convertMovie, fetchMovieByIdAndRelatedMovies } from '../../App.actions';
+
 import { Container, SearchContainer, MovieInfoContainer, Img, Description, Title, VideoInfo } from './MovieInfo.styled';
 
 interface MovieInfoProps {
@@ -30,7 +31,7 @@ const MovieInfo: FC<MovieInfoProps> = ({ movie, searchMovieByIdAndRelatedMovies,
   return (
     <Container>
       <SearchContainer>
-        <Button active={false} variantBtn="search" className="btn_search" onClick={showMovieInfo}>
+        <Button active={false} variantBtn={VariantBtn.Search} className="btn_search" onClick={showMovieInfo}>
           SEARCH
         </Button>
       </SearchContainer>
@@ -50,6 +51,10 @@ const MovieInfo: FC<MovieInfoProps> = ({ movie, searchMovieByIdAndRelatedMovies,
   );
 };
 
+const mapStateToProps = (state: AppState) => ({
+  movie: convertMovie(state),
+});
+
 const mapDispatchToProps = (dispatch: AppDispatch) =>
   bindActionCreators(
     {
@@ -58,9 +63,5 @@ const mapDispatchToProps = (dispatch: AppDispatch) =>
     },
     dispatch,
   );
-
-const mapStateToProps = ({ movie }: AppState) => ({
-  movie,
-});
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieInfo);

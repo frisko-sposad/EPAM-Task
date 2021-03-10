@@ -4,7 +4,7 @@ interface BtnAction {
   active: boolean;
 }
 
-export const Btn = styled.button`
+export const Btn = styled.button<BtnAction>`
   border: none;
   padding: 0.5rem;
   font-size: 1rem;
@@ -16,7 +16,7 @@ export const Btn = styled.button`
   }
 `;
 
-export const SearchBtn = styled(Btn)`
+export const SearchBtn = styled(Btn)<BtnAction>`
   background-color: #c82333;
   padding: 10px;
 `;

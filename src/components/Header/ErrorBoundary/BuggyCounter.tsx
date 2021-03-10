@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from '../../Generic/Button/Button';
+import { VariantBtn } from '../../App.types';
 
 interface CounterState {
   counter: number;
@@ -26,7 +27,7 @@ class BuggyCounter extends Component<BuggyCounterProps, CounterState> {
       throw new Error('I crashed!');
     }
     return (
-      <Button variantBtn="searchBy" active={false} className="btn_search" onClick={this.handleClick}>
+      <Button variantBtn={VariantBtn.SearchBy} active={false} className="btn_search" onClick={this.handleClick}>
         {counter}
       </Button>
     );

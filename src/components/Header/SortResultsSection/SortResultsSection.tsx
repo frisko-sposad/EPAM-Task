@@ -2,7 +2,7 @@ import React, { FC, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Button from '../../Generic/Button/Button';
-import { AppState, ConvertedMovie } from '../../App.types';
+import { AppState, ConvertedMovie, VariantBtn } from '../../App.types';
 import { useSearchParams } from '../../App.helpers';
 import SortResultContainer from './SortResultsSection.styled';
 
@@ -58,14 +58,14 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie,
             <strong>Sort by: </strong>
           </span>
           <Button
-            variantBtn="sortBy"
+            variantBtn={VariantBtn.SortBy}
             active={sortBy === 'release_date'}
             onClick={handleSortMoviesClick('release_date')}
           >
             release date
           </Button>
           <Button
-            variantBtn="sortBy"
+            variantBtn={VariantBtn.SortBy}
             active={sortBy === 'vote_average'}
             onClick={handleSortMoviesClick('vote_average')}
           >
