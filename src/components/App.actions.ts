@@ -53,34 +53,14 @@ export function fetchMovieByIdAndRelatedMovies(movieId: string) {
       .then((res) => res.json())
       .then((data) => {
         const convertedMovie = data;
-        // const convertedMovie = convertMovieToCamelCase(data);
         dispatch(searchMovieByIdAction(convertedMovie));
         dispatch(fetchMovies('release_date', convertedMovie.genres[0], 'genres'));
       });
   };
 }
 
-// export function convertMovie(movie: RawMovie) {
-//   return (dispatch: AppDispatch): void => {
-//     const convertedMovie = convertMovieToCamelCase(movie);
-//     dispatch(searchMovieByIdAction(convertedMovie));
-//   };
-// }
-
-// export const convertMovie(movie: RawMovie) {
-//   return (dispatch: AppDispatch): void => {
-//     const convertedMovie = convertMovieToCamelCase(movie);
-//     dispatch(searchMovieByIdAction(convertedMovie));
-//   };
-// }
-
 const unconvertedMovies = (state: { movie: RawMovie }) => state.movie;
 
 export const convertMovie = createSelector(unconvertedMovies, (movie) =>
   movie !== null ? convertMovieToCamelCase(movie) : null,
 );
-
-// const subtotalSelector = createSelector(
-//   shopItemsSelector,
-//   items => items.reduce((acc, item) => acc + item.value, 0)
-// )
