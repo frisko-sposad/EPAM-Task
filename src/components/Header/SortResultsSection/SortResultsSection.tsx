@@ -39,14 +39,14 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie,
         <div>
           {isSearchShown ? (
             <>
-              <span className="filmsBy">
+              <span>
                 <strong>Films by: </strong>
               </span>
-              {genres && <span className="genre">{genres[0]} genre</span>}
+              {genres && <span>{genres[0]} genre</span>}
             </>
           ) : (
             <span>
-              <strong className="moviesFound">{`${moviesFound} movies found`}</strong>
+              <strong>{`${moviesFound} movies found`}</strong>
             </span>
           )}
         </div>
@@ -54,7 +54,7 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie,
 
       {!isSearchShown && moviesFound !== 0 && (
         <div>
-          <span className="sortBy">
+          <span>
             <strong>Sort by: </strong>
           </span>
           <Button

@@ -1,40 +1,46 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { BrowserRouter } from 'react-router-dom';
 import SortResultsSection from './SortResultsSection';
+import movieBase from '../../MovieBase';
+import rootReducer from '../../App.reducers';
 
-const filmsByProps = 'Films by ';
-const genreProps = 'Drama genre';
-const moviesFoundProps = '7 movies found';
-const sortByProps = 'Sort by';
-const releaseDateProps = 'release date';
-const ratingProps = 'rating';
+const testMovieFound = 55;
+const initialState = {
+  movie: movieBase[0],
+  moviesFound: testMovieFound,
+};
 
-describe('Films by genre.', () => {
-  it('Do we have filmsBy and genre in the SortResultsSection?', () => {
-    const component = shallow(<SortResultsSection filmsBy={filmsByProps} genre={genreProps} />);
-    const filmsByText = component.find('.filmsBy').find('strong').text();
-    const genreText = component.find('.genre').text();
-    expect(filmsByText).toBe(filmsByProps);
-    expect(genreText).toBe(genreProps);
+const store = createStore(rootReducer, initialState);
+
+const Wrapper = ({ children }) => (
+  <Provider store={store}>
+    <BrowserRouter>{children}</BrowserRouter>
+  </Provider>
+);
+
+describe('Tested Sort Result Section', () => {
+  const componentWhenWatchingMovie = mount(
+    <Wrapper>
+      <SortResultsSection isSearchShown />
+    </Wrapper>,
+  );
+  it('Show the genre of found movies', () => {
+    const items = componentWhenWatchingMovie.find('span').map((node) => node.text());
+    expect(items).toEqual(['Films by: ', 'fantasy genre']);
   });
-});
-describe('Films by sort.', () => {
-  it('Do we have moviesFound, sortBy, releaseDate, rating in the SortResultsSection?', () => {
-    const component = shallow(
-      <SortResultsSection
-        moviesFound={moviesFoundProps}
-        releaseDate={releaseDateProps}
-        sortBy={sortByProps}
-        rating={ratingProps}
-      />,
-    );
-    const moviesFoundText = component.find('.moviesFound').find('strong').text();
-    const sortByText = component.find('.sortBy').find('strong').text();
-    const releaseDateText = component.find('.releaseDate').text();
-    const ratingText = component.find('.rating').text();
-    expect(moviesFoundText).toBe(moviesFoundProps);
-    expect(sortByText).toBe(sortByProps);
-    expect(releaseDateText).toBe(releaseDateProps);
-    expect(ratingText).toBe(ratingProps);
+
+  const componentWhenSearch = mount(
+    <Wrapper>
+      <SortResultsSection />
+    </Wrapper>,
+  );
+  it('Show the number of movies found, sorted by date and rating.', () => {
+    const span = componentWhenSearch.find('span').map((node) => node.text());
+    const button = componentWhenSearch.find('button').map((node) => node.text());
+    expect(span).toEqual(['55 movies found', 'Sort by: ']);
+    expect(button).toEqual(['release date', 'rating']);
   });
 });

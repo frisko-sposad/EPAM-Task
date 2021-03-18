@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { MovieItemType } from '../../App.types';
-import './MovieItem.css';
 import { Image, Info, Title, MovieItemContainer, Year } from './MovieItem.styled';
 
 const MovieItem: FC<MovieItemType> = ({ id, title, posterPath, releaseDate, genres }) => {

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const SortResultContainer = styled.h1`
+const SortResultContainer = styled.div`
   height: 1.2rem;
   display: flex;
   justify-content: space-between;
