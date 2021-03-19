@@ -8,7 +8,6 @@ const variantsBtn: Record<VariantBtn, StyledComponent<'button', never, BtnAction
   [VariantBtn.SearchBy]: SearchByBtn,
   [VariantBtn.SortBy]: SortByBtn,
 };
-
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variantBtn: VariantBtn;
   onClick?: () => void;
