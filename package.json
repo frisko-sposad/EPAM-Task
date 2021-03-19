@@ -86,15 +86,6 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/frisko-sposad/EPAM-Task/issues"
-  },
-  "husky": {
-    "hooks":{
-      "post-commit": "lint-staged",
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.(tsx|ts)": ["npm run lint:fix", "git add"]
-  },
+  },   
   "homepage": "https://github.com/frisko-sposad/EPAM-Task#readme"
 }
