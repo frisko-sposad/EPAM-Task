@@ -8,10 +8,11 @@ const variantsBtn: Record<VariantBtn, StyledComponent<'button', never, BtnAction
   [VariantBtn.SearchBy]: SearchByBtn,
   [VariantBtn.SortBy]: SortByBtn,
 };
+
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variantBtn: VariantBtn;
   onClick?: () => void;
-  active: boolean;
+  active: booleanw;
 }
 
 const Button = ({ active, variantBtn, onClick, children }: ButtonProps) => {
