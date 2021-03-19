@@ -5,6 +5,7 @@ import Main from './Main/Main';
 import GlobalStyle from './App.styled';
 
 const App: FC = () => {
+
   return (
     <>
       <GlobalStyle />
