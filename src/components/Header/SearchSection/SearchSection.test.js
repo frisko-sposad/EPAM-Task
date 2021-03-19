@@ -7,7 +7,6 @@ import SearchSection from './SearchSection';
 import rootReducer from '../../App.reducers';
 
 const initialState = {};
-
 const store = createStore(rootReducer, initialState);
 
 const Wrapper = ({ children }) => (
