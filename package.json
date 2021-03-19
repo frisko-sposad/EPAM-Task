@@ -89,11 +89,12 @@
   },
   "husky": {
     "hooks":{
+      "post-commit": "lint-staged",
       "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "*.tsx": ["npm run lint:fix", "git add"]
+    "*.(tsx|ts)": ["npm run lint:fix", "git add"]
   },
   "homepage": "https://github.com/frisko-sposad/EPAM-Task#readme"
 }
