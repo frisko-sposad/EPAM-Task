@@ -16,6 +16,7 @@ interface MovieInfoProps {
 
 const MovieInfo: FC<MovieInfoProps> = ({ movie, searchMovieByIdAndRelatedMovies, clearMovies }) => {
   const history = useHistory();
+
   const showMovieInfo = useCallback(() => {
     history.push('/');
     clearMovies();
