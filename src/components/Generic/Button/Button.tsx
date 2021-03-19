@@ -12,7 +12,7 @@ const variantsBtn: Record<VariantBtn, StyledComponent<'button', never, BtnAction
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variantBtn: VariantBtn;
   onClick?: () => void;
-  active: booleanw;
+  active: boolean;
 }
 
 const Button = ({ active, variantBtn, onClick, children }: ButtonProps) => {
