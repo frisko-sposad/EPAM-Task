@@ -93,7 +93,7 @@
     }
   },
   "lint-staged": {
-    "*.tsx, *.ts, *.json": ["npm run lint:fix", "git add"]
+    "*.(tsx|ts)": ["npm run lint:fix", "git add"]
   },
   "homepage": "https://github.com/frisko-sposad/EPAM-Task#readme"
 }

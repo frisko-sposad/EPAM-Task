@@ -6,7 +6,7 @@ export const CLEAR_MOVIES_ACTION = 'CLEAR_MOVIES_ACTION';
 
 export interface AppState {
   movies: ConvertedMovie[];
-  movie: ConvertedMovie | null;
+  movie: ConvertedMovie | RawMovie | null;
   moviesFound: number;
 }
 

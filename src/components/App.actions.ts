@@ -11,6 +11,7 @@ import {
   AppDispatch,
   ClearMovies,
   RawMovie,
+  AppState,
 } from './App.types';
 
 export const searchMoviesAction = (result: SearchMoviesResult): SearchMovies => ({
@@ -59,8 +60,8 @@ export function fetchMovieByIdAndRelatedMovies(movieId: string) {
   };
 }
 
-const unconvertedMovies = (state: { movie: RawMovie }) => state.movie;
+const unconvertedMovies = (state: AppState) => state.movie;
 
 export const convertMovie = createSelector(unconvertedMovies, (movie) =>
-  movie !== null ? convertMovieToCamelCase(movie) : null,
+  movie !== null ? convertMovieToCamelCase(movie as RawMovie) : null,
 );

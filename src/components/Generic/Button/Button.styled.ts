@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-interface BtnAction {
+export interface BtnAction {
   active: boolean;
 }
 

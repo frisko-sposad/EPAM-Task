@@ -1,9 +1,9 @@
 import React, { ButtonHTMLAttributes, memo } from 'react';
 import { StyledComponent } from 'styled-components';
-import { SearchBtn, SearchByBtn, SortByBtn } from './Button.styled';
+import { BtnAction, SearchBtn, SearchByBtn, SortByBtn } from './Button.styled';
 import { VariantBtn } from '../../App.types';
 
-const variantsBtn: Record<VariantBtn, StyledComponent<'button', never>> = {
+const variantsBtn: Record<VariantBtn, StyledComponent<'button', never, BtnAction>> = {
   [VariantBtn.Search]: SearchBtn,
   [VariantBtn.SearchBy]: SearchByBtn,
   [VariantBtn.SortBy]: SortByBtn,
