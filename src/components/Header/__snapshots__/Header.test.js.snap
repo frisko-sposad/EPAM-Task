@@ -2,12 +2,16 @@
 
 exports[`Testing the closeSearch block in Header. If State isSearchShown = false, we check the closeSearch snapshot 1`] = `
 <styled.header>
-  <SiteTitle />
+  <styled.div>
+    <SiteTitle />
+  </styled.div>
   <Switch>
     <Route
       path="/film/:id"
     >
-      <Connect(MovieInfo) />
+      <styled.div>
+        <Connect(MovieInfo) />
+      </styled.div>
       <Connect(SortResultsSection)
         isSearchShown={true}
       />
@@ -15,7 +19,9 @@ exports[`Testing the closeSearch block in Header. If State isSearchShown = false
     <Route
       path="/"
     >
-      <Connect(SearchSection) />
+      <styled.div>
+        <Connect(SearchSection) />
+      </styled.div>
       <Connect(SortResultsSection)
         isSearchShown={false}
       />
@@ -26,12 +32,16 @@ exports[`Testing the closeSearch block in Header. If State isSearchShown = false
 
 exports[`Testing the openSearch block in Header. If State isSearchShown = true, we check the openSearch snapshot 1`] = `
 <styled.header>
-  <SiteTitle />
+  <styled.div>
+    <SiteTitle />
+  </styled.div>
   <Switch>
     <Route
       path="/film/:id"
     >
-      <Connect(MovieInfo) />
+      <styled.div>
+        <Connect(MovieInfo) />
+      </styled.div>
       <Connect(SortResultsSection)
         isSearchShown={true}
       />
@@ -39,7 +49,9 @@ exports[`Testing the openSearch block in Header. If State isSearchShown = true, 
     <Route
       path="/"
     >
-      <Connect(SearchSection) />
+      <styled.div>
+        <Connect(SearchSection) />
+      </styled.div>
       <Connect(SortResultsSection)
         isSearchShown={false}
       />

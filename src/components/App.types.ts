@@ -59,9 +59,3 @@ export interface SearchMovieById {
 export type Action = SearchMovies | SearchMovieById | ClearMovies;
 
 export type AppDispatch = ThunkDispatch<AppState, void, Action>;
-
-export enum VariantBtn {
-  Search = 'search',
-  SearchBy = 'searchBy',
-  SortBy = 'sortBy',
-}

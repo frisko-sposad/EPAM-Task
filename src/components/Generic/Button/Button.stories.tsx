@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
 import Button from './Button';
-import { VariantBtn } from '../../App.types';
+import VariantBtn from './Button.types';
 
 export default {
   title: 'Button',
   component: Button,
 };
 
-export const search = (): JSX.Element => (
-  <Button variantBtn={VariantBtn.Search} active>
+export const Search = (): JSX.Element => (
+  <Button variantButton={VariantBtn.Search} active>
     SEARCH
   </Button>
 );
 
 export const SearchBy = (): JSX.Element => {
-  const [isActive, setIsActive] = useState(true);
-  const setActive = () => setIsActive(!isActive);
+  const [isActiveBtn, setIsActiveBtn] = useState(true);
+  const invertButtonActivity = () => setIsActiveBtn(!isActiveBtn);
   return (
     <>
-      <Button variantBtn={VariantBtn.SearchBy} active={isActive} onClick={setActive}>
+      <Button variantButton={VariantBtn.SearchBy} active={isActiveBtn} onClick={invertButtonActivity}>
         TITLE
       </Button>
-      <Button variantBtn={VariantBtn.SearchBy} active={!isActive} onClick={setActive}>
+      <Button variantButton={VariantBtn.SearchBy} active={!isActiveBtn} onClick={invertButtonActivity}>
         GENRE
       </Button>
     </>
@@ -29,14 +29,14 @@ export const SearchBy = (): JSX.Element => {
 };
 
 export const SortBy = (): JSX.Element => {
-  const [isActive, setIsActive] = useState(true);
-  const setActive = () => setIsActive(!isActive);
+  const [isActiveBtn, setIsActiveBtn] = useState(true);
+  const invertButtonActivity = () => setIsActiveBtn(!isActiveBtn);
   return (
     <>
-      <Button variantBtn={VariantBtn.SortBy} active={isActive} onClick={setActive}>
+      <Button variantButton={VariantBtn.SortBy} active={isActiveBtn} onClick={invertButtonActivity}>
         release date
       </Button>
-      <Button variantBtn={VariantBtn.SortBy} active={!isActive} onClick={setActive}>
+      <Button variantButton={VariantBtn.SortBy} active={!isActiveBtn} onClick={invertButtonActivity}>
         rating
       </Button>
     </>

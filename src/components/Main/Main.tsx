@@ -5,7 +5,7 @@ import MovieItem from './MovieItem/MovieItem';
 import { AppState, MovieItemType } from '../App.types';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import NoFilmsFound from '../NoFilmsFound/NoFilmsFound';
-import MainContainer from './Main.styled';
+import { MainContainer, Container } from './Main.styled';
 
 interface MainProps {
   movies?: MovieItemType[];
@@ -14,7 +14,9 @@ interface MainProps {
 const Main = ({ movies }: MainProps) => (
   <MainContainer>
     {!movies || movies.length === 0 ? (
-      <NoFilmsFound />
+      <Container>
+        <NoFilmsFound />
+      </Container>
     ) : (
       <Switch>
         <Route path={['/search', '/film/:id']}>
@@ -23,10 +25,14 @@ const Main = ({ movies }: MainProps) => (
           ))}
         </Route>
         <Route path="/" exact>
-          <NoFilmsFound />
+          <Container>
+            <NoFilmsFound />
+          </Container>
         </Route>
         <Route path="*">
-          <PageNotFound />
+          <Container>
+            <PageNotFound />
+          </Container>
         </Route>
       </Switch>
     )}

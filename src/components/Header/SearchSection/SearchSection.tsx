@@ -5,10 +5,11 @@ import { bindActionCreators } from 'redux';
 import Button from '../../Generic/Button/Button';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import BuggyCounter from '../ErrorBoundary/BuggyCounter';
-import { AppDispatch, VariantBtn } from '../../App.types';
+import { AppDispatch } from '../../App.types';
 import { fetchMovies } from '../../App.actions';
 import { useSearchParams } from '../../App.helpers';
-import { Container, Input, SearchByContainer, SearchByBtnContainer, SearchByBtnTitle } from './SearchSection.styled';
+import { Input, SearchByContainer, SearchByBtnContainer, SearchByBtnTitle } from './SearchSection.styled';
+import VariantBtn from '../../Generic/Button/Button.types';
 
 interface SearchSectionProps {
   searchMovies: (sortBy: string, search: string, searchBy: string) => void;
@@ -52,18 +53,22 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
   };
 
   return (
-    <Container>
+    <>
       <p>FIND YOUR MOVIE</p>
       <Input placeholder="search" value={inputValue} onChange={changeInputValue} onKeyPress={handleEnterClick} />
       <SearchByContainer>
         <SearchByBtnContainer>
           <SearchByBtnTitle>SEARCH BY</SearchByBtnTitle>
-          <div role="group">
-            <Button variantBtn={VariantBtn.SearchBy} active={searchByOption === 'title'} onClick={setSearchBy('title')}>
+          <div>
+            <Button
+              variantButton={VariantBtn.SearchBy}
+              active={searchByOption === 'title'}
+              onClick={setSearchBy('title')}
+            >
               TITLE
             </Button>
             <Button
-              variantBtn={VariantBtn.SearchBy}
+              variantButton={VariantBtn.SearchBy}
               active={searchByOption === 'genres'}
               onClick={setSearchBy('genres')}
             >
@@ -74,11 +79,11 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
             <BuggyCounter />
           </ErrorBoundary>
         </SearchByBtnContainer>
-        <Button active={false} variantBtn={VariantBtn.Search} onClick={handleClick}>
+        <Button active variantButton={VariantBtn.Search} onClick={handleClick}>
           SEARCH
         </Button>
       </SearchByContainer>
-    </Container>
+    </>
   );
 };
 

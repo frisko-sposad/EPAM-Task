@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useHistory, useParams } from 'react-router-dom';
 import Button from '../../Generic/Button/Button';
-import { VariantBtn, AppState, ConvertedMovie, AppDispatch } from '../../App.types';
+import { AppState, ConvertedMovie, AppDispatch } from '../../App.types';
 import { clearMoviesAction, convertMovie, fetchMovieByIdAndRelatedMovies } from '../../App.actions';
-
-import { Container, SearchContainer, MovieInfoContainer, Img, Description, Title, VideoInfo } from './MovieInfo.styled';
+import { SearchContainer, MovieInfoContainer, Img, Description, Title, VideoInfo } from './MovieInfo.styled';
+import VariantBtn from '../../Generic/Button/Button.types';
 
 interface MovieInfoProps {
   searchMovieByIdAndRelatedMovies: (id: string) => void;
@@ -29,9 +29,9 @@ const MovieInfo: FC<MovieInfoProps> = ({ movie, searchMovieByIdAndRelatedMovies,
 
   const { title, overview, releaseDate, posterPath, genres, runtime } = movie ?? {};
   return (
-    <Container>
+    <>
       <SearchContainer>
-        <Button active={false} variantBtn={VariantBtn.Search} className="btn_search" onClick={showMovieInfo}>
+        <Button active={false} variantButton={VariantBtn.Search} className="btn_search" onClick={showMovieInfo}>
           SEARCH
         </Button>
       </SearchContainer>
@@ -47,12 +47,12 @@ const MovieInfo: FC<MovieInfoProps> = ({ movie, searchMovieByIdAndRelatedMovies,
           <p>{overview}</p>
         </Description>
       </MovieInfoContainer>
-    </Container>
+    </>
   );
 };
 
-const mapStateToProps = (state: AppState) => ({
-  movie: convertMovie(state),
+const mapStateToProps = ({ movie }: AppState) => ({
+  movie: convertMovie(movie),
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) =>

@@ -16,20 +16,19 @@ export const Btn = styled.button<BtnAction>`
   }
 `;
 
-export const SearchBtn = styled(Btn)<BtnAction>`
+export const SearchBtn = styled(Btn)`
   background-color: #c82333;
   padding: 10px;
 `;
 
-export const SearchByBtn = styled(Btn)<BtnAction>`
-  background-color: #6c757d;
+export const SearchByBtn = styled(Btn)`
   border-color: #6c757d;
   margin-right: 10px;
   padding: 10px;
-  background-color: ${({ active }) => active && '#c82333'};
+  background-color: ${({ active }) => (active ? '#c82333' : '#6c757d')};
 `;
 
-export const SortByBtn = styled(Btn)<BtnAction>`
+export const SortByBtn = styled(Btn)`
   text-decoration: none;
   color: #000000;
   background: transparent;

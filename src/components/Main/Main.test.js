@@ -13,52 +13,40 @@ const initialState = {
 
 const store = createStore(rootReducer, initialState);
 
-const WrapperPageNotFound = ({ children }) => (
+const Wrapper = ({ children, url }) => (
   <Provider store={store}>
-    <MemoryRouter initialEntries={['*']}>{children}</MemoryRouter>
-  </Provider>
-);
-
-const WrapperNoFilmsFound = ({ children }) => (
-  <Provider store={store}>
-    <MemoryRouter initialEntries={['/']}>{children}</MemoryRouter>
-  </Provider>
-);
-
-const WrapperSuccessfulSearch = ({ children }) => (
-  <Provider store={store}>
-    <MemoryRouter initialEntries={['/search']}>{children}</MemoryRouter>
+    <MemoryRouter initialEntries={[url]}>{children}</MemoryRouter>
   </Provider>
 );
 
 describe('Render Main.', () => {
-  const componentPageNotFound = mount(
-    <WrapperPageNotFound>
+  const PageNotFound = mount(
+    <Wrapper url="*">
       <Main />
-    </WrapperPageNotFound>,
+    </Wrapper>,
   );
   it('If the error is in the url, we render page NoFilmsFound', () => {
-    const items = componentPageNotFound.find('PageNotFound');
+    const items = PageNotFound.find('PageNotFound');
     expect(items.length).toBe(1);
   });
 
-  const componentNoFilmsFound = mount(
-    <WrapperNoFilmsFound>
+  const NoFilmsFound = mount(
+    <Wrapper url="/">
       <Main />
-    </WrapperNoFilmsFound>,
+    </Wrapper>,
   );
   it('If no movies are found, we render page NoFilmsFound', () => {
-    const items = componentNoFilmsFound.find('NoFilmsFound');
+    const items = NoFilmsFound.find('NoFilmsFound');
     expect(items.length).toBe(1);
   });
 
-  const componentSuccessfulSearch = mount(
-    <WrapperSuccessfulSearch>
+  const SuccessfulSearch = mount(
+    <Wrapper url="/search">
       <Main />
-    </WrapperSuccessfulSearch>,
+    </Wrapper>,
   );
   it('With a successful search, we render 10 MovieItem components', () => {
-    const items = componentSuccessfulSearch.find('MovieItem');
+    const items = SuccessfulSearch.find('MovieItem');
     expect(items.length).toBe(10);
   });
 });

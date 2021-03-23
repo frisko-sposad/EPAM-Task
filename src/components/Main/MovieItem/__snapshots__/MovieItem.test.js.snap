@@ -1,131 +1,101 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Render MovieItem. MovieItem 1`] = `
-<Wrapper>
-  <Provider
-    store={
+<BrowserRouter>
+  <Router
+    history={
       Object {
-        "dispatch": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
-        Symbol(observable): [Function],
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
       }
     }
   >
-    <BrowserRouter>
-      <Router
-        history={
-          Object {
-            "action": "POP",
-            "block": [Function],
-            "createHref": [Function],
-            "go": [Function],
-            "goBack": [Function],
-            "goForward": [Function],
-            "length": 1,
-            "listen": [Function],
-            "location": Object {
-              "hash": "",
-              "pathname": "/",
-              "search": "",
-              "state": undefined,
-            },
-            "push": [Function],
-            "replace": [Function],
-          }
-        }
+    <MovieItem
+      genres={
+        Array [
+          "fantasy",
+          "Drama",
+        ]
+      }
+      id={1}
+      posterPath="https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/57375a05-4883-4994-b33b-8d60741a0706/300x450"
+      releaseDate="2019"
+      title="The Witcher"
+    >
+      <Link
+        to="/film/1"
       >
-        <MovieItem
-          genres={
-            Array [
-              "fantasy",
-              "Drama",
-            ]
-          }
-          posterPath="https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/57375a05-4883-4994-b33b-8d60741a0706/300x450"
-          releaseDate="2019"
-          title="The Witcher"
+        <LinkAnchor
+          href="/film/1"
+          navigate={[Function]}
         >
-          <Link
-            style={
-              Object {
-                "textDecoration": "none",
-              }
-            }
-            to="/film/undefined"
+          <a
+            href="/film/1"
+            onClick={[Function]}
           >
-            <LinkAnchor
-              href="/film/undefined"
-              navigate={[Function]}
-              style={
-                Object {
-                  "textDecoration": "none",
-                }
-              }
-            >
-              <a
-                href="/film/undefined"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "textDecoration": "none",
-                  }
-                }
+            <styled.div>
+              <div
+                className="sc-bdfBwQ hmwoKb"
               >
-                <styled.div>
-                  <div
-                    className="sc-bdfBwQ hmwoKb"
-                  >
-                    <styled.img
-                      alt="poster from The Witcher"
-                      src="https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/57375a05-4883-4994-b33b-8d60741a0706/300x450"
+                <styled.img
+                  alt="poster from The Witcher"
+                  src="https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/57375a05-4883-4994-b33b-8d60741a0706/300x450"
+                >
+                  <img
+                    alt="poster from The Witcher"
+                    className="sc-gsTCUz OYEUm"
+                    src="https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/57375a05-4883-4994-b33b-8d60741a0706/300x450"
+                  />
+                </styled.img>
+                <div>
+                  <styled.div>
+                    <div
+                      className="sc-dlfnbm ftRBrL"
                     >
-                      <img
-                        alt="poster from The Witcher"
-                        className="sc-gsTCUz OYEUm"
-                        src="https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/57375a05-4883-4994-b33b-8d60741a0706/300x450"
-                      />
-                    </styled.img>
-                    <div>
                       <styled.div>
                         <div
-                          className="sc-dlfnbm ftRBrL"
+                          className="sc-hKgILt gruwiJ"
                         >
-                          <styled.div>
-                            <div
-                              className="sc-hKgILt gruwiJ"
-                            >
-                              The Witcher
-                            </div>
-                          </styled.div>
-                          <styled.div
-                            className="movie-item__year"
-                          >
-                            <div
-                              className="sc-eCssSg dMrsNA movie-item__year"
-                            >
-                              2019
-                            </div>
-                          </styled.div>
+                          The Witcher
                         </div>
                       </styled.div>
                       <styled.div>
                         <div
-                          className="sc-dlfnbm ftRBrL"
+                          className="sc-eCssSg dMrsNA"
                         >
-                          fantasy, Drama
+                          2019
                         </div>
                       </styled.div>
                     </div>
-                  </div>
-                </styled.div>
-              </a>
-            </LinkAnchor>
-          </Link>
-        </MovieItem>
-      </Router>
-    </BrowserRouter>
-  </Provider>
-</Wrapper>
+                  </styled.div>
+                  <styled.div>
+                    <div
+                      className="sc-dlfnbm ftRBrL"
+                    >
+                      fantasy, Drama
+                    </div>
+                  </styled.div>
+                </div>
+              </div>
+            </styled.div>
+          </a>
+        </LinkAnchor>
+      </Link>
+    </MovieItem>
+  </Router>
+</BrowserRouter>
 `;

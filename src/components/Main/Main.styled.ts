@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const MainContainer = styled.main`
+export const MainContainer = styled.main`
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -8,4 +8,6 @@ const MainContainer = styled.main`
   justify-content: center;
 `;
 
-export default MainContainer;
+export const Container = styled.div`
+  padding: 250px 50px;
+`;

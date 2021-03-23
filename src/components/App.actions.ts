@@ -11,7 +11,6 @@ import {
   AppDispatch,
   ClearMovies,
   RawMovie,
-  AppState,
 } from './App.types';
 
 export const searchMoviesAction = (result: SearchMoviesResult): SearchMovies => ({
@@ -53,15 +52,14 @@ export function fetchMovieByIdAndRelatedMovies(movieId: string) {
     fetch(`https://reactjs-cdp.herokuapp.com/movies/${movieId}`)
       .then((res) => res.json())
       .then((data) => {
-        const convertedMovie = data;
-        dispatch(searchMovieByIdAction(convertedMovie));
-        dispatch(fetchMovies('release_date', convertedMovie.genres[0], 'genres'));
+        dispatch(searchMovieByIdAction(data));
+        dispatch(fetchMovies('release_date', data.genres[0], 'genres'));
       });
   };
 }
 
-const unconvertedMovies = (state: AppState) => state.movie;
+const selectMovie = (movie: RawMovie | ConvertedMovie | null) => movie;
 
-export const convertMovie = createSelector(unconvertedMovies, (movie) =>
+export const convertMovie = createSelector(selectMovie, (movie) =>
   movie !== null ? convertMovieToCamelCase(movie as RawMovie) : null,
 );

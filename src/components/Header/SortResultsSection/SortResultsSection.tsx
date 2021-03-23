@@ -2,9 +2,10 @@ import React, { FC, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Button from '../../Generic/Button/Button';
-import { AppState, ConvertedMovie, VariantBtn } from '../../App.types';
+import { AppState, ConvertedMovie } from '../../App.types';
 import { useSearchParams } from '../../App.helpers';
 import SortResultContainer from './SortResultsSection.styled';
+import VariantBtn from '../../Generic/Button/Button.types';
 
 interface SortResultsSectionProps {
   isSearchShown?: boolean;
@@ -36,42 +37,41 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie,
   return (
     <SortResultContainer>
       {moviesFound !== 0 && (
-        <div>
+        <>
           {isSearchShown ? (
-            <>
+            <div>
               <span>
                 <strong>Films by: </strong>
               </span>
               {genres && <span>{genres[0]} genre</span>}
-            </>
+            </div>
           ) : (
             <span>
               <strong>{`${moviesFound} movies found`}</strong>
             </span>
           )}
-        </div>
-      )}
-
-      {!isSearchShown && moviesFound !== 0 && (
-        <div>
-          <span>
-            <strong>Sort by: </strong>
-          </span>
-          <Button
-            variantBtn={VariantBtn.SortBy}
-            active={sortBy === 'release_date'}
-            onClick={handleSortMoviesClick('release_date')}
-          >
-            release date
-          </Button>
-          <Button
-            variantBtn={VariantBtn.SortBy}
-            active={sortBy === 'vote_average'}
-            onClick={handleSortMoviesClick('vote_average')}
-          >
-            rating
-          </Button>
-        </div>
+          {!isSearchShown && (
+            <div>
+              <span>
+                <strong>Sort by: </strong>
+              </span>
+              <Button
+                variantButton={VariantBtn.SortBy}
+                active={sortBy === 'release_date'}
+                onClick={handleSortMoviesClick('release_date')}
+              >
+                release date
+              </Button>
+              <Button
+                variantButton={VariantBtn.SortBy}
+                active={sortBy === 'vote_average'}
+                onClick={handleSortMoviesClick('vote_average')}
+              >
+                rating
+              </Button>
+            </div>
+          )}
+        </>
       )}
     </SortResultContainer>
   );

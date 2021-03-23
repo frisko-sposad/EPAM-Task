@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-import NoFilmsFoundContainer from './NoFilmsFound.styled';
 
-const NoFilmsFound: FC = () => <NoFilmsFoundContainer>No Films Found</NoFilmsFoundContainer>;
+const NoFilmsFound: FC = () => <>No Films Found</>;
 
 export default NoFilmsFound;

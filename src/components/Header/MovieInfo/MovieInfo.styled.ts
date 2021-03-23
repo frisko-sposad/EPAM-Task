@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  margin: 0 auto;
-  max-width: 1060px;
-  padding: 1rem 3rem;
-`;
-
 export const SearchContainer = styled.div`
   display: flex;
   justify-content: flex-end;
