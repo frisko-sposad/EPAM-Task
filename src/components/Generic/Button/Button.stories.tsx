@@ -1,29 +1,41 @@
-import React, { useState } from 'react';
+import React, { ButtonHTMLAttributes, useState } from 'react';
 import Button from './Button';
 import VariantBtn from './Button.types';
+
+export interface createButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variantButton: VariantBtn;
+  onClick?: () => void;
+  active: boolean;
+  children: string;
+}
+
+const createButton = (
+  variantButton: VariantBtn,
+  active: boolean,
+  children: string,
+  onClick?: () => void,
+): JSX.Element => {
+  return (
+    <Button variantButton={variantButton} active={active} onClick={onClick}>
+      {children}
+    </Button>
+  );
+};
 
 export default {
   title: 'Button',
   component: Button,
 };
 
-export const SearchButton = (): JSX.Element => (
-  <Button variantButton={VariantBtn.Search} active>
-    SEARCH
-  </Button>
-);
+export const SearchButton = (): JSX.Element => createButton(VariantBtn.Search, true, 'SEARCH');
 
 export const SearchByButton = (): JSX.Element => {
   const [isActiveBtn, setIsActiveBtn] = useState(true);
   const invertButtonActivity = () => setIsActiveBtn(!isActiveBtn);
   return (
     <>
-      <Button variantButton={VariantBtn.SearchBy} active={isActiveBtn} onClick={invertButtonActivity}>
-        TITLE
-      </Button>
-      <Button variantButton={VariantBtn.SearchBy} active={!isActiveBtn} onClick={invertButtonActivity}>
-        GENRE
-      </Button>
+      {createButton(VariantBtn.SearchBy, isActiveBtn, 'TITLE', invertButtonActivity)}
+      {createButton(VariantBtn.SearchBy, !isActiveBtn, 'GENRE', invertButtonActivity)}
     </>
   );
 };
@@ -33,12 +45,8 @@ export const SortByButton = (): JSX.Element => {
   const invertButtonActivity = () => setIsActiveBtn(!isActiveBtn);
   return (
     <>
-      <Button variantButton={VariantBtn.SortBy} active={isActiveBtn} onClick={invertButtonActivity}>
-        release date
-      </Button>
-      <Button variantButton={VariantBtn.SortBy} active={!isActiveBtn} onClick={invertButtonActivity}>
-        rating
-      </Button>
+      {createButton(VariantBtn.SortBy, isActiveBtn, 'release date', invertButtonActivity)}
+      {createButton(VariantBtn.SortBy, !isActiveBtn, 'rating', invertButtonActivity)}
     </>
   );
 };
