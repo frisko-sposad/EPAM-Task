@@ -4,9 +4,11 @@ export const SET_SEARCH_MOVIES = 'SET_SEARCH_MOVIES';
 export const SET_SEARCH_MOVIE_BY_ID = 'SET_SEARCH_MOVIE_BY_ID';
 export const CLEAR_MOVIES_ACTION = 'CLEAR_MOVIES_ACTION';
 
+export type Movie = ConvertedMovie | RawMovie | null;
+
 export interface AppState {
   movies: ConvertedMovie[];
-  movie: ConvertedMovie | RawMovie | null;
+  movie: Movie;
   moviesFound: number;
 }
 

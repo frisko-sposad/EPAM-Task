@@ -12,11 +12,9 @@ const Button = ({ active, variantButton, onClick, children }: ButtonProps) => {
   const SelectedVariantBtn = buttonVariants[variantButton];
 
   return (
-    <>
-      <SelectedVariantBtn active={active} onClick={onClick}>
-        {children}
-      </SelectedVariantBtn>
-    </>
+    <SelectedVariantBtn active={active} onClick={onClick}>
+      {children}
+    </SelectedVariantBtn>
   );
 };
 

@@ -7,13 +7,13 @@ export default {
   component: Button,
 };
 
-export const Search = (): JSX.Element => (
+export const SearchButton = (): JSX.Element => (
   <Button variantButton={VariantBtn.Search} active>
     SEARCH
   </Button>
 );
 
-export const SearchBy = (): JSX.Element => {
+export const SearchByButton = (): JSX.Element => {
   const [isActiveBtn, setIsActiveBtn] = useState(true);
   const invertButtonActivity = () => setIsActiveBtn(!isActiveBtn);
   return (
@@ -28,7 +28,7 @@ export const SearchBy = (): JSX.Element => {
   );
 };
 
-export const SortBy = (): JSX.Element => {
+export const SortByButton = (): JSX.Element => {
   const [isActiveBtn, setIsActiveBtn] = useState(true);
   const invertButtonActivity = () => setIsActiveBtn(!isActiveBtn);
   return (

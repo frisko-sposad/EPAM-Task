@@ -9,17 +9,13 @@ import rootReducer from '../../App.reducers';
 const initialState = {};
 const store = createStore(rootReducer, initialState);
 
-const Wrapper = ({ children }) => (
-  <Provider store={store}>
-    <BrowserRouter>{children}</BrowserRouter>
-  </Provider>
-);
-
 describe('Testing SearchSection.', () => {
   const component = mount(
-    <Wrapper>
-      <SearchSection />
-    </Wrapper>,
+    <Provider store={store}>
+      <BrowserRouter>
+        <SearchSection />
+      </BrowserRouter>
+    </Provider>,
   );
 
   it('Do we have input in the Search Section?', () => {
