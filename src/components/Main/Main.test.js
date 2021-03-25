@@ -19,34 +19,20 @@ const Wrapper = ({ children, url }) => (
   </Provider>
 );
 
+const urls = ['*', '/', '/search'];
+const componentsNames = ['PageNotFound', 'NoFilmsFound', 'MovieItem'];
+const componentsFound = [1, 1, 10];
+
 describe('Render Main.', () => {
-  const PageNotFound = mount(
-    <Wrapper url="*">
-      <Main />
-    </Wrapper>,
-  );
-  it('If the error is in the url, we render page NoFilmsFound', () => {
-    const items = PageNotFound.find('PageNotFound');
-    expect(items.length).toBe(1);
-  });
-
-  const NoFilmsFound = mount(
-    <Wrapper url="/">
-      <Main />
-    </Wrapper>,
-  );
-  it('If no movies are found, we render page NoFilmsFound', () => {
-    const items = NoFilmsFound.find('NoFilmsFound');
-    expect(items.length).toBe(1);
-  });
-
-  const SuccessfulSearch = mount(
-    <Wrapper url="/search">
-      <Main />
-    </Wrapper>,
-  );
-  it('With a successful search, we render 10 MovieItem components', () => {
-    const items = SuccessfulSearch.find('MovieItem');
-    expect(items.length).toBe(10);
+  urls.forEach((url, i) => {
+    const PageNotFound = mount(
+      <Wrapper url={url}>
+        <Main />
+      </Wrapper>,
+    );
+    it(`If url="${url}", we found ${componentsFound[i]} ${componentsNames[i]}`, () => {
+      const items = PageNotFound.find(componentsNames[i]);
+      expect(items.length).toBe(componentsFound[i]);
+    });
   });
 });

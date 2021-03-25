@@ -60,18 +60,10 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
         <SearchByBtnContainer>
           <SearchByBtnTitle>SEARCH BY</SearchByBtnTitle>
           <div>
-            <Button
-              variantButton={VariantBtn.SearchBy}
-              active={searchByOption === 'title'}
-              onClick={setSearchBy('title')}
-            >
+            <Button variant={VariantBtn.SearchBy} active={searchByOption === 'title'} onClick={setSearchBy('title')}>
               TITLE
             </Button>
-            <Button
-              variantButton={VariantBtn.SearchBy}
-              active={searchByOption === 'genres'}
-              onClick={setSearchBy('genres')}
-            >
+            <Button variant={VariantBtn.SearchBy} active={searchByOption === 'genres'} onClick={setSearchBy('genres')}>
               GENRE
             </Button>
           </div>
@@ -79,7 +71,7 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
             <BuggyCounter />
           </ErrorBoundary>
         </SearchByBtnContainer>
-        <Button active variantButton={VariantBtn.Search} onClick={handleClick}>
+        <Button active variant={VariantBtn.Search} onClick={handleClick}>
           SEARCH
         </Button>
       </SearchByContainer>

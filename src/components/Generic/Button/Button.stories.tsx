@@ -1,52 +1,37 @@
-import React, { ButtonHTMLAttributes, useState } from 'react';
+import React, { useState } from 'react';
 import Button from './Button';
 import VariantBtn from './Button.types';
 
-export interface createButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variantButton: VariantBtn;
-  onClick?: () => void;
-  active: boolean;
-  children: string;
-}
-
-const createButton = (
-  variantButton: VariantBtn,
-  active: boolean,
-  children: string,
-  onClick?: () => void,
-): JSX.Element => {
+const createButton = (variant: VariantBtn, children: string): JSX.Element => {
   return (
-    <Button variantButton={variantButton} active={active} onClick={onClick}>
+    <Button variant={variant} active>
       {children}
     </Button>
   );
 };
 
+const CreateGroupButton = (variant: VariantBtn, children: string[]): JSX.Element => {
+  const [isActiveBtn, setIsActiveBtn] = useState(true);
+  const invertButtonActivity = () => setIsActiveBtn(!isActiveBtn);
+  return (
+    <>
+      <Button variant={variant} active={isActiveBtn} onClick={invertButtonActivity}>
+        {children[0]}
+      </Button>
+      <Button variant={variant} active={!isActiveBtn} onClick={invertButtonActivity}>
+        {children[1]}
+      </Button>
+    </>
+  );
+};
+
+export const SearchButton = (): JSX.Element => createButton(VariantBtn.Search, 'SEARCH');
+
+export const SearchByButton = (): JSX.Element => <>{CreateGroupButton(VariantBtn.SearchBy, ['TITLE', 'GENRE'])}</>;
+
+export const SortByButton = (): JSX.Element => <>{CreateGroupButton(VariantBtn.SortBy, ['release date', 'rating'])}</>;
+
 export default {
   title: 'Button',
   component: Button,
-};
-
-export const SearchButton = (): JSX.Element => createButton(VariantBtn.Search, true, 'SEARCH');
-
-export const SearchByButton = (): JSX.Element => {
-  const [isActiveBtn, setIsActiveBtn] = useState(true);
-  const invertButtonActivity = () => setIsActiveBtn(!isActiveBtn);
-  return (
-    <>
-      {createButton(VariantBtn.SearchBy, isActiveBtn, 'TITLE', invertButtonActivity)}
-      {createButton(VariantBtn.SearchBy, !isActiveBtn, 'GENRE', invertButtonActivity)}
-    </>
-  );
-};
-
-export const SortByButton = (): JSX.Element => {
-  const [isActiveBtn, setIsActiveBtn] = useState(true);
-  const invertButtonActivity = () => setIsActiveBtn(!isActiveBtn);
-  return (
-    <>
-      {createButton(VariantBtn.SortBy, isActiveBtn, 'release date', invertButtonActivity)}
-      {createButton(VariantBtn.SortBy, !isActiveBtn, 'rating', invertButtonActivity)}
-    </>
-  );
 };

@@ -31,7 +31,7 @@ const MovieInfo: FC<MovieInfoProps> = ({ movie, searchMovieByIdAndRelatedMovies,
   return (
     <>
       <SearchContainer>
-        <Button active={false} variantButton={VariantBtn.Search} className="btn_search" onClick={showMovieInfo}>
+        <Button active={false} variant={VariantBtn.Search} className="btn_search" onClick={showMovieInfo}>
           SEARCH
         </Button>
       </SearchContainer>

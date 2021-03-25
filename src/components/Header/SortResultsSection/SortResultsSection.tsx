@@ -56,14 +56,14 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie,
                 <strong>Sort by: </strong>
               </span>
               <Button
-                variantButton={VariantBtn.SortBy}
+                variant={VariantBtn.SortBy}
                 active={sortBy === 'release_date'}
                 onClick={handleSortMoviesClick('release_date')}
               >
                 release date
               </Button>
               <Button
-                variantButton={VariantBtn.SortBy}
+                variant={VariantBtn.SortBy}
                 active={sortBy === 'vote_average'}
                 onClick={handleSortMoviesClick('vote_average')}
               >
