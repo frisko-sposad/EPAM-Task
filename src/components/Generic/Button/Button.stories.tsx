@@ -10,7 +10,7 @@ const createButton = (variant: VariantBtn, children: string): JSX.Element => {
   );
 };
 
-const CreateGroupButton = (variant: VariantBtn, children: string[]): JSX.Element => {
+const GroupButton = (variant: VariantBtn, children: string[]): JSX.Element => {
   const [isActiveBtn, setIsActiveBtn] = useState(true);
   const invertButtonActivity = () => setIsActiveBtn(!isActiveBtn);
   return (
@@ -27,9 +27,9 @@ const CreateGroupButton = (variant: VariantBtn, children: string[]): JSX.Element
 
 export const SearchButton = (): JSX.Element => createButton(VariantBtn.Search, 'SEARCH');
 
-export const SearchByButton = (): JSX.Element => <>{CreateGroupButton(VariantBtn.SearchBy, ['TITLE', 'GENRE'])}</>;
+export const SearchByButton = (): JSX.Element => GroupButton(VariantBtn.SearchBy, ['TITLE', 'GENRE']);
 
-export const SortByButton = (): JSX.Element => <>{CreateGroupButton(VariantBtn.SortBy, ['release date', 'rating'])}</>;
+export const SortByButton = (): JSX.Element => GroupButton(VariantBtn.SortBy, ['release date', 'rating']);
 
 export default {
   title: 'Button',

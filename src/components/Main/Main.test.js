@@ -25,13 +25,13 @@ const componentsFound = [1, 1, 10];
 
 describe('Render Main.', () => {
   urls.forEach((url, i) => {
-    const PageNotFound = mount(
+    const component = mount(
       <Wrapper url={url}>
         <Main />
       </Wrapper>,
     );
     it(`If url="${url}", we found ${componentsFound[i]} ${componentsNames[i]}`, () => {
-      const items = PageNotFound.find(componentsNames[i]);
+      const items = component.find(componentsNames[i]);
       expect(items.length).toBe(componentsFound[i]);
     });
   });

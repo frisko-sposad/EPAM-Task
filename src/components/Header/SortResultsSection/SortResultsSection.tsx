@@ -46,30 +46,30 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie,
               {genres && <span>{genres[0]} genre</span>}
             </div>
           ) : (
-            <span>
-              <strong>{`${moviesFound} movies found`}</strong>
-            </span>
-          )}
-          {!isSearchShown && (
-            <div>
+            <>
               <span>
-                <strong>Sort by: </strong>
+                <strong>{`${moviesFound} movies found`}</strong>
               </span>
-              <Button
-                variant={VariantBtn.SortBy}
-                active={sortBy === 'release_date'}
-                onClick={handleSortMoviesClick('release_date')}
-              >
-                release date
-              </Button>
-              <Button
-                variant={VariantBtn.SortBy}
-                active={sortBy === 'vote_average'}
-                onClick={handleSortMoviesClick('vote_average')}
-              >
-                rating
-              </Button>
-            </div>
+              <div>
+                <span>
+                  <strong>Sort by: </strong>
+                </span>
+                <Button
+                  variant={VariantBtn.SortBy}
+                  active={sortBy === 'release_date'}
+                  onClick={handleSortMoviesClick('release_date')}
+                >
+                  release date
+                </Button>
+                <Button
+                  variant={VariantBtn.SortBy}
+                  active={sortBy === 'vote_average'}
+                  onClick={handleSortMoviesClick('vote_average')}
+                >
+                  rating
+                </Button>
+              </div>
+            </>
           )}
         </>
       )}
