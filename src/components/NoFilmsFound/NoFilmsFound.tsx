@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-import './NoFilmsFound.css';
 
-const PageNotFound: FC = () => <div className="no-films-found">No Films Found</div>;
+const NoFilmsFound: FC = () => <>No Films Found</>;
 
-export default PageNotFound;
+export default NoFilmsFound;

@@ -1,65 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing Header closeSearch. State isSearchShown = false 1`] = `
-<header>
-  <section
-    className="header__container"
-  >
-    <SiteTitle />
-    <Memo(MovieInfo) />
-  </section>
-  <SortResultsSection
-    filmsBy="Films by "
-    genre="Drama genre"
-  />
-</header>
-`;
-
-exports[`Testing Header openSearch. State isSearchShown = true 1`] = `
-<header>
-  <section
-    className="header__container"
-  >
-    <SiteTitle />
-    <SearchSection />
-  </section>
-  <SortResultsSection
-    moviesFound="7 movies found"
-    rating="rating"
-    releaseDate="release date"
-    sortBy="Sort by"
-  />
-</header>
-`;
-
 exports[`Testing the closeSearch block in Header. If State isSearchShown = false, we check the closeSearch snapshot 1`] = `
-<header>
-  <section
-    className="header__container"
-  >
+<styled.header>
+  <styled.div>
     <SiteTitle />
-    <Memo(MovieInfo) />
-  </section>
-  <SortResultsSection
-    filmsBy="Films by "
-    genre="Drama genre"
-  />
-</header>
+  </styled.div>
+  <Switch>
+    <Route
+      path="/film/:id"
+    >
+      <styled.div>
+        <Connect(MovieInfo) />
+      </styled.div>
+      <Connect(SortResultsSection)
+        isSearchShown={true}
+      />
+    </Route>
+    <Route
+      path="/"
+    >
+      <styled.div>
+        <Connect(SearchSection) />
+      </styled.div>
+      <Connect(SortResultsSection)
+        isSearchShown={false}
+      />
+    </Route>
+  </Switch>
+</styled.header>
 `;
 
 exports[`Testing the openSearch block in Header. If State isSearchShown = true, we check the openSearch snapshot 1`] = `
-<header>
-  <section
-    className="header__container"
-  >
+<styled.header>
+  <styled.div>
     <SiteTitle />
-    <SearchSection />
-  </section>
-  <SortResultsSection
-    moviesFound="7 movies found"
-    rating="rating"
-    releaseDate="release date"
-    sortBy="Sort by"
-  />
-</header>
+  </styled.div>
+  <Switch>
+    <Route
+      path="/film/:id"
+    >
+      <styled.div>
+        <Connect(MovieInfo) />
+      </styled.div>
+      <Connect(SortResultsSection)
+        isSearchShown={true}
+      />
+    </Route>
+    <Route
+      path="/"
+    >
+      <styled.div>
+        <Connect(SearchSection) />
+      </styled.div>
+      <Connect(SortResultsSection)
+        isSearchShown={false}
+      />
+    </Route>
+  </Switch>
+</styled.header>
 `;

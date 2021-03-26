@@ -1,36 +1,38 @@
-.movie-item {
+import styled from 'styled-components';
+
+export const MovieItemContainer = styled.div`
   color: gray;
   margin: 1rem;
   width: 300px;
   height: 532px;
   cursor: pointer;
-}
+`;
 
-.movie-item__img {
+export const Image = styled.img`
   width: 300px;
-  height: 475px;  
-}
+  height: 475px;
+`;
 
-.movie-item__info {
+export const Info = styled.div`
   display: flex;
   font-size: 0.8rem;
   justify-content: space-between;
   align-items: center;
   padding: 0.3rem 0.5rem;
-}
+`;
 
-.movie-item__title {
+export const Title = styled.div`
   font-size: 0.9rem;
   color: black;
   text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
+`;
 
-.movie-item__year {
+export const Year = styled.div`
   font-size: 0.6rem;
   padding: 0.2rem 0.4rem;
   white-space: nowrap;
   border: 1px solid gray;
-}
+`;

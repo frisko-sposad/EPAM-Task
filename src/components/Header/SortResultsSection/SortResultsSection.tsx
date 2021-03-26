@@ -1,10 +1,11 @@
 import React, { FC, useCallback } from 'react';
-import './SortResultsSection.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Button from '../../Generic/Button/Button';
 import { AppState, ConvertedMovie } from '../../App.types';
 import { useSearchParams } from '../../App.helpers';
+import SortResultContainer from './SortResultsSection.styled';
+import VariantBtn from '../../Generic/Button/Button.types';
 
 interface SortResultsSectionProps {
   isSearchShown?: boolean;
@@ -34,46 +35,45 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie,
   const sortBy = useSearchParams(['sortBy']).sortBy || 'release_date';
 
   return (
-    <section className="result-sort__container">
+    <SortResultContainer>
       {moviesFound !== 0 && (
-        <div>
+        <>
           {isSearchShown ? (
-            <>
-              <span className="filmsBy">
+            <div>
+              <span>
                 <strong>Films by: </strong>
               </span>
-              {genres && <span className="genre">{genres[0]} genre</span>}
-            </>
+              {genres && <span>{genres[0]} genre</span>}
+            </div>
           ) : (
-            <span>
-              <strong className="moviesFound">{`${moviesFound} movies found`}</strong>
-            </span>
+            <>
+              <span>
+                <strong>{`${moviesFound} movies found`}</strong>
+              </span>
+              <div>
+                <span>
+                  <strong>Sort by: </strong>
+                </span>
+                <Button
+                  variant={VariantBtn.SortBy}
+                  active={sortBy === 'release_date'}
+                  onClick={handleSortMoviesClick('release_date')}
+                >
+                  release date
+                </Button>
+                <Button
+                  variant={VariantBtn.SortBy}
+                  active={sortBy === 'vote_average'}
+                  onClick={handleSortMoviesClick('vote_average')}
+                >
+                  rating
+                </Button>
+              </div>
+            </>
           )}
-        </div>
+        </>
       )}
-
-      {!isSearchShown && moviesFound !== 0 && (
-        <div>
-          <span className="sortBy">
-            <strong>Sort by: </strong>
-          </span>
-          <Button
-            type="button"
-            className={`btn_sort ${sortBy === 'release_date' ? 'btn_sort_active' : ''}`}
-            onClick={handleSortMoviesClick('release_date')}
-          >
-            release date
-          </Button>
-          <Button
-            type="button"
-            className={`btn_sort ${sortBy === 'vote_average' ? 'btn_sort_active' : ''}`}
-            onClick={handleSortMoviesClick('vote_average')}
-          >
-            rating
-          </Button>
-        </div>
-      )}
-    </section>
+    </SortResultContainer>
   );
 };
 

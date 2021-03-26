@@ -1,25 +1,36 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { createStore } from 'redux';
 import SearchSection from './SearchSection';
+import rootReducer from '../../App.reducers';
+
+const initialState = {};
+const store = createStore(rootReducer, initialState);
 
 describe('Testing SearchSection.', () => {
-  const handlerMock = jest.fn();
-  const component = shallow(<SearchSection closeSearch={handlerMock} />);
+  const component = mount(
+    <Provider store={store}>
+      <BrowserRouter>
+        <SearchSection />
+      </BrowserRouter>
+    </Provider>,
+  );
 
   it('Do we have input in the Search Section?', () => {
     const input = component.find('input');
     expect(input.length).toBe(1);
   });
-  it('Do we have Search button in the SearchSection?', () => {
-    const buttonSearch = component.find('.btn_search');
-    expect(buttonSearch.length).toBe(1);
-  });
-  it('Do we have two Search-By buttons in the SearchSection?', () => {
-    const buttonSearchBy = component.find('.btn_search-by');
-    expect(buttonSearchBy.length).toBe(2);
+  it('Do we have buttons in the SearchSection?', () => {
+    const button = component.find('button').map((node) => node.text());
+    expect(button).toEqual(['TITLE', 'GENRE', '0', 'SEARCH']);
   });
   it('Click on the button trigger onClick prop function', () => {
-    component.find('.btn_search').simulate('click');
-    expect(handlerMock).toBeCalledTimes(1);
+    const buttonSearch = component
+      .find('button')
+      .filterWhere((node) => node.text() === 'SEARCH')
+      .simulate('click');
+    expect(buttonSearch.length).toEqual(1);
   });
 });

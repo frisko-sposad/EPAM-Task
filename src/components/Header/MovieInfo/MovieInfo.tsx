@@ -1,11 +1,12 @@
 import React, { FC, useCallback, useEffect } from 'react';
-import './MovieInfo.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useHistory, useParams } from 'react-router-dom';
 import Button from '../../Generic/Button/Button';
-import { clearMoviesAction, fetchMovieByIdAndRelatedMovies } from '../../App.actions';
 import { AppState, ConvertedMovie, AppDispatch } from '../../App.types';
+import { clearMoviesAction, convertMovie, fetchMovieByIdAndRelatedMovies } from '../../App.actions';
+import { SearchContainer, MovieInfoContainer, Img, Description, Title, VideoInfo } from './MovieInfo.styled';
+import VariantBtn from '../../Generic/Button/Button.types';
 
 interface MovieInfoProps {
   searchMovieByIdAndRelatedMovies: (id: string) => void;
@@ -28,27 +29,31 @@ const MovieInfo: FC<MovieInfoProps> = ({ movie, searchMovieByIdAndRelatedMovies,
 
   const { title, overview, releaseDate, posterPath, genres, runtime } = movie ?? {};
   return (
-    <div className="search__container">
-      <div className="btn-search__container">
-        <Button className="btn_search" onClick={showMovieInfo}>
+    <>
+      <SearchContainer>
+        <Button active={false} variant={VariantBtn.Search} className="btn_search" onClick={showMovieInfo}>
           SEARCH
         </Button>
-      </div>
-      <div className="movie-info">
-        <img className="movie-info__img" src={posterPath} alt="movieImage" />
-        <div className="movie-info__description">
-          <h2 className="movie-info__title">{title}</h2>
+      </SearchContainer>
+      <MovieInfoContainer>
+        <Img className="movie-info__img" src={posterPath} alt="movieImage" />
+        <Description>
+          <Title>{title}</Title>
           <p>{genres?.join(', ')}</p>
-          <div className="movie-info__video-parameters">
+          <VideoInfo>
             <strong>{releaseDate?.split('-')[0]}</strong>
-            <strong>{`${runtime === null ? 'run time is unknown' : `${runtime} min`}`}</strong>
-          </div>
+            {runtime && <strong> {runtime} min</strong>}
+          </VideoInfo>
           <p>{overview}</p>
-        </div>
-      </div>
-    </div>
+        </Description>
+      </MovieInfoContainer>
+    </>
   );
 };
+
+const mapStateToProps = ({ movie }: AppState) => ({
+  movie: convertMovie(movie),
+});
 
 const mapDispatchToProps = (dispatch: AppDispatch) =>
   bindActionCreators(
@@ -58,9 +63,5 @@ const mapDispatchToProps = (dispatch: AppDispatch) =>
     },
     dispatch,
   );
-
-const mapStateToProps = ({ movie }: AppState) => ({
-  movie,
-});
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieInfo);
