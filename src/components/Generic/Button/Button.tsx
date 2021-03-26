@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes, memo } from 'react';
 import VariantBtn from './Button.types';
-import buttonVariants from './Button.variants';
+import buttonVariants from './Button.constants';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: VariantBtn;
