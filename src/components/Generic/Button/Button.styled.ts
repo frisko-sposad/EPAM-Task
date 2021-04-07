@@ -30,9 +30,9 @@ export const SearchByBtn = styled(Btn)`
 
 export const SortByBtn = styled(Btn)`
   text-decoration: none;
-  color: #000000;
   background: transparent;
   padding: 0 1rem;
   outline: none;
-  ${({ active }) => active && 'color:tomato; font-weight: 600'};
+  color: tomato;
+  ${({ active }) => active && 'font-weight: 600'};
 `;

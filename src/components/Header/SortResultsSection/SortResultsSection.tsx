@@ -1,9 +1,8 @@
 import React, { FC, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
+import router, { useRouter } from 'next/router';
 import Button from '../../Generic/Button/Button';
 import { AppState, ConvertedMovie } from '../../App.types';
-import { useSearchParams } from '../../App.helpers';
 import SortResultContainer from './SortResultsSection.styled';
 import VariantBtn from '../../Generic/Button/Button.types';
 
@@ -15,24 +14,14 @@ interface SortResultsSectionProps {
 
 const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie, moviesFound }) => {
   const { genres } = movie ?? {};
-
-  const history = useHistory();
+  const { sortBy, search, searchBy } = useRouter().query;
 
   const handleSortMoviesClick = useCallback(
     (option) => () => {
-      const oldSearchURL = history.location.search.split('&');
-      oldSearchURL.splice(0, 1, `?sortBy=${option}`);
-      const newSearchURL = oldSearchURL.join('&');
-
-      history.push({
-        pathname: '/search',
-        search: newSearchURL,
-      });
+      router.push(`/search/?sortBy=${option ?? 'release_date'}&search=${search}&searchBy=${searchBy}`);
     },
-    [history],
+    [search, searchBy],
   );
-
-  const sortBy = useSearchParams(['sortBy']).sortBy || 'release_date';
 
   return (
     <SortResultContainer>

@@ -1,32 +1,38 @@
 import React, { FC } from 'react';
-import { Route, Switch } from 'react-router-dom';
 import SearchSection from './SearchSection/SearchSection';
-import MovieInfo from './MovieInfo/MovieInfo';
-import SiteTitle from './SiteTitle/SiteTitle';
+import { Container, HeaderContainer } from './Header.styled';
 import SortResultsSection from './SortResultsSection/SortResultsSection';
-import { HeaderContainer, Container } from './Header.styled';
+import SiteTitle from './SiteTitle/SiteTitle';
+import MovieInfo from './MovieInfo/MovieInfo';
 
-const Header: FC = () => {
+interface HeaderProps {
+  isSearchPage: boolean;
+}
+
+const Header: FC<HeaderProps> = ({ isSearchPage }) => {
   return (
-    <HeaderContainer>
-      <Container>
-        <SiteTitle />
-      </Container>
-      <Switch>
-        <Route path="/film/:id">
-          <Container>
-            <MovieInfo />
-          </Container>
-          <SortResultsSection isSearchShown />
-        </Route>
-        <Route path="/">
-          <Container>
-            <SearchSection />
-          </Container>
-          <SortResultsSection isSearchShown={false} />
-        </Route>
-      </Switch>
-    </HeaderContainer>
+    <>
+      <HeaderContainer>
+        <Container>
+          <SiteTitle />
+        </Container>
+        {isSearchPage ? (
+          <>
+            <Container>
+              <SearchSection />
+            </Container>
+            <SortResultsSection isSearchShown={false} />
+          </>
+        ) : (
+          <>
+            <Container>
+              <MovieInfo />
+            </Container>
+            <SortResultsSection isSearchShown />
+          </>
+        )}
+      </HeaderContainer>
+    </>
   );
 };
 

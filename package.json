@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "next": "10.1.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-redux": "7.2.1",
-    "react-router-dom": "5.2.0",
     "redux": "4.0.5",
+    "redux-devtools-extension": "2.13.9",
     "redux-thunk": "2.3.0",
-    "styled-components": "5.2.1",
-    "reselect": "4.0.0"
+    "reselect": "4.0.0",
+    "styled-components": "5.2.1"
   },
   "devDependencies": {
     "@babel/core": "7.11.6",
@@ -34,6 +35,7 @@
     "@typescript-eslint/parser": "4.6.1",
     "babel-jest": "26.6.3",
     "babel-loader": "8.1.0",
+    "babel-plugin-styled-components": "1.12.0",
     "cross-fetch": "3.0.6",
     "css-loader": "4.3.0",
     "enzyme": "3.11.0",
@@ -74,7 +76,10 @@
     "prettier:write": "npm run prettier -- --write",
     "tsc": "tsc",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "next:dev": "next dev",
+    "next:build": "next build",
+    "next:start": "next start"
   },
   "repository": {
     "type": "git",

@@ -8,7 +8,10 @@ const GlobalStyle = createGlobalStyle`
 	border: 0;
 	}
 
-	a {text-decoration: none}
+	a {
+		text-decoration: none;
+		color: #ffffff
+		}
 
   body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;

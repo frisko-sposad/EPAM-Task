@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { convertMovieToCamelCase } from './App.helpers';
+import convertMovieToCamelCase from './App.helpers';
 import {
   SET_SEARCH_MOVIES,
   SET_SEARCH_MOVIE_BY_ID,
@@ -30,9 +30,9 @@ export const searchMovieByIdAction = (base: ConvertedMovie): SearchMovieById => 
 });
 
 export function fetchMovies(
-  sortByOption?: string | null,
-  searchQuery?: string | null,
-  searchByOption?: string | null,
+  sortByOption?: string | string[] | undefined,
+  searchQuery?: string | string[] | undefined,
+  searchByOption?: string | string[] | undefined,
 ): (dispatch: AppDispatch) => void {
   return (dispatch: AppDispatch): void => {
     fetch(
@@ -48,7 +48,7 @@ export function fetchMovies(
   };
 }
 
-export function fetchMovieByIdAndRelatedMovies(movieId: string) {
+export function fetchMovieByIdAndRelatedMovies(movieId: string | string[] | undefined) {
   return (dispatch: AppDispatch): void => {
     fetch(`https://reactjs-cdp.herokuapp.com/movies/${movieId}`)
       .then((res) => res.json())

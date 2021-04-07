@@ -1,18 +1,21 @@
 import React, { FC, KeyboardEvent, ChangeEvent, useState, useCallback, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { useRouter } from 'next/router';
+import { Input, SearchByContainer, SearchByBtnContainer, SearchByBtnTitle } from './SearchSection.styled';
 import Button from '../../Generic/Button/Button';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import BuggyCounter from '../ErrorBoundary/BuggyCounter';
-import { AppDispatch } from '../../App.types';
+import { AppDispatch, AppState } from '../../App.types';
 import { fetchMovies } from '../../App.actions';
-import { useSearchParams } from '../../App.helpers';
-import { Input, SearchByContainer, SearchByBtnContainer, SearchByBtnTitle } from './SearchSection.styled';
 import VariantBtn from '../../Generic/Button/Button.types';
 
 interface SearchSectionProps {
-  searchMovies: (sortBy: string, search: string, searchBy: string) => void;
+  searchMovies: (
+    sortBy: string | string[] | undefined,
+    search: string | string[] | undefined,
+    searchBy: string | string[] | undefined,
+  ) => void;
 }
 
 const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
@@ -20,7 +23,8 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
   const [searchByOption, setSearchByOption] = useState('title');
   const changeInputValue = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
 
-  const { sortBy, search, searchBy } = useSearchParams(['sortBy', 'search', 'searchBy']);
+  const router = useRouter();
+  const { sortBy, search, searchBy } = router.query;
 
   useEffect(() => {
     if (sortBy || search || searchBy) {
@@ -28,11 +32,9 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
     }
   }, [searchMovies, sortBy, search, searchBy]);
 
-  const history = useHistory();
-
   const handleClick = () => {
     if (inputValue !== '') {
-      history.push({
+      router.push({
         pathname: '/search',
         search: `?sortBy=${sortBy ?? 'release_date'}&search=${inputValue}&searchBy=${searchByOption}`,
       });
@@ -87,4 +89,6 @@ const mapDispatchToProps = (dispatch: AppDispatch) =>
     dispatch,
   );
 
-export default connect(null, mapDispatchToProps)(SearchSection);
+const mapStateToProps = ({ movies }: AppState) => ({ movies });
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchSection);

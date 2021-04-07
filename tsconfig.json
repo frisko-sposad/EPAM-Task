@@ -4,13 +4,24 @@
     "module": "esnext",
     "moduleResolution": "node",
     "target": "esnext",
-    "jsx": "react",
+    "jsx": "preserve",
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "strict": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "isolatedModules": true
   },
   "include": [
     "src/**/*"

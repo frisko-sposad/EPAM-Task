@@ -10,4 +10,6 @@ export const MainContainer = styled.main`
 
 export const Container = styled.div`
   padding: 250px 50px;
+  display: flex;
+  justify-content: center;
 `;
