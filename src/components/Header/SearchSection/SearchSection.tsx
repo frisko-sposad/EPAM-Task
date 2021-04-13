@@ -1,36 +1,18 @@
-import React, { FC, KeyboardEvent, ChangeEvent, useState, useCallback, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, { FC, KeyboardEvent, ChangeEvent, useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { Input, SearchByContainer, SearchByBtnContainer, SearchByBtnTitle } from './SearchSection.styled';
 import Button from '../../Generic/Button/Button';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import BuggyCounter from '../ErrorBoundary/BuggyCounter';
-import { AppDispatch, AppState } from '../../App.types';
-import { fetchMovies } from '../../App.actions';
 import VariantBtn from '../../Generic/Button/Button.types';
 
-interface SearchSectionProps {
-  searchMovies: (
-    sortBy: string | string[] | undefined,
-    search: string | string[] | undefined,
-    searchBy: string | string[] | undefined,
-  ) => void;
-}
-
-const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
+const SearchSection: FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [searchByOption, setSearchByOption] = useState('title');
   const changeInputValue = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
 
   const router = useRouter();
-  const { sortBy, search, searchBy } = router.query;
-
-  useEffect(() => {
-    if (sortBy || search || searchBy) {
-      searchMovies(sortBy, search, searchBy);
-    }
-  }, [searchMovies, sortBy, search, searchBy]);
+  const { sortBy } = router.query;
 
   const handleClick = () => {
     if (inputValue !== '') {
@@ -81,14 +63,4 @@ const SearchSection: FC<SearchSectionProps> = ({ searchMovies }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch: AppDispatch) =>
-  bindActionCreators(
-    {
-      searchMovies: fetchMovies,
-    },
-    dispatch,
-  );
-
-const mapStateToProps = ({ movies }: AppState) => ({ movies });
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchSection);
+export default SearchSection;
