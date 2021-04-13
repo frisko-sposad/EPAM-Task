@@ -1,38 +1,20 @@
-import React, { FC, useCallback, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, { FC } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import Button from '../../Generic/Button/Button';
-import { AppState, ConvertedMovie, AppDispatch } from '../../App.types';
-import { clearMoviesAction, convertMovie, fetchMovieByIdAndRelatedMovies } from '../../App.actions';
+import { ConvertedMovie } from '../../App.types';
 import { SearchContainer, MovieInfoContainer, Img, Description, Title, VideoInfo } from './MovieInfo.styled';
 import VariantBtn from '../../Generic/Button/Button.types';
 
 interface MovieInfoProps {
-  searchMovieByIdAndRelatedMovies: (id: string | string[] | undefined) => void;
-  clearMovies: () => void;
-  movie: ConvertedMovie | null;
+  movie: ConvertedMovie | null | undefined;
 }
 
-const MovieInfo: FC<MovieInfoProps> = ({ movie, searchMovieByIdAndRelatedMovies, clearMovies }) => {
-  const router = useRouter();
-  const { id } = router.query;
-
-  const showMovieInfo = useCallback(() => {
-    router.push('/');
-    clearMovies();
-  }, [clearMovies, router]);
-
-  useEffect(() => {
-    return searchMovieByIdAndRelatedMovies(id);
-  }, [id, searchMovieByIdAndRelatedMovies]);
-
+const MovieInfo: FC<MovieInfoProps> = ({ movie }) => {
   const { title, overview, releaseDate, posterPath, genres, runtime } = movie ?? {};
   return (
     <>
       <SearchContainer>
-        <Button active variant={VariantBtn.Search} onClick={showMovieInfo}>
+        <Button active variant={VariantBtn.Search}>
           <Link href="/">SEARCH</Link>
         </Button>
       </SearchContainer>
@@ -51,18 +33,4 @@ const MovieInfo: FC<MovieInfoProps> = ({ movie, searchMovieByIdAndRelatedMovies,
     </>
   );
 };
-
-const mapStateToProps = ({ movie }: AppState) => ({
-  movie: convertMovie(movie),
-});
-
-const mapDispatchToProps = (dispatch: AppDispatch) =>
-  bindActionCreators(
-    {
-      searchMovieByIdAndRelatedMovies: fetchMovieByIdAndRelatedMovies,
-      clearMovies: clearMoviesAction,
-    },
-    dispatch,
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps)(MovieInfo);
+export default MovieInfo;

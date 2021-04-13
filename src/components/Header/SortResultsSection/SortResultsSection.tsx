@@ -1,18 +1,17 @@
 import React, { FC, useCallback } from 'react';
-import { connect } from 'react-redux';
 import router, { useRouter } from 'next/router';
 import Button from '../../Generic/Button/Button';
-import { AppState, ConvertedMovie } from '../../App.types';
+import { ConvertedMovie } from '../../App.types';
 import SortResultContainer from './SortResultsSection.styled';
 import VariantBtn from '../../Generic/Button/Button.types';
 
 interface SortResultsSectionProps {
-  isSearchShown?: boolean;
-  movie?: ConvertedMovie;
+  isSearchPage?: boolean;
+  movie?: ConvertedMovie | null | undefined;
   moviesFound?: number;
 }
 
-const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie, moviesFound }) => {
+const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchPage, movie, moviesFound }) => {
   const { genres } = movie ?? {};
   const { sortBy, search, searchBy } = useRouter().query;
 
@@ -25,16 +24,9 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie,
 
   return (
     <SortResultContainer>
-      {moviesFound !== 0 && (
+      {isSearchPage ? (
         <>
-          {isSearchShown ? (
-            <div>
-              <span>
-                <strong>Films by: </strong>
-              </span>
-              {genres && <span>{genres[0]} genre</span>}
-            </div>
-          ) : (
+          {moviesFound !== 0 && moviesFound && (
             <>
               <span>
                 <strong>{`${moviesFound} movies found`}</strong>
@@ -61,14 +53,16 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchShown, movie,
             </>
           )}
         </>
+      ) : (
+        <div>
+          <span>
+            <strong>Films by: </strong>
+          </span>
+          {genres && <span>{genres[0]} genre</span>}
+        </div>
       )}
     </SortResultContainer>
   );
 };
 
-const mapStateToProps = ({ movie, moviesFound }: AppState) => ({
-  movie,
-  moviesFound,
-});
-
-export default connect(mapStateToProps, null)(SortResultsSection);
+export default SortResultsSection;

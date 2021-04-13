@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
 import { createStore } from 'redux';
 import SearchSection from './SearchSection';
 import rootReducer from '../../App.reducers';
@@ -12,9 +11,7 @@ const store = createStore(rootReducer, initialState);
 describe('Testing SearchSection.', () => {
   const component = mount(
     <Provider store={store}>
-      <BrowserRouter>
-        <SearchSection />
-      </BrowserRouter>
+      <SearchSection />
     </Provider>,
   );
 

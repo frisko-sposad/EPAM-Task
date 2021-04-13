@@ -1,7 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { FC } from 'react';
 import MovieItem from './MovieItem/MovieItem';
-import { AppState, MovieItemType } from '../App.types';
+import { MovieItemType } from '../App.types';
 import NoFilmsFound from '../NoFilmsFound/NoFilmsFound';
 import { MainContainer, Container } from './Main.styled';
 
@@ -9,7 +8,7 @@ interface MainProps {
   movies?: MovieItemType[];
 }
 
-const Main = ({ movies }: MainProps) => {
+const Main: FC<MainProps> = ({ movies }) => {
   return (
     <MainContainer>
       {!movies || movies.length === 0 ? (
@@ -29,6 +28,4 @@ const Main = ({ movies }: MainProps) => {
   );
 };
 
-const mapStateToProps = ({ movies }: AppState) => ({ movies });
-
-export default connect(mapStateToProps, null)(Main);
+export default Main;
