@@ -14,28 +14,26 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({ isSearchPage, movie, moviesFound }) => {
   return (
-    <>
-      <HeaderContainer>
-        <Container>
-          <SiteTitle />
-        </Container>
-        {isSearchPage ? (
-          <>
-            <Container>
-              <SearchSection />
-            </Container>
-            <SortResultsSection isSearchPage movie={movie} moviesFound={moviesFound} />
-          </>
-        ) : (
-          <>
-            <Container>
-              <MovieInfo movie={movie} />
-            </Container>
-            <SortResultsSection isSearchPage={false} movie={movie} />
-          </>
-        )}
-      </HeaderContainer>
-    </>
+    <HeaderContainer>
+      <Container>
+        <SiteTitle />
+      </Container>
+      {isSearchPage ? (
+        <>
+          <Container>
+            <SearchSection />
+          </Container>
+          <SortResultsSection isSearchPage movie={movie} moviesFound={moviesFound} />
+        </>
+      ) : (
+        <>
+          <Container>
+            <MovieInfo movie={movie} />
+          </Container>
+          <SortResultsSection isSearchPage={false} movie={movie} />
+        </>
+      )}
+    </HeaderContainer>
   );
 };
 

@@ -3,7 +3,11 @@ import React from 'react';
 import GlobalStyle from './App.styled';
 import Footer from './Footer/Footer';
 
-export default function Layout({ children }): JSX.Element {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+export default function Layout({ children }: LayoutProps): JSX.Element {
   return (
     <>
       <GlobalStyle />

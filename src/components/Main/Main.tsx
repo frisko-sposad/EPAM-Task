@@ -17,11 +17,9 @@ const Main: FC<MainProps> = ({ movies }) => {
         </Container>
       ) : (
         <>
-          <>
-            {movies.map((movie) => (
-              <MovieItem key={movie.id} {...movie} />
-            ))}
-          </>
+          {movies.map((movie) => (
+            <MovieItem key={movie.id} {...movie} />
+          ))}
         </>
       )}
     </MainContainer>
