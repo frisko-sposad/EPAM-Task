@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const SearchContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 `;
 

@@ -16,23 +16,10 @@ const Header: FC<HeaderProps> = ({ isSearchPage, movie, moviesFound }) => {
   return (
     <HeaderContainer>
       <Container>
-        <SiteTitle />
+        <SiteTitle isSearchPage={isSearchPage} />
       </Container>
-      {isSearchPage ? (
-        <>
-          <Container>
-            <SearchSection />
-          </Container>
-          <SortResultsSection isSearchPage movie={movie} moviesFound={moviesFound} />
-        </>
-      ) : (
-        <>
-          <Container>
-            <MovieInfo movie={movie} />
-          </Container>
-          <SortResultsSection isSearchPage={false} movie={movie} />
-        </>
-      )}
+      <Container>{isSearchPage ? <SearchSection /> : <MovieInfo movie={movie} />}</Container>
+      <SortResultsSection isSearchPage={isSearchPage} movie={movie} moviesFound={moviesFound} />
     </HeaderContainer>
   );
 };

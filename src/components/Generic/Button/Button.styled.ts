@@ -33,6 +33,6 @@ export const SortByBtn = styled(Btn)`
   background: transparent;
   padding: 0 1rem;
   outline: none;
-  color: tomato;
-  ${({ active }) => active && 'font-weight: 600'};
+  color: #000000;
+  ${({ active }) => active && `font-weight: 600; color: tomato;`};
 `;
