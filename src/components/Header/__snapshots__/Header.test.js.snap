@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Testing the closeSearch block in Header. If State isSearchPage = false, we check the closeSearch snapshot 1`] = `
+<Headerstyled__HeaderContainer>
+  <Headerstyled__Container>
+    <SiteTitle
+      isSearchPage={false}
+    />
+  </Headerstyled__Container>
+  <Headerstyled__Container>
+    <MovieInfo />
+  </Headerstyled__Container>
+  <SortResultsSection
+    isSearchPage={false}
+  />
+</Headerstyled__HeaderContainer>
+`;
+
 exports[`Testing the closeSearch block in Header. If State isSearchShown = false, we check the closeSearch snapshot 1`] = `
 <styled.header>
   <styled.div>
@@ -28,6 +44,22 @@ exports[`Testing the closeSearch block in Header. If State isSearchShown = false
     </Route>
   </Switch>
 </styled.header>
+`;
+
+exports[`Testing the openSearch block in Header. If State isSearchPage = true, we check the openSearch snapshot 1`] = `
+<Headerstyled__HeaderContainer>
+  <Headerstyled__Container>
+    <SiteTitle
+      isSearchPage={true}
+    />
+  </Headerstyled__Container>
+  <Headerstyled__Container>
+    <SearchSection />
+  </Headerstyled__Container>
+  <SortResultsSection
+    isSearchPage={true}
+  />
+</Headerstyled__HeaderContainer>
 `;
 
 exports[`Testing the openSearch block in Header. If State isSearchShown = true, we check the openSearch snapshot 1`] = `

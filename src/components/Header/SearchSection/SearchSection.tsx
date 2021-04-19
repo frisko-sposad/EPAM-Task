@@ -12,13 +12,13 @@ const SearchSection: FC = () => {
   const changeInputValue = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
 
   const router = useRouter();
-  const { sortBy } = router.query;
+  const sortByParam = router?.query.sortBy;
 
   const handleClick = () => {
     if (inputValue !== '') {
       router.push({
         pathname: '/search',
-        search: `?sortBy=${sortBy ?? 'release_date'}&search=${inputValue}&searchBy=${searchByOption}`,
+        search: `?sortBy=${sortByParam ?? 'release_date'}&search=${inputValue}&searchBy=${searchByOption}`,
       });
     }
   };

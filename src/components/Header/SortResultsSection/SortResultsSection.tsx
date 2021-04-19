@@ -1,5 +1,5 @@
 import React, { FC, useCallback } from 'react';
-import router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import Button from '../../Generic/Button/Button';
 import { ConvertedMovie } from '../../App.types';
 import SortResultContainer from './SortResultsSection.styled';
@@ -13,13 +13,16 @@ interface SortResultsSectionProps {
 
 const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchPage, movie, moviesFound }) => {
   const { genres } = movie ?? {};
-  const { sortBy, search, searchBy } = useRouter().query;
+  const router = useRouter();
+  const sortByParam = router?.query.sortBy;
+  const searchParam = router?.query.search;
+  const searchByParam = router?.query.searchBy;
 
   const handleSortMoviesClick = useCallback(
     (option) => () => {
-      router.push(`/search/?sortBy=${option ?? 'release_date'}&search=${search}&searchBy=${searchBy}`);
+      router.push(`/search/?sortBy=${option ?? 'release_date'}&search=${searchParam}&searchBy=${searchByParam}`);
     },
-    [search, searchBy],
+    [router, searchParam, searchByParam],
   );
 
   return (
@@ -37,14 +40,14 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchPage, movie, 
                 </span>
                 <Button
                   variant={VariantBtn.SortBy}
-                  active={sortBy === 'release_date'}
+                  active={sortByParam === 'release_date'}
                   onClick={handleSortMoviesClick('release_date')}
                 >
                   release date
                 </Button>
                 <Button
                   variant={VariantBtn.SortBy}
-                  active={sortBy === 'vote_average'}
+                  active={sortByParam === 'vote_average'}
                   onClick={handleSortMoviesClick('vote_average')}
                 >
                   rating

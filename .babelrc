@@ -1,5 +1,5 @@
 {
-  "presets": ["@babel/env", "@babel/react", "@babel/preset-typescript"],
+  "presets": ["@babel/env", "@babel/react", "@babel/preset-typescript", "next/babel"],
   "plugins": ["@babel/plugin-transform-runtime",[
   "styled-components",
   { "ssr": true, "displayName": true, "preprocess": false }
