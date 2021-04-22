@@ -13,13 +13,14 @@ interface HeaderProps {
 }
 
 const Header: FC<HeaderProps> = ({ isSearchPage, movie, moviesFound }) => {
+  const { genres } = movie ?? {};
   return (
     <HeaderContainer>
       <Container>
         <SiteTitle isSearchPage={isSearchPage} />
       </Container>
       <Container>{isSearchPage ? <SearchSection /> : <MovieInfo movie={movie} />}</Container>
-      <SortResultsSection isSearchPage={isSearchPage} movie={movie} moviesFound={moviesFound} />
+      <SortResultsSection isSearchPage={isSearchPage} genres={genres} moviesFound={moviesFound} />
     </HeaderContainer>
   );
 };

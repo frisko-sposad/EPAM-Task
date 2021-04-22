@@ -7,7 +7,7 @@ import { ConvertedMovie } from '../../components/App.types';
 import Layout from '../../components/Layout';
 
 interface PagesFilmProps {
-  movie?: ConvertedMovie | null;
+  movie: ConvertedMovie | null | undefined;
   movies: ConvertedMovie[];
 }
 
@@ -23,7 +23,7 @@ const MovieInfoPage: FC<PagesFilmProps> = ({ movie, movies }) => {
 export default MovieInfoPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const responseMovieById = await fetch(`https://reactjs-cdp.herokuapp.com/movies/${params && params.id}`).then((res) =>
+  const responseMovieById = await fetch(`https://reactjs-cdp.herokuapp.com/movies/${params?.id}`).then((res) =>
     res.json(),
   );
   const movie = convertMovieToCamelCase(responseMovieById);

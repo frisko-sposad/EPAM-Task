@@ -9,7 +9,7 @@ export const Btn = styled.button<BtnAction>`
   padding: 0.5rem;
   font-size: 1rem;
   border-radius: 0.25rem;
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
   &:hover {
     opacity: 0.5;
@@ -17,7 +17,7 @@ export const Btn = styled.button<BtnAction>`
 `;
 
 export const SearchBtn = styled(Btn)`
-  background-color: #c82333;
+  ${({ active }) => (active ? `color: white; background-color: #c82333;` : `color: tomato; background-color: white;`)};
   padding: 10px;
 `;
 

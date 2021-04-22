@@ -61,10 +61,7 @@
     "webpack-dev-server": "3.11.0"
   },
   "scripts": {
-    "test": "jest --coverage --verbose",
-    "start": "webpack-dev-server --env",
-    "build:dev": "webpack --env",
-    "build:prod": "webpack --env.production",
+    "test": "jest --coverage --verbose",  
     "lint": "eslint ./src/**/*.tsx",
     "lint:fix": "npm run lint -- --fix",
     "prettier:write": "npm run prettier -- --write",

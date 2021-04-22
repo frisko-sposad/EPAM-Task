@@ -1,18 +1,16 @@
 import React, { FC, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import Button from '../../Generic/Button/Button';
-import { ConvertedMovie } from '../../App.types';
 import SortResultContainer from './SortResultsSection.styled';
 import VariantBtn from '../../Generic/Button/Button.types';
 
 interface SortResultsSectionProps {
   isSearchPage?: boolean;
-  movie?: ConvertedMovie | null | undefined;
+  genres: string[] | undefined;
   moviesFound?: number;
 }
 
-const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchPage, movie, moviesFound }) => {
-  const { genres } = movie ?? {};
+const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchPage, genres, moviesFound }) => {
   const router = useRouter();
   const sortByParam = router?.query.sortBy;
   const searchParam = router?.query.search;

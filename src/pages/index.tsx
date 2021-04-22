@@ -6,7 +6,7 @@ import Main from '../components/Main/Main';
 const App: FC = () => {
   return (
     <Layout>
-      <Header isSearchPage />
+      <Header isSearchPage movie={undefined} />
       <Main />
     </Layout>
   );

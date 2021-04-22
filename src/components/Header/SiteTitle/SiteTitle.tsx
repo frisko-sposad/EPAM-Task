@@ -16,9 +16,11 @@ const SiteTitle: FC<SiteTitle> = ({ isSearchPage }) => (
       </a>
     </Link>
     {!isSearchPage && (
-      <Button active variant={VariantBtn.Search}>
-        <Link href="/">SEARCH</Link>
-      </Button>
+      <Link href="/">
+        <Button active={false} variant={VariantBtn.Search}>
+          SEARCH
+        </Button>
+      </Link>
     )}
   </SearchContainer>
 );
