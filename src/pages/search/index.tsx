@@ -1,23 +1,16 @@
 import { GetServerSideProps } from 'next';
 import React, { FC } from 'react';
 import convertMovieToCamelCase from '../../components/App.helpers';
-import { MovieItemType } from '../../components/App.types';
-import Header from '../../components/Header/Header';
+import { ConvertedMovie } from '../../components/App.types';
 import Layout from '../../components/Layout';
-import Main from '../../components/Main/Main';
 
 interface PageSearchProps {
-  movies?: MovieItemType[];
+  movies: ConvertedMovie[];
   moviesFound?: number;
 }
 
 const SearchPage: FC<PageSearchProps> = ({ movies, moviesFound }) => {
-  return (
-    <Layout>
-      <Header isSearchPage moviesFound={moviesFound} />
-      <Main movies={movies} />
-    </Layout>
-  );
+  return <Layout isSearchPage moviesFound={moviesFound} movies={movies} />;
 };
 
 export default SearchPage;

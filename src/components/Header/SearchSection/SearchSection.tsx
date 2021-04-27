@@ -12,7 +12,7 @@ const SearchSection: FC = () => {
   const changeInputValue = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
 
   const router = useRouter();
-  const sortByParam = router ? router.query.sortBy : 'release_date';
+  const sortByParam = router?.query?.sortBy || 'release_date';
 
   const handleClick = () => {
     if (inputValue !== '') {

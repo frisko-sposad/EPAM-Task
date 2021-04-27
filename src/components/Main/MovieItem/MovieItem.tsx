@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
-
 import { MovieItemType } from '../../App.types';
 import { Image, Info, Title, MovieItemContainer, Year } from './MovieItem.styled';
 
