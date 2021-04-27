@@ -29,8 +29,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       }&searchBy=genres`,
     ).then((res) => res.json()));
 
-  const { data } = responseMovies;
-  const movies = data.map(convertMovieToCamelCase);
+  const movies = responseMovies ? responseMovies.data.map(convertMovieToCamelCase) : null;
 
   return {
     props: { movie, movies },

@@ -15,57 +15,59 @@ exports[`Render MovieItem. MovieItem 1`] = `
 >
   <Link
     href="/film/1"
+    passHref={true}
   >
-    <MovieItemstyled__MovieItemContainer
+    <a
+      href="/film/1"
       onClick={[Function]}
       onMouseEnter={[Function]}
     >
-      <div
-        className="MovieItemstyled__MovieItemContainer-sc-1igl0l9-0 cCNLhl"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
-      >
-        <MovieItemstyled__Image
-          alt="poster from The Witcher"
-          src="https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/57375a05-4883-4994-b33b-8d60741a0706/300x450"
+      <MovieItemstyled__MovieItemContainer>
+        <div
+          className="MovieItemstyled__MovieItemContainer-sc-1igl0l9-0 cCNLhl"
         >
-          <img
+          <MovieItemstyled__Image
             alt="poster from The Witcher"
-            className="MovieItemstyled__Image-sc-1igl0l9-1 HEkJa"
             src="https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/57375a05-4883-4994-b33b-8d60741a0706/300x450"
-          />
-        </MovieItemstyled__Image>
-        <div>
-          <MovieItemstyled__Info>
-            <div
-              className="MovieItemstyled__Info-sc-1igl0l9-2 FjQtw"
-            >
-              <MovieItemstyled__Title>
-                <div
-                  className="MovieItemstyled__Title-sc-1igl0l9-3 gGwrCN"
-                >
-                  The Witcher
-                </div>
-              </MovieItemstyled__Title>
-              <MovieItemstyled__Year>
-                <div
-                  className="MovieItemstyled__Year-sc-1igl0l9-4 hksARX"
-                >
-                  2019
-                </div>
-              </MovieItemstyled__Year>
-            </div>
-          </MovieItemstyled__Info>
-          <MovieItemstyled__Info>
-            <div
-              className="MovieItemstyled__Info-sc-1igl0l9-2 FjQtw"
-            >
-              fantasy, Drama
-            </div>
-          </MovieItemstyled__Info>
+          >
+            <img
+              alt="poster from The Witcher"
+              className="MovieItemstyled__Image-sc-1igl0l9-1 HEkJa"
+              src="https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/57375a05-4883-4994-b33b-8d60741a0706/300x450"
+            />
+          </MovieItemstyled__Image>
+          <div>
+            <MovieItemstyled__Info>
+              <div
+                className="MovieItemstyled__Info-sc-1igl0l9-2 FjQtw"
+              >
+                <MovieItemstyled__Title>
+                  <div
+                    className="MovieItemstyled__Title-sc-1igl0l9-3 gGwrCN"
+                  >
+                    The Witcher
+                  </div>
+                </MovieItemstyled__Title>
+                <MovieItemstyled__Year>
+                  <div
+                    className="MovieItemstyled__Year-sc-1igl0l9-4 hksARX"
+                  >
+                    2019
+                  </div>
+                </MovieItemstyled__Year>
+              </div>
+            </MovieItemstyled__Info>
+            <MovieItemstyled__Info>
+              <div
+                className="MovieItemstyled__Info-sc-1igl0l9-2 FjQtw"
+              >
+                fantasy, Drama
+              </div>
+            </MovieItemstyled__Info>
+          </div>
         </div>
-      </div>
-    </MovieItemstyled__MovieItemContainer>
+      </MovieItemstyled__MovieItemContainer>
+    </a>
   </Link>
 </MovieItem>
 `;

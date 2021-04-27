@@ -3,13 +3,13 @@ import { mount } from 'enzyme';
 import SortResultsSection from './SortResultsSection';
 import movieBase from '../../MovieBase';
 
-const movie = movieBase[0];
+const { genres } = movieBase[0];
 const testMoviesFound = 55;
 
 const getNodeText = (element) => element.text();
 
 describe('Tested Sort Result Section', () => {
-  const SortResultsSectionWithSearchByGenre = mount(<SortResultsSection movie={movie} />);
+  const SortResultsSectionWithSearchByGenre = mount(<SortResultsSection genres={genres} />);
   it('Show the genre of found movies', () => {
     const items = SortResultsSectionWithSearchByGenre.find('span').map(getNodeText);
     expect(items).toEqual(['Films by: ', 'fantasy genre']);
