@@ -18,15 +18,14 @@ export default SearchPage;
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { sortBy, search, searchBy } = query;
 
-  const response = await fetch(
+  const { data, total } = await fetch(
     `https://reactjs-cdp.herokuapp.com/movies?sortBy=${
-      sortBy !== 'null' ? sortBy : 'release_date'
-    }&sortOrder=desc&search=${search ?? ''}&searchBy=${searchBy || 'title'}`,
+      sortBy !== null ? sortBy : 'release_date'
+    }&sortOrder=desc&search=${search ?? ''}&searchBy=${searchBy ?? 'title'}`,
   ).then((res) => res.json());
-  const { data, total } = response;
+  // const { data, total } = response;
   const movies = data.map(convertMovieToCamelCase);
-  const moviesFound = total;
   return {
-    props: { movies, moviesFound },
+    props: { movies, moviesFound: total },
   };
 };

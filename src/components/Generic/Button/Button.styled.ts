@@ -4,7 +4,7 @@ export interface BtnAction {
   active: boolean;
 }
 
-export const Btn = styled.button<BtnAction>`
+export const Btn = styled.span<BtnAction>`
   border: none;
   padding: 0.5rem;
   font-size: 1rem;
@@ -17,7 +17,7 @@ export const Btn = styled.button<BtnAction>`
 `;
 
 export const SearchBtn = styled(Btn)`
-  ${({ active }) => (active ? `color: white; background-color: #c82333;` : `color: tomato; background-color: white;`)};
+  ${({ active }) => (active ? 'color: white; background-color: #c82333;' : 'color: tomato; background-color: white;')};
   padding: 10px;
 `;
 
@@ -34,5 +34,5 @@ export const SortByBtn = styled(Btn)`
   padding: 0 1rem;
   outline: none;
   color: #000000;
-  ${({ active }) => active && `font-weight: 600; color: tomato;`};
+  ${({ active }) => active && 'font-weight: 600; color: tomato;'};
 `;
