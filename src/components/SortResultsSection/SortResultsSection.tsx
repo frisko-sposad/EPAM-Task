@@ -1,16 +1,16 @@
 import React, { FC, useCallback } from 'react';
 import { useRouter } from 'next/router';
-import Button from '../../Generic/Button/Button';
+import Button from '../Generic/Button/Button';
 import SortResultContainer from './SortResultsSection.styled';
-import VariantBtn from '../../Generic/Button/Button.types';
+import VariantBtn from '../Generic/Button/Button.types';
 
 interface SortResultsSectionProps {
   isSearchPage: boolean;
   genres: string[] | undefined;
-  moviesFound?: number;
+  moviesCount?: number;
 }
 
-const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchPage, genres, moviesFound }) => {
+const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchPage, genres, moviesCount }) => {
   const router = useRouter();
   const { sortBy, search, searchBy } = router?.query || {
     sortBy: 'release_date',
@@ -29,10 +29,10 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchPage, genres,
     <SortResultContainer>
       {isSearchPage ? (
         <>
-          {moviesFound !== 0 && moviesFound && (
+          {moviesCount !== 0 && moviesCount && (
             <>
               <span>
-                <strong>{`${moviesFound} movies found`}</strong>
+                <strong>{`${moviesCount} movies found`}</strong>
               </span>
               <div>
                 <span>

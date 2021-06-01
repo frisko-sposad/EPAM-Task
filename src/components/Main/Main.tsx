@@ -1,24 +1,60 @@
-import React, { FC } from 'react';
+import React, { Dispatch, FC, SetStateAction, useCallback, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import MovieItem from './MovieItem/MovieItem';
-import { MovieItemType } from '../App.types';
+import { ConvertedMovie } from '../App.types';
 import NoFilmsFound from './NoFilmsFound/NoFilmsFound';
 import PageNotFound from './PageNotFound/PageNotFound';
 import { MainContainer } from './Main.styled';
+import convertMovieToCamelCase from '../App.helpers';
 
 interface MainProps {
-  movies?: MovieItemType[];
+  movies?: ConvertedMovie[];
+  genres?: string[];
+  query?: string[];
   isPageNotFound?: boolean;
+  isSearchPage: boolean;
+  setMoviesCount: Dispatch<SetStateAction<number>>;
 }
 
-const Main: FC<MainProps> = ({ movies, isPageNotFound }) => {
+const Main: FC<MainProps> = ({ isPageNotFound, genres, isSearchPage, setMoviesCount }) => {
+  const [foundMovies, setFoundMovies] = useState<ConvertedMovie[]>([]);
+  const router = useRouter();
+  const { sortBy, search, searchBy } = (isSearchPage && router?.query) || {
+    sortBy: 'release_date',
+    search: genres ? genres[0] : '',
+    searchBy: 'genres',
+  };
+
+  const getMovies = useCallback(
+    async (
+      sortByParam: string | string[] | undefined,
+      searchParam: string | string[] | undefined,
+      searchByParam: string | string[] | undefined,
+    ) => {
+      const { data, total } = await fetch(
+        `https://reactjs-cdp.herokuapp.com/movies?sortBy=${sortByParam ?? 'release_date'}&sortOrder=desc&search=${
+          searchParam ?? ''
+        }&searchBy=${searchByParam ?? 'title'}`,
+      ).then((res) => res.json());
+      const convertedMovies = data.map(convertMovieToCamelCase);
+      setFoundMovies(convertedMovies);
+      setMoviesCount(total);
+    },
+    [setMoviesCount],
+  );
+
+  useEffect(() => {
+    getMovies(sortBy, search, searchBy);
+  }, [getMovies, search, searchBy, sortBy]);
+
   if (isPageNotFound) {
     return <PageNotFound />;
   }
-  return !movies || movies.length === 0 ? (
+  return !foundMovies || foundMovies.length === 0 ? (
     <NoFilmsFound />
   ) : (
     <MainContainer>
-      {movies?.map((movie) => (
+      {foundMovies.map((movie) => (
         <MovieItem key={movie.id} {...movie} />
       ))}
     </MainContainer>

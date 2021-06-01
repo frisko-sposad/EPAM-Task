@@ -5,12 +5,12 @@ import { ConvertedMovie } from '../../components/App.types';
 import Layout from '../../components/Layout';
 
 interface PagesFilmProps {
-  movie: ConvertedMovie | null | undefined;
+  movie: ConvertedMovie;
   movies: ConvertedMovie[];
 }
 
-const MovieInfoPage: FC<PagesFilmProps> = ({ movie, movies }) => {
-  return <Layout isSearchPage={false} movie={movie} movies={movies} />;
+const MovieInfoPage: FC<PagesFilmProps> = ({ movie }) => {
+  return <Layout isSearchPage={false} movie={movie} />;
 };
 
 export default MovieInfoPage;
@@ -21,17 +21,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   );
   const movie = Object.keys(responseMovieById).length !== 0 ? convertMovieToCamelCase(responseMovieById) : null;
 
-  const responseMovies =
-    movie &&
-    (await fetch(
-      `https://reactjs-cdp.herokuapp.com/movies?sortBy=release_date&sortOrder=desc&search=${
-        movie?.genres[0] ?? ''
-      }&searchBy=genres`,
-    ).then((res) => res.json()));
-
-  const movies = responseMovies ? responseMovies.data.map(convertMovieToCamelCase) : null;
-
   return {
-    props: { movie, movies },
+    props: { movie },
   };
 };

@@ -4,7 +4,7 @@ export interface BtnAction {
   active: boolean;
 }
 
-export const Btn = styled.span<BtnAction>`
+export const Btn = styled.button<BtnAction>`
   border: none;
   padding: 0.5rem;
   font-size: 1rem;
@@ -12,7 +12,7 @@ export const Btn = styled.span<BtnAction>`
   color: #ffffff;
   cursor: pointer;
   &:hover {
-    opacity: 0.5;
+    opacity: 0.7;
   }
 `;
 
@@ -35,4 +35,14 @@ export const SortByBtn = styled(Btn)`
   outline: none;
   color: #000000;
   ${({ active }) => active && 'font-weight: 600; color: tomato;'};
+`;
+
+export const ReturnSearchBtn = styled.a`
+  color: tomato;
+  background-color: white;
+  border-radius: 0.25rem;
+  padding: 10px;
+  &:hover {
+    opacity: 0.7;
+  }
 `;

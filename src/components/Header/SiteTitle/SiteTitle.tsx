@@ -1,14 +1,11 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
-import styled from 'styled-components';
-import Button from '../../Generic/Button/Button';
-import VariantBtn from '../../Generic/Button/Button.types';
+import { ReturnSearchBtn } from '../../Generic/Button/Button.styled';
 import { SearchContainer } from '../MovieInfo/MovieInfo.styled';
 
 interface SiteTitle {
   isSearchPage?: boolean;
 }
-const Test = styled.a``;
 const SiteTitle: FC<SiteTitle> = ({ isSearchPage }) => (
   <SearchContainer>
     <Link href="/" passHref>
@@ -18,7 +15,7 @@ const SiteTitle: FC<SiteTitle> = ({ isSearchPage }) => (
     </Link>
     {!isSearchPage && (
       <Link href="/" passHref>
-        <Test>SEARCH</Test>
+        <ReturnSearchBtn>SEARCH</ReturnSearchBtn>
       </Link>
     )}
   </SearchContainer>

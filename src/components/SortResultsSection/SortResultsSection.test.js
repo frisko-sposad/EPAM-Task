@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import SortResultsSection from './SortResultsSection';
-import movieBase from '../../MovieBase';
+import movieBase from '../MovieBase';
 
 const { genres } = movieBase[0];
 const testMoviesFound = 55;
@@ -15,7 +15,7 @@ describe('Tested Sort Result Section', () => {
     expect(items).toEqual(['Films by: ', 'fantasy genre']);
   });
 
-  const SortResultsSectionWithSearchInfo = mount(<SortResultsSection isSearchPage moviesFound={testMoviesFound} />);
+  const SortResultsSectionWithSearchInfo = mount(<SortResultsSection isSearchPage moviesCount={testMoviesFound} />);
   it('Show the number of movies found, sorted by date and rating.', () => {
     const span = SortResultsSectionWithSearchInfo.find('span').map(getNodeText);
     const button = SortResultsSectionWithSearchInfo.find('button').map(getNodeText);

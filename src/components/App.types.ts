@@ -19,15 +19,15 @@ export interface RawMovie {
 }
 
 export interface ConvertedMovie {
-  id: number;
-  title: string;
-  tagline: string;
-  voteAverage: number;
-  releaseDate: string;
-  genres: string[];
-  posterPath: string;
-  overview: string;
-  runtime: number | null;
+  id?: number;
+  title?: string;
+  tagline?: string;
+  voteAverage?: number;
+  releaseDate?: string;
+  genres?: string[];
+  posterPath?: string;
+  overview?: string;
+  runtime?: number | null;
 }
 
 export type MovieItemType = Pick<ConvertedMovie, 'id' | 'posterPath' | 'title' | 'releaseDate' | 'genres'>;
