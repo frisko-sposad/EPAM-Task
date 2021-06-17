@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { ConvertedMovie } from '../../App.types';
 import { MovieInfoContainer, Img, Description, Title, VideoInfo } from './MovieInfo.styled';
 
@@ -18,4 +18,4 @@ const MovieInfo: FC<ConvertedMovie> = ({ title, overview, releaseDate, posterPat
     </MovieInfoContainer>
   );
 };
-export default MovieInfo;
+export default memo(MovieInfo);

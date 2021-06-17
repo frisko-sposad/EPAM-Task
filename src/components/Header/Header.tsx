@@ -7,7 +7,6 @@ import { ConvertedMovie } from '../App.types';
 
 interface HeaderProps extends ConvertedMovie {
   isSearchPage: boolean;
-  moviesFound?: number;
 }
 
 const Header: FC<HeaderProps> = ({ isSearchPage, title, overview, releaseDate, posterPath, genres, runtime }) => {

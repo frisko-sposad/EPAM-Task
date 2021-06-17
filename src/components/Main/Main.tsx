@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction, useCallback, useEffect, useState } from 'react';
+import React, { Dispatch, FC, memo, SetStateAction, useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import MovieItem from './MovieItem/MovieItem';
 import { ConvertedMovie } from '../App.types';
@@ -8,13 +8,14 @@ import { MainContainer } from './Main.styled';
 import convertMovieToCamelCase from '../App.helpers';
 
 interface MainProps {
-  movies?: ConvertedMovie[];
   genres?: string[];
   query?: string[];
   isPageNotFound?: boolean;
   isSearchPage: boolean;
   setMoviesCount: Dispatch<SetStateAction<number>>;
 }
+
+type MoviesParams = string | string[] | undefined;
 
 const Main: FC<MainProps> = ({ isPageNotFound, genres, isSearchPage, setMoviesCount }) => {
   const [foundMovies, setFoundMovies] = useState<ConvertedMovie[]>([]);
@@ -26,11 +27,7 @@ const Main: FC<MainProps> = ({ isPageNotFound, genres, isSearchPage, setMoviesCo
   };
 
   const getMovies = useCallback(
-    async (
-      sortByParam: string | string[] | undefined,
-      searchParam: string | string[] | undefined,
-      searchByParam: string | string[] | undefined,
-    ) => {
+    async (sortByParam: MoviesParams, searchParam: MoviesParams, searchByParam: MoviesParams) => {
       const { data, total } = await fetch(
         `https://reactjs-cdp.herokuapp.com/movies?sortBy=${sortByParam ?? 'release_date'}&sortOrder=desc&search=${
           searchParam ?? ''
@@ -61,4 +58,4 @@ const Main: FC<MainProps> = ({ isPageNotFound, genres, isSearchPage, setMoviesCo
   );
 };
 
-export default Main;
+export default memo(Main);

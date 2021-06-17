@@ -3,10 +3,10 @@ import React, { FC } from 'react';
 import { ReturnSearchBtn } from '../../Generic/Button/Button.styled';
 import { SearchContainer } from '../MovieInfo/MovieInfo.styled';
 
-interface SiteTitle {
+interface SiteTitleProps {
   isSearchPage?: boolean;
 }
-const SiteTitle: FC<SiteTitle> = ({ isSearchPage }) => (
+const SiteTitle: FC<SiteTitleProps> = ({ isSearchPage }) => (
   <SearchContainer>
     <Link href="/" passHref>
       <a href="/">

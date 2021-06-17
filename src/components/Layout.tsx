@@ -1,18 +1,17 @@
 import Head from 'next/head';
-import React, { FC, useState } from 'react';
+import React, { FC, memo, useState } from 'react';
 import GlobalStyle from './App.styled';
 import { ConvertedMovie } from './App.types';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import SortResultsSection from './SortResultsSection/SortResultsSection';
 import Main from './Main/Main';
+import LayoutContainer from './Layout.styled';
 
 interface LayoutProps {
   isSearchPage: boolean;
-  movies?: ConvertedMovie[];
   movie?: ConvertedMovie;
   isPageNotFound?: boolean;
-  query?: string[];
 }
 
 const Layout: FC<LayoutProps> = ({ isSearchPage, isPageNotFound, movie }) => {
@@ -22,23 +21,27 @@ const Layout: FC<LayoutProps> = ({ isSearchPage, isPageNotFound, movie }) => {
   return (
     <>
       <GlobalStyle />
-      <Head>
-        <title>NetflixRoulette</title>
-      </Head>
-      <Header
-        isSearchPage={isSearchPage}
-        title={title}
-        overview={overview}
-        releaseDate={releaseDate}
-        posterPath={posterPath}
-        genres={genres}
-        runtime={runtime}
-      />
-      <SortResultsSection isSearchPage={isSearchPage} genres={genres} moviesCount={moviesCount} />
-      <Main isSearchPage={isSearchPage} setMoviesCount={setMoviesCount} isPageNotFound={isPageNotFound} />
-      <Footer />
+      <LayoutContainer>
+        <Head>
+          <title>NetflixRoulette</title>
+        </Head>
+        <div>
+          <Header
+            isSearchPage={isSearchPage}
+            title={title}
+            overview={overview}
+            releaseDate={releaseDate}
+            posterPath={posterPath}
+            genres={genres}
+            runtime={runtime}
+          />
+          <SortResultsSection isSearchPage={isSearchPage} genres={genres} moviesCount={moviesCount} />
+        </div>
+        <Main isSearchPage={isSearchPage} setMoviesCount={setMoviesCount} isPageNotFound={isPageNotFound} />
+        <Footer />
+      </LayoutContainer>
     </>
   );
 };
 
-export default Layout;
+export default memo(Layout);
