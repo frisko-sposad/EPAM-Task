@@ -15,7 +15,14 @@ interface LayoutProps {
 }
 
 const Layout: FC<LayoutProps> = ({ isSearchPage, isPageNotFound, movie }) => {
-  const { title, overview, releaseDate, posterPath, genres, runtime } = movie ?? {};
+  const { title, overview, releaseDate, posterPath, genres, runtime } = movie ?? {
+    title: '',
+    overview: '',
+    releaseDate: '',
+    posterPath: '',
+    genres: [],
+    runtime: null,
+  };
   const [moviesCount, setMoviesCount] = useState(0);
 
   return (

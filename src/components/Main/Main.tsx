@@ -9,7 +9,6 @@ import convertMovieToCamelCase from '../App.helpers';
 
 interface MainProps {
   genres?: string[];
-  query?: string[];
   isPageNotFound?: boolean;
   isSearchPage: boolean;
   setMoviesCount: Dispatch<SetStateAction<number>>;

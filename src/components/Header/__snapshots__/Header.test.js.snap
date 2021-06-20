@@ -8,7 +8,7 @@ exports[`Testing the closeSearch block in Header. If State isSearchPage = false,
     />
   </Headerstyled__Container>
   <Headerstyled__Container>
-    <MovieInfo />
+    <Memo(MovieInfo) />
   </Headerstyled__Container>
 </Headerstyled__HeaderContainer>
 `;
