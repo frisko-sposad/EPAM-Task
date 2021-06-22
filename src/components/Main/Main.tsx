@@ -1,11 +1,12 @@
-import React, { Dispatch, FC, memo, SetStateAction, useCallback, useEffect, useState } from 'react';
+import React, { Dispatch, FC, memo, SetStateAction } from 'react';
 import { useRouter } from 'next/router';
+import useSWR from 'swr';
 import MovieItem from './MovieItem/MovieItem';
-import { ConvertedMovie } from '../App.types';
 import NoFilmsFound from './NoFilmsFound/NoFilmsFound';
 import PageNotFound from './PageNotFound/PageNotFound';
 import { MainContainer } from './Main.styled';
 import convertMovieToCamelCase from '../App.helpers';
+import { ConvertedMovie } from '../App.types';
 
 interface MainProps {
   genres?: string[];
@@ -14,10 +15,7 @@ interface MainProps {
   setMoviesCount: Dispatch<SetStateAction<number>>;
 }
 
-type MoviesParams = string | string[] | undefined;
-
 const Main: FC<MainProps> = ({ isPageNotFound, genres, isSearchPage, setMoviesCount }) => {
-  const [foundMovies, setFoundMovies] = useState<ConvertedMovie[]>([]);
   const router = useRouter();
   const { sortBy, search, searchBy } = (isSearchPage && router?.query) || {
     sortBy: 'release_date',
@@ -25,35 +23,35 @@ const Main: FC<MainProps> = ({ isPageNotFound, genres, isSearchPage, setMoviesCo
     searchBy: 'genres',
   };
 
-  const getMovies = useCallback(
-    async (sortByParam: MoviesParams, searchParam: MoviesParams, searchByParam: MoviesParams) => {
-      const { data, total } = await fetch(
-        `https://reactjs-cdp.herokuapp.com/movies?sortBy=${sortByParam ?? 'release_date'}&sortOrder=desc&search=${
-          searchParam ?? ''
-        }&searchBy=${searchByParam ?? 'title'}`,
-      ).then((res) => res.json());
-      const convertedMovies = data.map(convertMovieToCamelCase);
-      setFoundMovies(convertedMovies);
-      setMoviesCount(total);
-    },
-    [setMoviesCount],
+  const fetcher = async (url: string) => {
+    const { data, total } = await fetch(url).then((res) => res.json());
+    const convertedMovies = data.map(convertMovieToCamelCase);
+    setMoviesCount(total);
+    return convertedMovies;
+  };
+
+  const { data, error } = useSWR(
+    `https://reactjs-cdp.herokuapp.com/movies?sortBy=${sortBy ?? 'release_date'}&sortOrder=desc&search=${
+      search ?? ''
+    }&searchBy=${searchBy ?? 'title'}`,
+    fetcher,
   );
 
-  useEffect(() => {
-    getMovies(sortBy, search, searchBy);
-  }, [getMovies, search, searchBy, sortBy]);
-
+  if (error) return <MainContainer>failed to load</MainContainer>;
+  if (!data) return <MainContainer>loading...</MainContainer>;
   if (isPageNotFound) {
     return <PageNotFound />;
   }
-  return !foundMovies || foundMovies.length === 0 ? (
+  return data.length === 0 ? (
     <NoFilmsFound />
   ) : (
-    <MainContainer>
-      {foundMovies.map((movie) => (
-        <MovieItem key={movie.id} {...movie} />
-      ))}
-    </MainContainer>
+    <div>
+      <MainContainer>
+        {data.map((movie: ConvertedMovie) => (
+          <MovieItem key={movie.id} movie={movie} />
+        ))}
+      </MainContainer>
+    </div>
   );
 };
 

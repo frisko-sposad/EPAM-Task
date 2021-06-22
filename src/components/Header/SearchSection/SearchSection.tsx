@@ -7,12 +7,13 @@ import BuggyCounter from '../ErrorBoundary/BuggyCounter';
 import VariantBtn from '../../Generic/Button/Button.types';
 
 const SearchSection: FC = () => {
-  const [inputValue, setInputValue] = useState('');
-  const [searchByOption, setSearchByOption] = useState('title');
-  const changeInputValue = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
-
   const router = useRouter();
   const sortByParam = router?.query?.sortBy || 'release_date';
+  const searchInput = router?.query?.search || '';
+
+  const [inputValue, setInputValue] = useState(searchInput);
+  const [searchByOption, setSearchByOption] = useState('title');
+  const changeInputValue = (e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value);
 
   const handleClick = () => {
     if (inputValue !== '') {

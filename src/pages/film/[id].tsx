@@ -3,13 +3,19 @@ import { GetServerSideProps } from 'next';
 import convertMovieToCamelCase from '../../components/App.helpers';
 import { ConvertedMovie } from '../../components/App.types';
 import Layout from '../../components/Layout';
+import MovieInfo from '../../components/Header/MovieInfo/MovieInfo';
 
 interface MovieInfoProps {
   movie: ConvertedMovie;
 }
 
 const MovieInfoPage: FC<MovieInfoProps> = ({ movie }) => {
-  return <Layout isSearchPage={false} movie={movie} />;
+  const { genres } = movie;
+  return (
+    <Layout isSearchPage={false} genres={genres}>
+      <MovieInfo movie={movie} />
+    </Layout>
+  );
 };
 
 export default memo(MovieInfoPage);

@@ -2,7 +2,12 @@ import React, { FC, memo } from 'react';
 import { ConvertedMovie } from '../../App.types';
 import { MovieInfoContainer, Img, Description, Title, VideoInfo } from './MovieInfo.styled';
 
-const MovieInfo: FC<ConvertedMovie> = ({ title, overview, releaseDate, posterPath, genres, runtime }) => {
+interface MovieInfoProps {
+  movie: ConvertedMovie;
+}
+
+const MovieInfo: FC<MovieInfoProps> = ({ movie }) => {
+  const { title, overview, releaseDate, posterPath, genres, runtime } = movie;
   return (
     <MovieInfoContainer>
       <Img className="movie-info__img" src={posterPath} alt="movieImage" />

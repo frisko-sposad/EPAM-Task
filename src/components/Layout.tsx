@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import React, { FC, memo, useState } from 'react';
 import GlobalStyle from './App.styled';
-import { ConvertedMovie } from './App.types';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import SortResultsSection from './SortResultsSection/SortResultsSection';
@@ -10,19 +9,12 @@ import LayoutContainer from './Layout.styled';
 
 interface LayoutProps {
   isSearchPage: boolean;
-  movie?: ConvertedMovie;
+  genres?: string[];
   isPageNotFound?: boolean;
+  children: JSX.Element;
 }
 
-const Layout: FC<LayoutProps> = ({ isSearchPage, isPageNotFound, movie }) => {
-  const { title, overview, releaseDate, posterPath, genres, runtime } = movie ?? {
-    title: '',
-    overview: '',
-    releaseDate: '',
-    posterPath: '',
-    genres: [],
-    runtime: null,
-  };
+const Layout: FC<LayoutProps> = ({ isSearchPage, isPageNotFound, genres, children }) => {
   const [moviesCount, setMoviesCount] = useState(0);
 
   return (
@@ -33,15 +25,7 @@ const Layout: FC<LayoutProps> = ({ isSearchPage, isPageNotFound, movie }) => {
           <title>NetflixRoulette</title>
         </Head>
         <div>
-          <Header
-            isSearchPage={isSearchPage}
-            title={title}
-            overview={overview}
-            releaseDate={releaseDate}
-            posterPath={posterPath}
-            genres={genres}
-            runtime={runtime}
-          />
+          <Header isSearchPage={isSearchPage}>{children}</Header>
           <SortResultsSection isSearchPage={isSearchPage} genres={genres} moviesCount={moviesCount} />
         </div>
         <Main isSearchPage={isSearchPage} setMoviesCount={setMoviesCount} isPageNotFound={isPageNotFound} />

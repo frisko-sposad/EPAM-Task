@@ -1,9 +1,16 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
-import { MovieItemType } from '../../App.types';
+import { ConvertedMovie } from '../../App.types';
 import { Image, Info, Title, MovieItemContainer, Year } from './MovieItem.styled';
 
-const MovieItem: FC<MovieItemType> = ({ id, title, posterPath, releaseDate, genres }) => {
+interface MovieItemType {
+  key: number | undefined;
+  movie: ConvertedMovie;
+}
+
+const MovieItem: FC<MovieItemType> = ({ movie }) => {
+  const { id, title, posterPath, releaseDate, genres } = movie;
+
   return (
     <Link href={`/film/${id}`} passHref>
       <a href={`/film/${id}`}>
@@ -14,7 +21,7 @@ const MovieItem: FC<MovieItemType> = ({ id, title, posterPath, releaseDate, genr
               <Title>{title}</Title>
               <Year>{releaseDate?.split('-')[0]}</Year>
             </Info>
-            <Info>{genres.join(', ')}</Info>
+            <Info>{genres?.join(', ')}</Info>
           </div>
         </MovieItemContainer>
       </a>

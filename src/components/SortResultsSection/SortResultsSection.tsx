@@ -6,7 +6,7 @@ import VariantBtn from '../Generic/Button/Button.types';
 
 interface SortResultsSectionProps {
   isSearchPage: boolean;
-  genres: string[] | undefined;
+  genres?: string[];
   moviesCount: number;
 }
 
