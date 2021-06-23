@@ -20,12 +20,9 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchPage, genres,
         searchBy: 'title',
       };
 
-  const handleSortMoviesClick = useCallback(
-    (option) => () => {
-      router.push(`/search/?sortBy=${option}&search=${search}&searchBy=${searchBy}`);
-    },
-    [router, search, searchBy],
-  );
+  const handleSortMoviesClick = (option: string) => () => {
+    router.push(`/search/?sortBy=${option}&search=${search}&searchBy=${searchBy}`);
+  };
 
   return (
     <SortResultContainer>

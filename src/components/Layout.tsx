@@ -8,13 +8,13 @@ import Main from './Main/Main';
 import LayoutContainer from './Layout.styled';
 
 interface LayoutProps {
-  isSearchPage: boolean;
+  isSearchPage?: boolean;
   genres?: string[];
   isPageNotFound?: boolean;
   children: JSX.Element;
 }
 
-const Layout: FC<LayoutProps> = ({ isSearchPage, isPageNotFound, genres, children }) => {
+const Layout: FC<LayoutProps> = ({ isSearchPage = true, isPageNotFound, genres, children }) => {
   const [moviesCount, setMoviesCount] = useState(0);
 
   return (

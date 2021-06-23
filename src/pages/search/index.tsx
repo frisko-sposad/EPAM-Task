@@ -4,7 +4,7 @@ import Layout from '../../components/Layout';
 
 const SearchPage: FC = () => {
   return (
-    <Layout isSearchPage>
+    <Layout>
       <SearchSection />
     </Layout>
   );

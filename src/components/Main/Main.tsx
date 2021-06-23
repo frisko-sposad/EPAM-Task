@@ -7,6 +7,7 @@ import PageNotFound from './PageNotFound/PageNotFound';
 import { MainContainer } from './Main.styled';
 import convertMovieToCamelCase from '../App.helpers';
 import { ConvertedMovie } from '../App.types';
+import PageLoading from './PageLoading/PageLoading';
 
 interface MainProps {
   genres?: string[];
@@ -30,15 +31,14 @@ const Main: FC<MainProps> = ({ isPageNotFound, genres, isSearchPage, setMoviesCo
     return convertedMovies;
   };
 
-  const { data, error } = useSWR(
+  const { data } = useSWR(
     `https://reactjs-cdp.herokuapp.com/movies?sortBy=${sortBy ?? 'release_date'}&sortOrder=desc&search=${
       search ?? ''
     }&searchBy=${searchBy ?? 'title'}`,
     fetcher,
   );
 
-  if (error) return <MainContainer>failed to load</MainContainer>;
-  if (!data) return <MainContainer>loading...</MainContainer>;
+  if (!data) return <PageLoading />;
   if (isPageNotFound) {
     return <PageNotFound />;
   }
