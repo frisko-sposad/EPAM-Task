@@ -26,7 +26,7 @@ const Main: FC<MainProps> = ({ isPageNotFound, genres, isSearchPage, setMoviesCo
 
   const fetcher = async (url: string) => {
     const { data, total } = await fetch(url).then((res) => res.json());
-    const convertedMovies = data.map(convertMovieToCamelCase);
+    const convertedMovies = data?.map(convertMovieToCamelCase);
     setMoviesCount(total);
     return convertedMovies;
   };

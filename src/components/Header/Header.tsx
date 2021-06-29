@@ -4,7 +4,6 @@ import SiteTitle from './SiteTitle/SiteTitle';
 
 interface HeaderProps {
   isSearchPage: boolean;
-  children: JSX.Element;
 }
 
 const Header: FC<HeaderProps> = ({ isSearchPage, children }) => {

@@ -11,7 +11,7 @@ export interface RawMovie {
 }
 
 export interface ConvertedMovie {
-  id?: number;
+  id: number;
   title: string;
   tagline?: string;
   voteAverage?: number;

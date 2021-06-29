@@ -3,12 +3,11 @@ import React, { FC } from 'react';
 import { ConvertedMovie } from '../../App.types';
 import { Image, Info, Title, MovieItemContainer, Year } from './MovieItem.styled';
 
-interface MovieItemType {
-  key: number | undefined;
+interface MovieItemProps {
   movie: ConvertedMovie;
 }
 
-const MovieItem: FC<MovieItemType> = ({ movie }) => {
+const MovieItem: FC<MovieItemProps> = ({ movie }) => {
   const { id, title, posterPath, releaseDate, genres } = movie;
 
   return (

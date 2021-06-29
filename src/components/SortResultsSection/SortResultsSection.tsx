@@ -20,9 +20,13 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchPage, genres,
         searchBy: 'title',
       };
 
-  const handleSortMoviesClick = (option: string) => () => {
-    router.push(`/search/?sortBy=${option}&search=${search}&searchBy=${searchBy}`);
-  };
+  const handleSortMoviesClickByReleaseDate = useCallback(() => {
+    router.push(`/search/?sortBy=release_date&search=${search}&searchBy=${searchBy}`);
+  }, [router, search, searchBy]);
+
+  const handleSortMoviesClickByRating = useCallback(() => {
+    router.push(`/search/?sortBy=vote_average&search=${search}&searchBy=${searchBy}`);
+  }, [router, search, searchBy]);
 
   return (
     <SortResultContainer>
@@ -39,14 +43,14 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchPage, genres,
               <Button
                 variant={VariantBtn.SortBy}
                 active={sortBy === 'release_date'}
-                onClick={handleSortMoviesClick('release_date')}
+                onClick={handleSortMoviesClickByReleaseDate}
               >
                 release date
               </Button>
               <Button
                 variant={VariantBtn.SortBy}
                 active={sortBy === 'vote_average'}
-                onClick={handleSortMoviesClick('vote_average')}
+                onClick={handleSortMoviesClickByRating}
               >
                 rating
               </Button>
@@ -58,7 +62,7 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchPage, genres,
           <span>
             <strong>Films by: </strong>
           </span>
-          {genres && <span>{genres[0]} genre</span>}
+          {genres && genres[0] ? <span>{genres[0]} genre</span> : <span>Action genre</span>}
         </div>
       )}
     </SortResultContainer>
