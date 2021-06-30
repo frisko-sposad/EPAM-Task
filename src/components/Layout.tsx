@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React, { FC, memo, useState } from 'react';
+import React, { FC, memo, PropsWithChildren, useState } from 'react';
 import GlobalStyle from './App.styled';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
@@ -11,10 +11,9 @@ interface LayoutProps {
   isSearchPage?: boolean;
   genres?: string[];
   isPageNotFound?: boolean;
-  children: JSX.Element;
 }
 
-const Layout: FC<LayoutProps> = ({ isSearchPage = true, isPageNotFound, genres, children }) => {
+const Layout = ({ isSearchPage = true, isPageNotFound, genres, children }: PropsWithChildren<LayoutProps>) => {
   const [moviesCount, setMoviesCount] = useState(0);
 
   return (

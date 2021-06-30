@@ -62,7 +62,7 @@ const SortResultsSection: FC<SortResultsSectionProps> = ({ isSearchPage, genres,
           <span>
             <strong>Films by: </strong>
           </span>
-          {genres && genres[0] ? <span>{genres[0]} genre</span> : <span>Action genre</span>}
+          {genres?.[0] ? <span>{genres[0]} genre</span> : <span>Unnone genre</span>}
         </div>
       )}
     </SortResultContainer>
