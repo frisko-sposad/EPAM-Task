@@ -10,9 +10,8 @@ interface MovieInfoProps {
 }
 
 const MovieInfoPage: FC<MovieInfoProps> = ({ movie }) => {
-  const { genres } = movie;
   return (
-    <Layout isSearchPage={false} genres={genres}>
+    <Layout isSearchPage={false} genres={movie.genres}>
       <MovieInfo movie={movie} />
     </Layout>
   );

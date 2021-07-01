@@ -27,7 +27,12 @@ const Layout = ({ isSearchPage = true, isPageNotFound, genres, children }: Props
           <Header isSearchPage={isSearchPage}>{children}</Header>
           <SortResultsSection isSearchPage={isSearchPage} genres={genres} moviesCount={moviesCount} />
         </div>
-        <Main isSearchPage={isSearchPage} setMoviesCount={setMoviesCount} isPageNotFound={isPageNotFound} />
+        <Main
+          isSearchPage={isSearchPage}
+          setMoviesCount={setMoviesCount}
+          isPageNotFound={isPageNotFound}
+          genres={genres}
+        />
         <Footer />
       </LayoutContainer>
     </>

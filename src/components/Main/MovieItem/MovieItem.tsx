@@ -18,9 +18,9 @@ const MovieItem: FC<MovieItemProps> = ({ movie }) => {
           <div>
             <Info>
               <Title>{title}</Title>
-              <Year>{releaseDate?.split('-')[0]}</Year>
+              {releaseDate ? <Year>{releaseDate?.split('-')[0]}</Year> : null}
             </Info>
-            <Info>{genres?.join(', ')}</Info>
+            {genres ? <Info>{genres?.join(', ')}</Info> : null}
           </div>
         </MovieItemContainer>
       </a>

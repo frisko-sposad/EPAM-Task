@@ -1,6 +1,6 @@
 import React, { FC, memo } from 'react';
 import { ConvertedMovie } from '../../App.types';
-import { MovieInfoContainer, Img, Description, Title, VideoInfo } from './MovieInfo.styled';
+import { MovieInfoContainer, Img, Description, Title, Container, VideoInfo } from './MovieInfo.styled';
 
 interface MovieInfoProps {
   movie: ConvertedMovie;
@@ -13,11 +13,11 @@ const MovieInfo: FC<MovieInfoProps> = ({ movie }) => {
       <Img className="movie-info__img" src={posterPath} alt="movieImage" />
       <Description>
         <Title>{title}</Title>
-        {genres && <p>{genres.join(', ')}</p>}
-        <VideoInfo>
-          <strong>{releaseDate?.split('-')[0]}</strong>
-          {runtime && <strong> {runtime} min</strong>}
-        </VideoInfo>
+        {genres ? <p>{genres.join(', ')}</p> : <p>Unknown genre</p>}
+        <Container>
+          {releaseDate ? <VideoInfo>{releaseDate?.split('-')[0]}</VideoInfo> : null}
+          {runtime ? <VideoInfo> {runtime} min</VideoInfo> : null}
+        </Container>
         <p>{overview}</p>
       </Description>
     </MovieInfoContainer>
