@@ -13,7 +13,7 @@ const MovieInfo: FC<MovieInfoProps> = ({ movie }) => {
       <Img className="movie-info__img" src={posterPath} alt="movieImage" />
       <Description>
         <Title>{title}</Title>
-        {genres ? <p>{genres.join(', ')}</p> : <p>Unknown genre</p>}
+        {genres?.[0] ? <p>{genres.join(', ')}</p> : <p>Unknown genre</p>}
         <Container>
           {releaseDate ? <VideoInfo>{releaseDate?.split('-')[0]}</VideoInfo> : null}
           {runtime ? <VideoInfo> {runtime} min</VideoInfo> : null}
