@@ -1,22 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
-import { createStore } from 'redux';
 import SearchSection from './SearchSection';
-import rootReducer from '../../App.reducers';
-
-const initialState = {};
-const store = createStore(rootReducer, initialState);
 
 describe('Testing SearchSection.', () => {
-  const component = mount(
-    <Provider store={store}>
-      <BrowserRouter>
-        <SearchSection />
-      </BrowserRouter>
-    </Provider>,
-  );
+  const component = mount(<SearchSection />);
 
   it('Do we have input in the Search Section?', () => {
     const input = component.find('input');

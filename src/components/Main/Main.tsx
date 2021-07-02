@@ -1,44 +1,58 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import React, { Dispatch, FC, memo, SetStateAction } from 'react';
+import { useRouter } from 'next/router';
+import useSWR from 'swr';
 import MovieItem from './MovieItem/MovieItem';
-import { AppState, MovieItemType } from '../App.types';
-import PageNotFound from '../PageNotFound/PageNotFound';
-import NoFilmsFound from '../NoFilmsFound/NoFilmsFound';
-import { MainContainer, Container } from './Main.styled';
+import NoFilmsFound from './NoFilmsFound/NoFilmsFound';
+import PageNotFound from './PageNotFound/PageNotFound';
+import { MainContainer } from './Main.styled';
+import convertMovieToCamelCase from '../App.helpers';
+import { ConvertedMovie } from '../App.types';
+import PageLoading from './PageLoading/PageLoading';
 
 interface MainProps {
-  movies?: MovieItemType[];
+  genres?: string[];
+  isPageNotFound?: boolean;
+  isSearchPage: boolean;
+  setMoviesCount: Dispatch<SetStateAction<number>>;
 }
 
-const Main = ({ movies }: MainProps) => (
-  <MainContainer>
-    {!movies || movies.length === 0 ? (
-      <Container>
-        <NoFilmsFound />
-      </Container>
-    ) : (
-      <Switch>
-        <Route path={['/search', '/film/:id']}>
-          {movies.map((movie) => (
-            <MovieItem key={movie.id} {...movie} />
-          ))}
-        </Route>
-        <Route path="/" exact>
-          <Container>
-            <NoFilmsFound />
-          </Container>
-        </Route>
-        <Route path="*">
-          <Container>
-            <PageNotFound />
-          </Container>
-        </Route>
-      </Switch>
-    )}
-  </MainContainer>
-);
+const Main: FC<MainProps> = ({ isPageNotFound, genres, isSearchPage, setMoviesCount }) => {
+  const router = useRouter();
+  const { sortBy, search, searchBy } = (isSearchPage && router?.query) || {
+    sortBy: 'release_date',
+    search: genres ? genres[0] : '',
+    searchBy: 'genres',
+  };
 
-const mapStateToProps = ({ movies }: AppState) => ({ movies });
+  const fetcher = async (url: string) => {
+    const { data, total } = await fetch(url).then((res) => res.json());
+    const convertedMovies = data?.map(convertMovieToCamelCase);
+    setMoviesCount(total);
+    return convertedMovies;
+  };
 
-export default connect(mapStateToProps, null)(Main);
+  const { data } = useSWR(
+    `https://reactjs-cdp.herokuapp.com/movies?sortBy=${sortBy ?? 'release_date'}&sortOrder=desc&search=${
+      search ?? ''
+    }&searchBy=${searchBy ?? 'title'}`,
+    fetcher,
+  );
+
+  if (!data) return <PageLoading />;
+  if (isPageNotFound) {
+    return <PageNotFound />;
+  }
+  return data.length === 0 ? (
+    <NoFilmsFound />
+  ) : (
+    <div>
+      <MainContainer>
+        {data.map((movie: ConvertedMovie) => (
+          <MovieItem key={movie.id} movie={movie} />
+        ))}
+      </MainContainer>
+    </div>
+  );
+};
+
+export default memo(Main);

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const SearchContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -22,6 +22,10 @@ export const Title = styled.h2`
   color: #dc3545;
 `;
 
-export const VideoInfo = styled.div`
+export const Container = styled.div`
   margin: 20px 0;
+`;
+
+export const VideoInfo = styled.strong`
+  margin-right: 20px;
 `;

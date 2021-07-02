@@ -1,21 +1,29 @@
+import Link from 'next/link';
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
-import { MovieItemType } from '../../App.types';
+import { ConvertedMovie } from '../../App.types';
 import { Image, Info, Title, MovieItemContainer, Year } from './MovieItem.styled';
 
-const MovieItem: FC<MovieItemType> = ({ id, title, posterPath, releaseDate, genres }) => {
+interface MovieItemProps {
+  movie: ConvertedMovie;
+}
+
+const MovieItem: FC<MovieItemProps> = ({ movie }) => {
+  const { id, title, posterPath, releaseDate, genres } = movie;
+
   return (
-    <Link to={`/film/${id}`}>
-      <MovieItemContainer>
-        <Image src={posterPath} alt={`poster from ${title}`} />
-        <div>
-          <Info>
-            <Title>{title}</Title>
-            <Year>{releaseDate?.split('-')[0]}</Year>
-          </Info>
-          <Info>{genres.join(', ')}</Info>
-        </div>
-      </MovieItemContainer>
+    <Link href={`/film/${id}`} passHref>
+      <a href={`/film/${id}`}>
+        <MovieItemContainer>
+          <Image src={posterPath} alt={`poster from ${title}`} />
+          <div>
+            <Info>
+              <Title>{title}</Title>
+              {releaseDate ? <Year>{releaseDate?.split('-')[0]}</Year> : null}
+            </Info>
+            {genres ? <Info>{genres?.join(', ')}</Info> : null}
+          </div>
+        </MovieItemContainer>
+      </a>
     </Link>
   );
 };

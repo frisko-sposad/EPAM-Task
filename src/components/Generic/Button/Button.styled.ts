@@ -9,15 +9,15 @@ export const Btn = styled.button<BtnAction>`
   padding: 0.5rem;
   font-size: 1rem;
   border-radius: 0.25rem;
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
   &:hover {
-    opacity: 0.5;
+    opacity: 0.7;
   }
 `;
 
 export const SearchBtn = styled(Btn)`
-  background-color: #c82333;
+  ${({ active }) => (active ? 'color: white; background-color: #c82333;' : 'color: tomato; background-color: white;')};
   padding: 10px;
 `;
 
@@ -30,9 +30,19 @@ export const SearchByBtn = styled(Btn)`
 
 export const SortByBtn = styled(Btn)`
   text-decoration: none;
-  color: #000000;
   background: transparent;
   padding: 0 1rem;
   outline: none;
-  ${({ active }) => active && 'color:tomato; font-weight: 600'};
+  color: #000000;
+  ${({ active }) => active && 'font-weight: 600; color: tomato;'};
+`;
+
+export const ReturnSearchBtn = styled.a`
+  color: tomato;
+  background-color: white;
+  border-radius: 0.25rem;
+  padding: 10px;
+  &:hover {
+    opacity: 0.7;
+  }
 `;
